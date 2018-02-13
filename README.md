@@ -1,22 +1,6 @@
 # GGCparking
 GGC's Parking Ionic App
 
-<<<<<<< HEAD
-## Project Description
-<ul>
-	<li>Create a mobile application to help students find parking at the Health Building using Ionic as the framework</li>
-	<li>Use Google Maps API to find device's GPS coordinates</li>
-	<li>Store "parked" cars in a database to update the users how many spots are open</li>
-</ul>
-
-##insert img here
-
-## Team Members
-<ol>
-    <li><b>Joshua Tran</b></li>
-    <li><b>Luca Parilli</b></li>
-    <li><b>Chelsea D'Alessandro</b></li>   
-=======
 ## Project description
 <ol>
     <li>Mobile Application that will help students find parking at the Health Building</li>
@@ -33,5 +17,4 @@ GGC's Parking Ionic App
     <li>Joshua Tran</li>
     <li>Luca Parilli</li>
     <li>Chelsea D'Alessandro</li>
->>>>>>> master
 </ol>

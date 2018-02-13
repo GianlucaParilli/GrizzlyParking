@@ -1,3 +1,4 @@
+import { StatisticsPage } from './../pages/statistics/statistics';
 import { HLotPage } from './../pages/h-lot/h-lot';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MapPage } from '../pages/map/map';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    HLotPage
+    HLotPage,
+    MapPage,
+    StatisticsPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ContactPage,
     HomePage,
     TabsPage,
-    HLotPage
+    HLotPage,
+    MapPage,
+    StatisticsPage
   ],
   providers: [
     StatusBar,

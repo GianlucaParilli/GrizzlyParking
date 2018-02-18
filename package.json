@@ -37,7 +37,11 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+<<<<<<< HEAD
     "rxjs": "^5.5.6",
+=======
+    "rxjs": "^5.5.4",
+>>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18"
   },

@@ -1,10 +1,10 @@
 ﻿import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-import { ToastController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
 
@@ -115,7 +115,6 @@ export class HLotPage {
        // pinPointLocation();
     }
 
-
     presentToast() {
         let toast = this._toastCtrl.create({
           message: 'latitude: '+this.latNumber +' Longitude: '+ this.longNumber,
@@ -128,5 +127,4 @@ export class HLotPage {
         });
         toast.present();
       }
-
 }

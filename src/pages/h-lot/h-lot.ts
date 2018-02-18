@@ -1,19 +1,13 @@
-<<<<<<< HEAD
-﻿import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
 import { ToastController } from 'ionic-angular';
-=======
-import { Component } from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
->>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
 
 
-<<<<<<< HEAD
 
 /*
   Generated class for the hLot page.
@@ -21,13 +15,6 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
-=======
-// FIREBASE ITEM
-// H-LOT has 2 lot areas, h1 and h2.
-//lotArea: AngularFireList<any>;
-
-@IonicPage()
->>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
 @Component({
     selector: 'page-h-Lot',
     templateUrl: 'h-Lot.html'
@@ -129,16 +116,6 @@ export class HLotPage {
        // pinPointLocation();
     }
 
-<<<<<<< HEAD
-=======
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    public alertCtrl: AlertController,
-    afDatabase: AngularFireDatabase) {
-      //the list of lotAreas...
-      //this.lotArea = afDatabase.list('/lotArea').valueChanges();
-  }
->>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
 
     presentToast() {
         let toast = this._toastCtrl.create({
@@ -153,32 +130,34 @@ export class HLotPage {
         toast.present();
       }
 
-  // parkedConfirmation(lot){ //int googleMapsLocation){
-  //   let prompt = this.alertCtrl.create({
-  //     title: 'Parked Vehicle Confirmation',
-  //     message: "Have you parked?",
-  //     buttons: [
-  //       {
-  //         text: 'No',
-  //         handler: data => {
-  //           console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
-  //         }
-  //       },
-  //       {
-  //         text: 'Yes',
-  //         handler: data => {
-  //           console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
-  //           this.updateLot(lot, 1);
-  //         }
-  //       }
-  //     ]
-  //   })
-  // }
-
-  // updateLot(lot: string, update: number){
-  //   // do a toast... lookup how to do that
-  //   // update db (add or subtract as needed)
-  //   handler: data => {
-  //     this.lotArea.update(lot, XXX
-  //   });
+  parkedConfirmation(lot){ //int googleMapsLocation){
+    let prompt = this.alertCtrl.create({
+      title: 'Parked Vehicle Confirmation',
+      message: "Have you parked?",
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
+            this.updateLot(lot, 1);
+          }
+        }
+      ]
+    })
   }
+
+  updateLot(lot: string, update: number){
+    // do a toast... lookup how to do that
+    // update db (add or subtract as needed)
+    //handler: data => {
+    //  this.lotArea.update(lot, XXX
+    //});
+  }
+
+}

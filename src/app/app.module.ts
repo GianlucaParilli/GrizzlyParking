@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 import { ProgressBarModule } from 'angular-progress-bar';
-import { StatisticsPage } from './../pages/statistics/statistics';
-import { HLotPage } from './../pages/h-lot/h-lot';
-=======
-// IMPORTS
->>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
@@ -20,13 +14,9 @@ import { StatisticsPage } from './../pages/statistics/statistics';
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
 import { StatusBar } from '@ionic-native/status-bar';
-<<<<<<< HEAD
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { MapPage } from '../pages/map/map';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-=======
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -40,8 +30,6 @@ export const firebaseConfig = {
   storageBucket: "",
   messagingSenderId: "375005973853"
 };
->>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
-
 
 // SETTINGS - NG MODULES
 @NgModule({
@@ -55,14 +43,10 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-<<<<<<< HEAD
     ProgressBarModule,
-    IonicModule.forRoot(MyApp)
-=======
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule
->>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -14,9 +14,12 @@ import { StatisticsPage } from './../pages/statistics/statistics';
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
 import { StatusBar } from '@ionic-native/status-bar';
+<<<<<<< HEAD
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
+=======
+>>>>>>> dbcbae718a329020d1f5a53af1ba78e6dbfbdbd9
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';

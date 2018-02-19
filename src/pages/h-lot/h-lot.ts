@@ -7,19 +7,12 @@ import { IonicPage, NavController, AlertController, NavParams, ToastController }
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
-<<<<<<< HEAD
-=======
+
 // FIREBASE ITEM
 // H-LOT has 2 lot areas, h1 and h2.
 //lotArea: AngularFireList<any>;
->>>>>>> commented out some stuff
 
-/*
-  Generated class for the hLot page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+@IonicPage()
 @Component({
     selector: 'page-h-Lot',
     templateUrl: 'h-Lot.html'
@@ -110,27 +103,4 @@ export class HLotPage {
         }
         this.map.moveCamera(options)
     }
-   
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad hLotPage');
-    }
-
-    showToast(){
-        console.log("print pressed button");
-       // pinPointLocation();
-    }
-
-    presentToast() {
-        let toast = this._toastCtrl.create({
-          message: 'latitude: '+this.latNumber +' Longitude: '+ this.longNumber,
-          duration: 3000,
-          position: 'top'
-        });
-      
-        toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
-        });
-        toast.present();
-      }
-}
+  }

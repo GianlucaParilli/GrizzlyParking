@@ -8,6 +8,12 @@ import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angu
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
+<<<<<<< HEAD
+=======
+// FIREBASE ITEM
+// H-LOT has 2 lot areas, h1 and h2.
+//lotArea: AngularFireList<any>;
+>>>>>>> commented out some stuff
 
 /*
   Generated class for the hLot page.

@@ -11,7 +11,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 // FIREBASE ITEM
 // H-LOT has 2 lot areas, h1 and h2.
-lotArea: AngularFireList<any>;
+//lotArea: AngularFireList<any>;
 
 @IonicPage()
 @Component({
@@ -25,41 +25,39 @@ export class HLotPage {
     public alertCtrl: AlertController,
     afDatabase: AngularFireDatabase) {
       //the list of lotAreas...
-      this.lotArea = afDatabase.list('/lotArea').valueChanges();
+      //this.lotArea = afDatabase.list('/lotArea').valueChanges();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HLotPage');
   }
 
-  parkedConfirmation(lot){ //int googleMapsLocation){
-    let prompt = this.alertCtrl.create({
-      title: 'Parked Vehicle Confirmation',
-      message: "Have you parked?",
-      buttons: [
-        {
-          text: 'No',
-          handler: data => {
-            console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
-          }
-        },
-        {
-          text: 'Yes',
-          handler: data => {
-            console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
-            this.updateLot(lot, 1);
-          }
-        }
-      ]
-    })
-  }
+  // parkedConfirmation(lot){ //int googleMapsLocation){
+  //   let prompt = this.alertCtrl.create({
+  //     title: 'Parked Vehicle Confirmation',
+  //     message: "Have you parked?",
+  //     buttons: [
+  //       {
+  //         text: 'No',
+  //         handler: data => {
+  //           console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
+  //         }
+  //       },
+  //       {
+  //         text: 'Yes',
+  //         handler: data => {
+  //           console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
+  //           this.updateLot(lot, 1);
+  //         }
+  //       }
+  //     ]
+  //   })
+  // }
 
-  updateLot(lot: string, update: number){
-    // do a toast... lookup how to do that
-    // update db (add or subtract as needed)
-    handler: data => {
-      this.lotArea.update(lot, XXX
-    });
+  // updateLot(lot: string, update: number){
+  //   // do a toast... lookup how to do that
+  //   // update db (add or subtract as needed)
+  //   handler: data => {
+  //     this.lotArea.update(lot, XXX
+  //   });
   }
-
-}

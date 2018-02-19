@@ -25,13 +25,14 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 // SETTINGS - ANGULAR FIREBASE
 export const firebaseConfig = {
-  apiKey: "AIzaSyCxKh1mXmfd2o76dslPZFzLyJNdY5LPRMo",
-  authDomain: "grizzlyparking-1111a.firebaseapp.com",
-  databaseURL: "https://grizzlyparking-1111a.firebaseio.com",
-  projectId: "grizzlyparking-1111a",
-  storageBucket: "grizzlyparking-1111a.appspot.com",
-  messagingSenderId: "251820964455"
+  apiKey: "AIzaSyBMri8zJn3iCZDD5iwklvwatW9nQlM0BnI",
+  authDomain: "grizzlyparking-2222a.firebaseapp.com",
+  databaseURL: "https://grizzlyparking-2222a.firebaseio.com",
+  projectId: "grizzlyparking-2222a",
+  storageBucket: "",
+  messagingSenderId: "375005973853"
 };
+
 
 // SETTINGS - NG MODULES
 @NgModule({

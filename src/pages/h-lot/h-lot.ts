@@ -24,7 +24,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 =======
 // FIREBASE ITEM
 // H-LOT has 2 lot areas, h1 and h2.
-lotArea: AngularFireList<any>;
+//lotArea: AngularFireList<any>;
 
 @IonicPage()
 >>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
@@ -136,7 +136,7 @@ export class HLotPage {
     public alertCtrl: AlertController,
     afDatabase: AngularFireDatabase) {
       //the list of lotAreas...
-      this.lotArea = afDatabase.list('/lotArea').valueChanges();
+      //this.lotArea = afDatabase.list('/lotArea').valueChanges();
   }
 >>>>>>> added angularfirebase2 setup in src/app.module.ts & package.json.  Also staged beginnings of firebase usage in the map.ts and h-lot.ts files, including functions to be called from the pages usages
 
@@ -153,34 +153,32 @@ export class HLotPage {
         toast.present();
       }
 
-  parkedConfirmation(lot){ //int googleMapsLocation){
-    let prompt = this.alertCtrl.create({
-      title: 'Parked Vehicle Confirmation',
-      message: "Have you parked?",
-      buttons: [
-        {
-          text: 'No',
-          handler: data => {
-            console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
-          }
-        },
-        {
-          text: 'Yes',
-          handler: data => {
-            console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
-            this.updateLot(lot, 1);
-          }
-        }
-      ]
-    })
-  }
+  // parkedConfirmation(lot){ //int googleMapsLocation){
+  //   let prompt = this.alertCtrl.create({
+  //     title: 'Parked Vehicle Confirmation',
+  //     message: "Have you parked?",
+  //     buttons: [
+  //       {
+  //         text: 'No',
+  //         handler: data => {
+  //           console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
+  //         }
+  //       },
+  //       {
+  //         text: 'Yes',
+  //         handler: data => {
+  //           console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
+  //           this.updateLot(lot, 1);
+  //         }
+  //       }
+  //     ]
+  //   })
+  // }
 
-  updateLot(lot: string, update: number){
-    // do a toast... lookup how to do that
-    // update db (add or subtract as needed)
-    handler: data => {
-      this.lotArea.update(lot, XXX
-    });
+  // updateLot(lot: string, update: number){
+  //   // do a toast... lookup how to do that
+  //   // update db (add or subtract as needed)
+  //   handler: data => {
+  //     this.lotArea.update(lot, XXX
+  //   });
   }
-
-}

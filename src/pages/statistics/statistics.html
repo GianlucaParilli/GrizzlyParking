@@ -7,100 +7,31 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Statistics</ion-title>
+    <ion-title>About</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content class="bg-dark">
-  <img src="assets/imgs/GrizzlyParkingCard.png" alt="Logo">
- <button ion-item (click)="goToHLotPage()" color="dark">
-  <ion-card color="secondary">
+  <ion-card color="dark">
+    <img src="assets/imgs/GrizzlyParking.png" alt="logo">
     <ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6 class="cardHeader">H Parking Lot</ion-col>
-          <ion-col col-6 class="cardPercentage">66%</ion-col>
-        </ion-row>
-      </ion-grid>
+      Grizzly Parking
     </ion-card-header>
     <ion-card-content>
-      <ion-grid>
-          <ion-row>
-              <ion-col col-12>
-                  <progress-bar [progress]="66">
-                    </progress-bar>
-              </ion-col>
-            </ion-row>
-      </ion-grid>
+      Team Members: 
+      <br>
+      Gianluca Parili<br>
+      Joshua Tran<br>
+      Chelsea D'alessandro<br><br>
+      Grizzly Parking is currently still under development. Help us make the app better by submitting problems to us!
+      <hr>
+      <br>
+      <ion-item>
+        <ion-label>Report Bugs</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <button ion-button full color="secondary">Submit</button>
     </ion-card-content>
+
   </ion-card>
-</button>
-<button ion-item (click)="goToHLotPage()" color="dark">
-  <ion-card color="secondary">
-      <ion-card-header>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-6 class="cardHeader">A Parking Lot</ion-col>
-            <ion-col col-6 class="cardPercentage">50%</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-12>
-                <progress-bar [progress]="50">
-                  </progress-bar>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-  </button>
-  <button ion-item (click)="goToHLotPage()" color="dark">
-    <ion-card color="danger">
-        <ion-card-header>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-6 class="cardHeader">L Lot Parking</ion-col>
-              <ion-col col-6 class="cardPercentage">1%</ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid>
-              <ion-row>
-                  <ion-col col-12>
-                      <progress-bar [progress]="1">
-                        </progress-bar>
-                  </ion-col>
-                </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-</button>
-<button ion-item (click)="goToHLotPage()" color="dark">
-      <ion-card color="caution">
-        <ion-card-header>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-6 class="cardHeader">3000 Parking Lot</ion-col>
-              <ion-col col-6 class="cardPercentage">25%</ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-grid>
-              <ion-row>
-                  <ion-col col-12>
-                      <progress-bar [progress]="25">
-                        </progress-bar>
-                  </ion-col>
-                </ion-row>
-          </ion-grid>
-        </ion-card-content>
-      </ion-card>
-    </button>
 </ion-content>

@@ -5,69 +5,69 @@
 </ion-header>
 
 <ion-content class="bg-dark">
-    <img src="assets/imgs/GrizzlyParkingCard.png" alt="Logo">
-    <ion-card color="secondary" (click)="goToHLotPage()">
-      <ion-card-header>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-4 class="cardHeader">H Lot</ion-col>
-            <ion-col col-4 class="cardCount">200/300</ion-col>
-            <ion-col col-4 class="cardPercentage">66%</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
-            <ion-row>
-                <ion-col col-12>
-                    <progress-bar [progress]="66">
-                      </progress-bar>
-                </ion-col>
-              </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-    <ion-card color="danger">
-          <ion-card-header>
-            <ion-grid>
-              <ion-row>
-                <ion-col col-4 class="cardHeader">L Lot</ion-col>
-                <ion-col col-4 class="cardCount">30/300</ion-col>
-            <ion-col col-4 class="cardPercentage">1%</ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-12>
-                        <progress-bar [progress]="1">
-                          </progress-bar>
-                    </ion-col>
-                  </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
+  <img src="assets/imgs/GrizzlyParkingCard.png" alt="Logo">
+  <ion-card color="secondary" (click)="goToHLotPage()">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 class="cardHeader">H Lot</ion-col>
+          <ion-col col-4 class="cardCount">200/300</ion-col>
+          <ion-col col-4 class="cardPercentage">66%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <progress-bar [progress]="66">
+            </progress-bar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card color="danger">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 class="cardHeader">L Lot</ion-col>
+          <ion-col col-4 class="cardCount">30/300</ion-col>
+          <ion-col col-4 class="cardPercentage">1%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <progress-bar [progress]="1">
+            </progress-bar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 
-        <ion-card color="caution">
-          <ion-card-header>
-            <ion-grid>
-              <ion-row>
-                <ion-col col-4 class="cardHeader">3000 Lot</ion-col>
-                <ion-col col-4 class="cardCount">50/200</ion-col>
-            <ion-col col-4 class="cardPercentage">25%</ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col col-12>
-                        <progress-bar [progress]="25">
-                          </progress-bar>
-                    </ion-col>
-                  </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-  </ion-content>
+  <ion-card color="caution">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 class="cardHeader">3000 Lot</ion-col>
+          <ion-col col-4 class="cardCount">50/200</ion-col>
+          <ion-col col-4 class="cardPercentage">25%</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <progress-bar [progress]="25">
+            </progress-bar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

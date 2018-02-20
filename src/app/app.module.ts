@@ -1,3 +1,4 @@
+import { ProgressBarModule } from 'angular-progress-bar';
 import { StatisticsPage } from './../pages/statistics/statistics';
 import { HLotPage } from './../pages/h-lot/h-lot';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -24,6 +25,7 @@ import { Toast } from '@ionic-native/toast';
   ],
   imports: [
     BrowserModule,
+    ProgressBarModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

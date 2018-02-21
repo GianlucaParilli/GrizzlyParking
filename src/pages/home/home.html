@@ -27,6 +27,27 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
+  <ion-card color="caution">
+      <ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4 class="cardHeader">3000 Lot</ion-col>
+            <ion-col col-4 class="cardCount">50/200</ion-col>
+            <ion-col col-4 class="cardPercentage">25%</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+              <progress-bar [progress]="25">
+              </progress-bar>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   <ion-card color="danger">
     <ion-card-header>
       <ion-grid>
@@ -49,25 +70,5 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card color="caution">
-    <ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4 class="cardHeader">3000 Lot</ion-col>
-          <ion-col col-4 class="cardCount">50/200</ion-col>
-          <ion-col col-4 class="cardPercentage">25%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <progress-bar [progress]="25">
-            </progress-bar>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+  
 </ion-content>

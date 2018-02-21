@@ -7,20 +7,16 @@ import { ToastController } from 'ionic-angular';
 import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
-
-<<<<<<< HEAD
-=======
-// FIREBASE ITEM
-// H-LOT has 2 lot areas, h1 and h2.
-//lotArea: AngularFireList<any>;
->>>>>>> commented out some stuff
-
 /*
   Generated class for the hLot page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+// FIREBASE ITEM
+// H-LOT has 2 lot areas, h1 and h2.
+// lotArea: AngularFireList<any>;
+
 @Component({
     selector: 'page-h-Lot',
     templateUrl: 'h-Lot.html'
@@ -29,9 +25,6 @@ export class HLotPage {
     private latNumber: number;
     private longNumber: number;
 
-    //let longString;
-    
-
     @ViewChild('map') mapElement: ElementRef;
     map: GoogleMap;
     constructor(public navCtrl: NavController, 
@@ -39,8 +32,12 @@ export class HLotPage {
                 private _googleMaps: GoogleMaps,
                 private _geoLocation: Geolocation,
                 private _toast: Toast,
-                private _toastCtrl: ToastController
+                private _toastCtrl: ToastController,
+                public alertCtrl: AlertController,
+                afDatabase: AngularFireDatabase
                 ) { 
+                    // the list of lotAreas...
+                    // this.lotArea = afDatabase.list('/lotArea').valueChanges();
                 }
     ngAfterViewInit(){
         

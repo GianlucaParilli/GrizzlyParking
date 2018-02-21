@@ -2,6 +2,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import {GoogleMaps} from '@ionic-native/google-maps';
+import {Geolocation} from '@ionic-native/geolocation';
+import { Toast } from '@ionic-native/toast';
 import { MyApp } from './app.component';
 // SPLASHSCREEN
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,9 +17,8 @@ import { StatisticsPage } from './../pages/statistics/statistics';
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
 import { StatusBar } from '@ionic-native/status-bar';
-import {GoogleMaps} from '@ionic-native/google-maps';
-import {Geolocation} from '@ionic-native/geolocation';
-import { Toast } from '@ionic-native/toast';
+import { ProgressBarModule } from 'angular-progress-bar';
+
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -31,7 +33,6 @@ export const firebaseConfig = {
   messagingSenderId: "375005973853"
 };
 
-
 // SETTINGS - NG MODULES
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    ProgressBarModule,
+    IonicModule.forRoot(MyApp)
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule
   ],

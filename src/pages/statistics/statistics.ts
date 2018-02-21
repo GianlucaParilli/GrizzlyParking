@@ -1,6 +1,6 @@
+import { HLotPage } from './../h-lot/h-lot';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**
  * Generated class for the StatisticsPage page.
  *
@@ -20,6 +20,9 @@ export class StatisticsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatisticsPage');
+  }
+  goToHLotPage() {
+    this.navCtrl.push(HLotPage);
   }
 
 }

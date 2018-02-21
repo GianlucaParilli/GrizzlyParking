@@ -6,24 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Campus Map</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Instructions</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <ion-card>
+<ion-content class="bg-dark" padding>
+    <ion-card color="dark">
         <img src="assets/imgs/campusmap.png"/>
         <ion-card-content>
           <ion-card-title>
-            Avaiable Parking
+            Instructions
             </ion-card-title>
-          <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
-          </p>
+            Disclaimer: Do NOT operate app while driving<br><br>
+            The Home page displays all of the parking lots as well as their available capacity in real time.<br><br>
+            <table border=1>
+              <tr><td>Color</td><td>Meaning</td></tr>
+              <tr><td>Green</td><td>Green means that there are a lot of available spaces in the specific parking lot</td></tr>
+              <tr><td>Orange</td><td>Orange means that there are less than 50% available spaces in the specific parking lot</td></tr>
+              <tr><td>Red</td><td>Red means that there NOT are a lot of available spaces in the specific parking lot</td></tr>
+            </table>
         </ion-card-content>
       </ion-card>
 </ion-content>

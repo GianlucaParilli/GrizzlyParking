@@ -1,3 +1,27 @@
 page-statistics {
-
+    .greenText{
+        color: green;
+        font-size: 20px;
+        text-align: center;
+    }
+    .redText{
+        color:#ff0000;
+        font-size: 20px;
+        text-align: center;
+    }
+    .orangeText{
+        color:#ff9100;
+        font-size: 20px;
+        text-align: center;
+    }
+    .cardHeader{
+        font-size: 25px;
+        text-align: left;
+        font-weight: bold;
+    }
+    .cardPercentage {
+        font-size: 25px;
+        text-align: right;
+        font-weight: bold;
+    }
 }

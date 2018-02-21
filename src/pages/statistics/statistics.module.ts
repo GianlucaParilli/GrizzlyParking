@@ -1,3 +1,4 @@
+import { ProgressBarModule } from 'angular-progress-bar';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { StatisticsPage } from './statistics';
@@ -7,6 +8,7 @@ import { StatisticsPage } from './statistics';
     StatisticsPage,
   ],
   imports: [
+    ProgressBarModule,
     IonicPageModule.forChild(StatisticsPage),
   ],
 })

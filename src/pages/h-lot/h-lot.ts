@@ -5,6 +5,7 @@ import {GoogleMaps, GoogleMap, CameraPosition,
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
 import { ToastController } from 'ionic-angular';
+import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 
 
 
@@ -32,11 +33,11 @@ export class HLotPage {
                 private _googleMaps: GoogleMaps,
                 private _geoLocation: Geolocation,
                 private _toast: Toast,
-                private _toastCtrl: ToastController
+                private _toastCtrl: ToastController,
+                public _locationService : LocationtrackerProvider
                 ) { 
                 }
     ngAfterViewInit(){
-        
         this.initMap();
         let loc: LatLng;
         this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
@@ -45,10 +46,8 @@ export class HLotPage {
                 //this.tesss = res.coords.latitude;
                 this.latNumber = res.coords.latitude;
                 this.longNumber = res.coords.longitude;
-
-                this.pinPointLocation();
                 this.moveCamera(loc);
-
+                this.showMarker();
                 this.createMarker(loc,"My Car").then((marker : Marker) =>{
                     marker.showInfoWindow();
                     console.log('print get Location');
@@ -68,19 +67,12 @@ export class HLotPage {
         this.getLocation().then(res =>{
             //console.log(res.coords.latitude);
         });
-   
     }
+   
     initMap(){
         let element = this.mapElement.nativeElement;
         this.map = this._googleMaps.create(element);
     }
-
-    pinPointLocation(){
-        console.log('print get latitude ' + this.latNumber);
-        console.log('print get longitude ' + this.longNumber);
-
-
-      }
 
     createMarker(loc: LatLng, title: string){
         let markerOptions: MarkerOptions= {
@@ -91,7 +83,6 @@ export class HLotPage {
     }
     getLocation(){
         let currentLOC = this._geoLocation.getCurrentPosition();
-
          return currentLOC;
          
 
@@ -114,17 +105,29 @@ export class HLotPage {
         console.log("print pressed button");
        // pinPointLocation();
     }
+    showMarker(){
+        this.start();
+        //this._locationService.startTracking();
+       this.presentToast(this._locationService.lat,this._locationService.lng);
+    }
 
-
-    presentToast() {
+    start(){
+        this._locationService.startTracking();
+      }
+     
+      stop(){
+        this._locationService.stopTracking();
+      }
+    presentToast(lat: number,long: number) {
         let toast = this._toastCtrl.create({
-          message: 'latitude: '+this.latNumber +' Longitude: '+ this.longNumber,
+          message: 'latitude: '+lat +' Longitude: '+ long,
           duration: 3000,
           position: 'top'
         });
       
         toast.onDidDismiss(() => {
           console.log('Dismissed toast');
+         // this.stop;
         });
         toast.present();
       }

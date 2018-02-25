@@ -13,6 +13,8 @@ import { MapPage } from '../pages/map/map';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
+import { LocationtrackerProvider } from '../providers/locationtracker/locationtracker';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 @NgModule({
   declarations: [
@@ -42,8 +44,11 @@ import { Toast } from '@ionic-native/toast';
     SplashScreen,
     GoogleMaps,
     Geolocation,
-    Toast,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Toast, 
+    LocationtrackerProvider,
+    BackgroundGeolocation,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+   
   ]
 })
 export class AppModule {}

@@ -91,4 +91,5 @@
     </plugin>
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
     <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-plugin-firebase" spec="^0.1.25" />
 </widget>

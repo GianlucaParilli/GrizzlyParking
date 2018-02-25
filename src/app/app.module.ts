@@ -17,20 +17,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
 import { StatusBar } from '@ionic-native/status-bar';
 import { ProgressBarModule } from 'angular-progress-bar';
-
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-
 // SETTINGS - ANGULAR FIREBASE
-export const firebaseConfig = {
-  apiKey: "AIzaSyBMri8zJn3iCZDD5iwklvwatW9nQlM0BnI",
-  authDomain: "grizzlyparking-2222a.firebaseapp.com",
-  databaseURL: "https://grizzlyparking-2222a.firebaseio.com",
-  projectId: "grizzlyparking-2222a",
-  storageBucket: "",
-  messagingSenderId: "375005973853"
-};
+import { credentials } from './config';
 
 // SETTINGS - NG MODULES
 @NgModule({
@@ -46,7 +39,9 @@ export const firebaseConfig = {
     BrowserModule,
     ProgressBarModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(credentials.firebase),
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
     AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],

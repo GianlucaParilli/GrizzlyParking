@@ -24,6 +24,12 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
 
+
+  //Firebase Logic for logging in
+  logIn(){
+    
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }

@@ -18,6 +18,11 @@ export class RegisterPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  //Firebase Logic for registering and logging in
+  registerAndLogin(){
+
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }

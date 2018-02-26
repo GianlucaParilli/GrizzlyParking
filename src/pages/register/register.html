@@ -6,13 +6,29 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>register</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Register</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding color="dark">
+    <ion-list>
 
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+      
+      </ion-list>
+
+      <button ion-button full (click)="registerAndLogin()">
+          Register and Login
+        </button>
 </ion-content>

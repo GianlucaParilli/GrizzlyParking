@@ -13,6 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
 import { HLotPage } from './../pages/h-lot/h-lot';
 import { StatisticsPage } from './../pages/statistics/statistics';
+import { LoginPage } from './../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 // tabs
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
@@ -26,6 +28,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 // SETTINGS - ANGULAR FIREBASE
 import { credentials } from './config';
 
+
 // SETTINGS - NG MODULES
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { credentials } from './config';
     TabsPage,
     MapPage,
     HLotPage,
-    StatisticsPage
+    StatisticsPage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,9 @@ import { credentials } from './config';
     TabsPage,
     MapPage,
     HLotPage,
-    StatisticsPage
+    StatisticsPage,
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

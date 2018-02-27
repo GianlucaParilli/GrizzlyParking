@@ -53,7 +53,7 @@ export class LoginPage {
     let toast = this._toastCtrl.create({
       message: msg,
       duration: 3000,
-      position: 'middle'
+      position: 'top'
     });
   
     toast.onDidDismiss(() => {

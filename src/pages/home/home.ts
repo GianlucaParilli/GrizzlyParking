@@ -16,6 +16,23 @@ interface UserInterface {
   parkedTime: firebase.firestore.FieldValue         //MUST BE TYPE:  TimeStamp. a number represents millisecs since 01/01/1970
 }                           //PLAN: treat as a number, which is what the firestore timestamp says is its format.
 
+interface LocationInterface {
+  latitude: number,  
+  longitude: number,
+}
+
+interface LotAreaInterface {
+  capacity: number,
+  parkedUsers: AngularFirestoreCollection<UserInterface>,
+}
+
+interface ParkingLotInterface {
+  entrances: AngularFirestoreCollection<LocationInterface>,
+  exits: AngularFirestoreCollection<LocationInterface>,
+  lotAreas: AngularFirestoreCollection<LotAreaInterface>,
+  percentAvailable: number
+}
+
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
 @Component({
@@ -23,23 +40,43 @@ const timestamp = firebase.firestore.FieldValue.serverTimestamp();
   templateUrl: 'home.html'
 })
 export class HomePage {
-  users: Observable<UserInterface[]>;
-  userCollectionRef: AngularFirestoreCollection<UserInterface>;
+
+  // OBSERVABLES
+  users:       Observable<UserInterface[]>;
+  locations:   Observable<LocationInterface[]>;
+  lotAreas:    Observable<LotAreaInterface[]>;
+  parkingLots: Observable<ParkingLotInterface[]>;
+
+  // COLLECTION REFERENCES
+  userCollectionRef:       AngularFirestoreCollection<UserInterface>;
+  locationCollectionRef:   AngularFirestoreCollection<LocationInterface>;
+  lotAreaCollectionRef:    AngularFirestoreCollection<LotAreaInterface>;
+  parkingLotCollectionRef: AngularFirestoreCollection<ParkingLotInterface>;
+
 
   constructor(public navCtrl: NavController, 
     public afAuth: AngularFireAuth, 
-    public afs: AngularFirestore) {
+    public afs:    AngularFirestore) {
 
+      // FIREBASE CONNECTION TO COLLECTIONS
       this.afAuth.auth.signInAnonymously();
-      this.userCollectionRef = this.afs.collection('user'); 
+      this.userCollectionRef       = this.afs.collection('user');
+      this.locationCollectionRef   = this.afs.collection('location'); 
+      this.lotAreaCollectionRef    = this.afs.collection('lotArea'); 
+      this.parkingLotCollectionRef = this.afs.collection('parkingLot');
+
+      // USED IN HTML - listener?
       this.users = this.userCollectionRef.valueChanges();
+      this.locations = this.locationCollectionRef.valueChanges();
+      this.lotAreas = this.lotAreaCollectionRef.valueChanges();
+      this.parkingLots = this.parkingLotCollectionRef.valueChanges();
   }
 
   goToHLotPage() {
     this.navCtrl.push(HLotPage);
   }
 
-
+  // USER FUNCTIONS
   userDocRefID: string;
 
   createUser(isParked: boolean, parkedLatitude: number,
@@ -61,7 +98,6 @@ export class HomePage {
     });
   }
 
-
   parkUser(user: UserInterface, latitude: number, longitude: number) {
     console.log("~~~~~~~~~~ FUNCTION parkUser called ", this.userDocRefID);
 
@@ -75,7 +111,6 @@ export class HomePage {
       console.log("~~~~~~~~~~ FUNCTION parkUser error ", error);
     });
   }
-  
 
   unparkUser(user: UserInterface) {
     console.log("~~~~~~~~~~ FUNCTION unparkUser called ", this.userDocRefID);
@@ -90,4 +125,6 @@ export class HomePage {
       console.log("~~~~~~~~~~ FUNCTION unparkUser error ", error);
     });
   }
+
+  
 }

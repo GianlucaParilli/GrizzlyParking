@@ -1,6 +1,7 @@
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Toast } from '@ionic-native/toast';
 import { User } from "../../shared/models/user";
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -14,7 +15,10 @@ export class LoginPage {
   user = {} as User;
 
   constructor(private afAuth: AngularFireAuth,
-    public navCtrl: NavController, public navParams: NavParams) {
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        private _toast: Toast,
+        private _toastCtrl: ToastController,) {
   }
  
   async login(user: User) {
@@ -26,6 +30,7 @@ export class LoginPage {
     }
     catch (e) {
       console.error(e);
+      this.presentToast("Invalid Login");
     }
   }
  
@@ -40,6 +45,22 @@ export class LoginPage {
       }
     } catch (e) {
       console.error(e);
+      this.presentToast("Invalid Registration\nVerify entered email format\nUser may already exist");
     }
   }
+
+  presentToast( msg: string ) {
+    let toast = this._toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'middle'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
 }

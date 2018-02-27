@@ -45,7 +45,7 @@ export class LoginPage {
       }
     } catch (e) {
       console.error(e);
-      this.presentToast("Invalid Registration\nVerify entered email format\nUser may already exist");
+      this.presentToast("Invalid Registration");
     }
   }
 

@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { LoginPage } from '../login/login';
 //import { GeoPoint } from '@google-cloud/firestore';
 //import { GeoPoint } from '@firebase/firestore-types';
 
@@ -58,6 +59,7 @@ export class HomePage {
     public afAuth: AngularFireAuth, 
     public afs:    AngularFirestore) {
 
+<<<<<<< HEAD
       // FIREBASE CONNECTION TO COLLECTIONS
       this.afAuth.auth.signInAnonymously();
       this.userCollectionRef       = this.afs.collection('user');
@@ -66,17 +68,29 @@ export class HomePage {
       this.parkingLotCollectionRef = this.afs.collection('parkingLot');
 
       // USED IN HTML - listener?
+=======
+      //this.afAuth.auth.signInAnonymously();
+      this.userCollectionRef = this.afs.collection('user'); 
+>>>>>>> f738244ed20508e730a37a16c022e2f4bd0faba5
       this.users = this.userCollectionRef.valueChanges();
       this.locations = this.locationCollectionRef.valueChanges();
       this.lotAreas = this.lotAreaCollectionRef.valueChanges();
       this.parkingLots = this.parkingLotCollectionRef.valueChanges();
   }
-
+  //Navigation
   goToHLotPage() {
     this.navCtrl.push(HLotPage);
   }
 
+<<<<<<< HEAD
   // USER FUNCTIONS
+=======
+  goToLoginPage(){
+    this.navCtrl.push(LoginPage);
+  }
+
+
+>>>>>>> f738244ed20508e730a37a16c022e2f4bd0faba5
   userDocRefID: string;
 
   createUser(isParked: boolean, parkedLatitude: number,

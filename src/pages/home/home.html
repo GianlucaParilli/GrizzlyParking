@@ -8,28 +8,33 @@
 <ion-content class="bg-dark">
 
   <!-- FIREBASE | Testing the user collection -->
-  <ion-list>
+  <!-- <ion-list>
     <ion-list-header>
       Users
-    </ion-list-header>
+    </ion-list-header> -->
     <!-- NOTE
       'async' | async is a built-in pipe which allows you to easily subscribe
       to Observables without manually calling the .subscribe() method in the 
       component class.
     -->
-    <ion-item  *ngFor="let user of users | async">
-      <h1>{{user.docRef}}</h1>  <!-- doesn't work, must be called another way -->
-      <p>{{user.isParked}}</p>
+    <!-- <ion-item  *ngFor="let user of users | async"> -->
+      <!-- <h1>{{user.docRef}}</h1>  doesn't work, must be called another way -->
+      <!-- <p>{{user.isParked}}</p>
       <p>{{user.parkedLatitude}}</p>
       <p>{{user.parkedLongitude}}</p>
       <p>{{user.parkedTime}}</p>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
     <!-- FIREBASE | Test end -->
 
-  <button ion-button (click)="createUser(false, 0, 0)">
+  <!-- <button ion-button (click)="createUser(false, 0, 0)">
       Create new user
-  </button>
+  </button> -->
+
+  <!-- Start Auth Testing -->
+  <!-- <button ion-button full (click)="goToLoginPage()">
+    Go To Login Page
+  </button> -->
 
   <!-- PAGE SECTION | Logo - Grizzly Parking text logo (image) -->
   <img src="assets/imgs/GrizzlyParkingCard.png" alt="Logo">

@@ -1,6 +1,6 @@
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
 import { User } from "../../shared/models/user";
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -18,6 +18,7 @@ export class LoginPage {
         public navCtrl: NavController,
         public navParams: NavParams,
         private _toast: Toast,
+        public alertCtrl: AlertController,
         private _toastCtrl: ToastController,) {
   }
  
@@ -30,7 +31,8 @@ export class LoginPage {
     }
     catch (e) {
       console.error(e);
-      this.presentToast("Invalid Login");
+      this.showAlert("Invalid Login", "Please try again or sign up.");
+      //this.presentToast("Invalid Login");
     }
   }
  
@@ -45,8 +47,18 @@ export class LoginPage {
       }
     } catch (e) {
       console.error(e);
-      this.presentToast("Invalid Registration");
+      this.showAlert("Invalid Registration", "This account may already be in use. Please try again.")
+      //this.presentToast("Invalid Registration");
     }
+  }
+
+  showAlert( title: string , msg: string) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   presentToast( msg: string ) {

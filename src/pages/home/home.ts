@@ -31,7 +31,7 @@ export class HomePage {
     public afAuth: AngularFireAuth, 
     public afs: AngularFirestore) {
 
-      this.afAuth.auth.signInAnonymously();
+      //this.afAuth.auth.signInAnonymously();
       this.userCollectionRef = this.afs.collection('user'); 
       this.users = this.userCollectionRef.valueChanges();
   }

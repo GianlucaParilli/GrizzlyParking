@@ -11,6 +11,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { LoginPage } from '../pages/login/login';
 //import { GeoPoint } from '@google-cloud/firestore';
 //import { GeoPoint } from '@firebase/firestore-types';
 
@@ -28,7 +29,7 @@ const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 })
 
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = LoginPage;
   // Observable is the actual firebase db collection name: user
   users: Observable<UserInterface[]>;
   userCollectionRef: AngularFirestoreCollection<UserInterface>;
@@ -40,7 +41,7 @@ export class MyApp {
     public afAuth: AngularFireAuth, 
     public afs: AngularFirestore) {
 
-    this.afAuth.auth.signInAnonymously();
+    //this.afAuth.auth.signInAnonymously();
     this.userCollectionRef = this.afs.collection('user'); 
     this.users = this.userCollectionRef.valueChanges();
       

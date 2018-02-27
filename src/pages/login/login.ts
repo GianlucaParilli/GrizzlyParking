@@ -1,14 +1,8 @@
+import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RegisterPage } from '../register/register';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { User } from "../../shared/models/user";
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -16,27 +10,36 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  login = new FormGroup({
-    email: new FormControl(),
-    password: new FormControl()
-  });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder) {
+  user = {} as User;
 
+  constructor(private afAuth: AngularFireAuth,
+    public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  //Navigation
-  goToRegisterPage(){
-    this.navCtrl.push(RegisterPage);
+ 
+  async login(user: User) {
+    try {
+      const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+      if (result) {
+        this.navCtrl.setRoot(HomePage);
+      }  
+    }
+    catch (e) {
+      console.error(e);
+    }
   }
-
-  //Firebase Logic for logging in
-  logIn(){
-    console.log(this.login.value);
+ 
+  async register(user: User) {
+    try {
+      const result = await this.afAuth.auth.createUserWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+      if (result) {
+        this.navCtrl.setRoot(HomePage);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
-  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
 }

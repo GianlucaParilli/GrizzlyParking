@@ -14,7 +14,6 @@ import { MapPage } from '../pages/map/map';
 import { HLotPage } from './../pages/h-lot/h-lot';
 import { StatisticsPage } from './../pages/statistics/statistics';
 import { LoginPage } from './../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
 // tabs
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
@@ -38,8 +37,7 @@ import { credentials } from './config';
     MapPage,
     HLotPage,
     StatisticsPage,
-    LoginPage,
-    RegisterPage
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -58,8 +56,7 @@ import { credentials } from './config';
     MapPage,
     HLotPage,
     StatisticsPage,
-    LoginPage,
-    RegisterPage
+    LoginPage
   ],
   providers: [
     StatusBar,

@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-import { Component, ViewChild, ElementRef} from '@angular/core';
-=======
-﻿import { Component, ViewChild, ElementRef} from '@angular/core';
+﻿﻿import { Component, ViewChild, ElementRef} from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
->>>>>>> 6ea2ff9833e31c99f059c978e03e52bfffe01b66
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-<<<<<<< HEAD
-import { ToastController } from 'ionic-angular';
-import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-=======
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
->>>>>>> 6ea2ff9833e31c99f059c978e03e52bfffe01b66
 
 /*
   Generated class for the hLot page.
@@ -35,10 +25,6 @@ export class HLotPage {
     private latNumber: number;
     private longNumber: number;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6ea2ff9833e31c99f059c978e03e52bfffe01b66
     @ViewChild('map') mapElement: ElementRef;
     map: GoogleMap;
     constructor(public navCtrl: NavController, 
@@ -172,15 +158,9 @@ export class HLotPage {
   updateLot(lot: string, update: number){
     // do a toast... lookup how to do that
     // update db (add or subtract as needed)
-<<<<<<< HEAD
     //handler: data => {
     //  this.lotArea.update(lot, XXX
     //});
-=======
-    handler: data => {
-      this.lotArea.update(lot, XXX
-    });
->>>>>>> 6ea2ff9833e31c99f059c978e03e52bfffe01b66
   }
 
 }

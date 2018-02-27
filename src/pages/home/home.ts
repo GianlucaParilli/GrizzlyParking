@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { LoginPage } from '../login/login';
 //import { GeoPoint } from '@google-cloud/firestore';
 //import { GeoPoint } from '@firebase/firestore-types';
 
@@ -30,13 +31,17 @@ export class HomePage {
     public afAuth: AngularFireAuth, 
     public afs: AngularFirestore) {
 
-      this.afAuth.auth.signInAnonymously();
+      //this.afAuth.auth.signInAnonymously();
       this.userCollectionRef = this.afs.collection('user'); 
       this.users = this.userCollectionRef.valueChanges();
   }
-
+  //Navigation
   goToHLotPage() {
     this.navCtrl.push(HLotPage);
+  }
+
+  goToLoginPage(){
+    this.navCtrl.push(LoginPage);
   }
 
 

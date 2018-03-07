@@ -6,12 +6,17 @@ import { Toast } from '@ionic-native/toast';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { 
+  AngularFireDatabase, 
+  AngularFireList } from 'angularfire2/database';
+import { 
+  AngularFirestore, 
+  AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 //import { GeoPoint } from '@google-cloud/firestore';
 //import { GeoPoint } from '@firebase/firestore-types';
 
@@ -29,7 +34,7 @@ const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 })
 
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any;
   // Observable is the actual firebase db collection name: user
   users: Observable<UserInterface[]>;
   userCollectionRef: AngularFirestoreCollection<UserInterface>;
@@ -50,6 +55,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+    });
+    const unsubscribe = firebase.auth().onAuthStateChanged( user => {
+      if (!user) {
+        this.rootPage = LoginPage;
+        unsubscribe();
+      } else { 
+        this.rootPage = HomePage;
+        unsubscribe();
+      }
     });
   }
 

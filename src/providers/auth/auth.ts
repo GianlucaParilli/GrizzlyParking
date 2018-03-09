@@ -16,7 +16,6 @@ interface UserInterface {
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 @Injectable()
 export class AuthProvider {
-  users: Observable<UserInterface[]>;
   userCollectionRef: AngularFirestoreCollection<UserInterface>;
 
   constructor(

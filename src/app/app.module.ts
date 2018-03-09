@@ -31,6 +31,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 // SETTINGS - ANGULAR FIREBASE
 import { credentials } from './config';
 import { AuthProvider } from '../providers/auth/auth';
+import { SignupPage } from '../pages/signup/signup';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 
 // SETTINGS - NG MODULES
@@ -42,6 +44,8 @@ import { AuthProvider } from '../providers/auth/auth';
     MapPage,
     HLotPage,
     StatisticsPage,
+    SignupPage,
+    ResetPasswordPage,
     LoginPage
   ],
   imports: [
@@ -61,6 +65,8 @@ import { AuthProvider } from '../providers/auth/auth';
     MapPage,
     HLotPage,
     StatisticsPage,
+    SignupPage,
+    ResetPasswordPage,
     LoginPage
   ],
   providers: [

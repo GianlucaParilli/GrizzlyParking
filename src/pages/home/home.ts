@@ -1,8 +1,12 @@
 import { HLotPage } from './../h-lot/h-lot';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { 
+  AngularFireDatabase, 
+  AngularFireList } from 'angularfire2/database';
+import { 
+  AngularFirestore, 
+  AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';

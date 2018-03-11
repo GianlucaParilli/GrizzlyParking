@@ -14,10 +14,10 @@ import { MyApp } from './app.component';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // PAGES
 import { HomePage } from '../pages/home/home';
-import { MapPage } from '../pages/map/map';
 import { HLotPage } from './../pages/h-lot/h-lot';
-import { StatisticsPage } from './../pages/statistics/statistics';
 import { LoginPage } from './../pages/login/login';
+import { AboutPage } from '../pages/about/about';
+import { SettingsPage } from '../pages/settings/settings';
 // tabs
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
@@ -35,18 +35,19 @@ import { SignupPage } from '../pages/signup/signup';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 
+
 // SETTINGS - NG MODULES
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     TabsPage,
-    MapPage,
     HLotPage,
-    StatisticsPage,
     SignupPage,
     ResetPasswordPage,
-    LoginPage
+    LoginPage,
+    AboutPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -62,12 +63,12 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     MyApp,
     HomePage,
     TabsPage,
-    MapPage,
     HLotPage,
-    StatisticsPage,
     SignupPage,
     ResetPasswordPage,
-    LoginPage
+    LoginPage,
+    AboutPage,
+    SettingsPage
   ],
   providers: [
     StatusBar,

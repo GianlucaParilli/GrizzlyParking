@@ -1,13 +1,11 @@
 # GGCparking
 An Ionic parking app that helps ease the flow of traffic on GGC's campus and helps students find available parking during school hours.
 
-## Project description
+## Project Description
 <ol>
-    <li>Mobile Application that will help students find parking at the Health Building</li>
-    <li>we will use Ionic as the framework to build the hybrid mobile application</li>
-    <li>Implement Google Maps API to see where the phone is within the parking lot</li>
-    <li>Use a database to update how many cars are parked in real-time at the H-building</li>
-
+    <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu addresses only)</li>
+    <li>Uses Google Firebase Firesore as DB solution</li>
+    <li>Uses Ionic-Native plugins to keep track of users(Geofence, Geolocation)</li>
 </ol>
  
 ## Insert pic here

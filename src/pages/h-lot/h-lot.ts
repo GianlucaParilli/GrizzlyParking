@@ -1,11 +1,10 @@
 ﻿import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-import { ToastController } from 'ionic-angular';
-
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
 /*
@@ -14,6 +13,10 @@ import { ToastController } from 'ionic-angular';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+// FIREBASE ITEM
+// H-LOT has 2 lot areas, h1 and h2.
+// lotArea: AngularFireList<any>;
+
 @Component({
     selector: 'page-h-Lot',
     templateUrl: 'h-Lot.html'
@@ -22,9 +25,6 @@ export class HLotPage {
     private latNumber: number;
     private longNumber: number;
 
-    //let longString;
-    
-
     @ViewChild('map') mapElement: ElementRef;
     map: GoogleMap;
     constructor(public navCtrl: NavController, 
@@ -32,8 +32,12 @@ export class HLotPage {
                 private _googleMaps: GoogleMaps,
                 private _geoLocation: Geolocation,
                 private _toast: Toast,
-                private _toastCtrl: ToastController
+                private _toastCtrl: ToastController,
+                public alertCtrl: AlertController,
+                afDatabase: AngularFireDatabase
                 ) { 
+                    // the list of lotAreas...
+                    // this.lotArea = afDatabase.list('/lotArea').valueChanges();
                 }
     ngAfterViewInit(){
         
@@ -128,5 +132,35 @@ export class HLotPage {
         });
         toast.present();
       }
+
+  parkedConfirmation(lot){ //int googleMapsLocation){
+    let prompt = this.alertCtrl.create({
+      title: 'Parked Vehicle Confirmation',
+      message: "Have you parked?",
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
+            this.updateLot(lot, 1);
+          }
+        }
+      ]
+    })
+  }
+
+  updateLot(lot: string, update: number){
+    // do a toast... lookup how to do that
+    // update db (add or subtract as needed)
+    //handler: data => {
+    //  this.lotArea.update(lot, XXX
+    //});
+  }
 
 }

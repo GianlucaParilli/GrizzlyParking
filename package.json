@@ -20,7 +20,9 @@
     "@angular/http": "5.0.3",
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
+    "@google-cloud/firestore": "^0.11.2",
     "@ionic-native/core": "4.4.0",
+    "@ionic-native/firebase": "^4.5.3",
     "@ionic-native/geolocation": "^4.5.3",
     "@ionic-native/google-maps": "^4.5.3",
     "@ionic-native/splash-screen": "4.4.0",
@@ -28,15 +30,23 @@
     "@ionic-native/toast": "^4.5.3",
     "@ionic/storage": "2.1.3",
     "angular-progress-bar": "^1.0.0",
+    "angularfire2": "^5.0.0-rc.6",
     "cordova-android": "7.0.0",
     "cordova-ios": "4.5.4",
     "cordova-plugin-device": "^2.0.1",
+    "cordova-plugin-firebase": "^0.1.25",
+    "cordova-plugin-geolocation": "^4.0.1",
+    "cordova-plugin-googlemaps": "^2.2.5",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-plugin-x-toast": "^2.6.0",
+    "firebase": "^4.9.0",
+    "firebaseui": "^2.6.1",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+    "promise-polyfill": "^7.1.0",
     "rxjs": "^5.5.6",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.18"
@@ -53,9 +63,17 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyAuscW3J6m-jTPaKtzHFd2H9we8nf0AZ3g",
+        "API_KEY_FOR_IOS": "AIzaSyBKNlKAWe_iLvUaST3-QX1XYrmhbCCATPA",
+        "PLAY_SERVICES_VERSION": "11.8.0",
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
+      },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-firebase": {}
     },
     "platforms": [
       "android",

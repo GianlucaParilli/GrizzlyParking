@@ -1,5 +1,5 @@
 # GGCparking
-GGC's Parking Ionic App
+An Ionic parking app that helps ease the flow of traffic on GGC's campus and helps students find available parking during school hours.
 
 ## Project description
 <ol>
@@ -13,8 +13,15 @@ GGC's Parking Ionic App
 ## Insert pic here
 
 ## Team Members
-<ol>
-    <li>Joshua Tran</li>
-    <li>Luca Parilli</li>
-    <li>Chelsea D'Alessandro</li>
-</ol>
+
+<ul>
+    <li>Joshua Tran -
+  <a href="https://github.com/jtran6">Github</a> |
+  <a href="https://www.linkedin.com/in/joshua-tran-9700a8118/">LinkedIn</a>
+    </li>
+    <li>Luca Parilli
+    </li>
+    <li>Chelsea D'Alessandro
+    </li>
+</ul>
+

@@ -18,6 +18,7 @@ import {
 import { EmailValidator } from '../../validators/email';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -57,8 +58,7 @@ loginUser(): void {
       this.loginForm.value.password)
     .then( authData => {
       this.loading.dismiss().then( () => {
-        this.navCtrl.setRoot(HomePage);
-
+        this.navCtrl.setRoot(TabsPage);
       });
     }, error => {
       this.loading.dismiss().then( () => {

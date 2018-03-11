@@ -2,6 +2,7 @@ import { SignupPage } from '../signup/signup';
 import { HomePage } from './../home/home';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { Component } from '@angular/core';
+
 import { 
   IonicPage, 
   NavController,
@@ -30,6 +31,7 @@ export class LoginPage {
   public loginForm: FormGroup;
   public loading: Loading;
 
+
   constructor(
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
@@ -56,6 +58,7 @@ loginUser(): void {
     .then( authData => {
       this.loading.dismiss().then( () => {
         this.navCtrl.setRoot(HomePage);
+
       });
     }, error => {
       this.loading.dismiss().then( () => {

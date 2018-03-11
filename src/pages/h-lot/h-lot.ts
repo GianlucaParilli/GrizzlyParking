@@ -1,4 +1,4 @@
-﻿﻿import { Component, ViewChild, ElementRef} from '@angular/core';
+﻿import { Component, ViewChild, ElementRef} from '@angular/core';
 import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';

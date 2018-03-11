@@ -1,11 +1,12 @@
 ﻿import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
 import { ToastController } from 'ionic-angular';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
+import { Geofence } from '@ionic-native/geofence';
 
 
 
@@ -22,7 +23,7 @@ import { LocationtrackerProvider } from '../../providers/locationtracker/locatio
 export class HLotPage {
     private latNumber: number;
     private longNumber: number;
-
+    
     //let longString;
     
 
@@ -34,13 +35,32 @@ export class HLotPage {
                 private _geoLocation: Geolocation,
                 private _toast: Toast,
                 private _toastCtrl: ToastController,
-                public _locationService : LocationtrackerProvider
+                public _locationService : LocationtrackerProvider,
+                public _platform : Platform,
+                public _geofence : Geofence
                 ) { 
                 }
     ngAfterViewInit(){
         this.initMap();
-        let loc: LatLng;
+        this.start(); //starts geo location 
+       
+        this.newMap();
+       //this.loadMap();
+    
+        //get actual location
+        this.getLocation().then(res =>{
+            //console.log(res.coords.latitude);
+        });
+    }
+   
+    initMap(){
+        let element = this.mapElement.nativeElement;
+        this.map = this._googleMaps.create(element);
+    }
+    newMap(){
         this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+            
+            let loc: LatLng;
             this.getLocation().then(res =>{
                 loc = new LatLng(res.coords.latitude, res.coords.longitude);
                 //this.tesss = res.coords.latitude;
@@ -69,10 +89,6 @@ export class HLotPage {
         });
     }
    
-    initMap(){
-        let element = this.mapElement.nativeElement;
-        this.map = this._googleMaps.create(element);
-    }
 
     createMarker(loc: LatLng, title: string){
         let markerOptions: MarkerOptions= {
@@ -107,6 +123,8 @@ export class HLotPage {
     }
     showMarker(){
         this.start();
+        this._geofence.initialize();
+        this.addGeofence();
         //this._locationService.startTracking();
        this.presentToast(this._locationService.lat,this._locationService.lng);
     }
@@ -131,5 +149,29 @@ export class HLotPage {
         });
         toast.present();
       }
+
+      addGeofence() {
+        //options describing geofence
+        let fence = {
+          id: '69ca1b88-6fbe-4e80-a4d4-ff4d3748acdb', //any unique ID
+          latitude:       33.930389, //center of geofence radius
+          longitude:      -83.910475,
+          radius:         50, //radius to edge of geofence in meters
+          transitionType: 3, //see 'Transition Types' below
+          notification: { //notification settings
+              id:             1, //any unique ID
+              title:          'You crossed a fence', //notification title
+              text:           'You just arrived to lucas house.', //notification body
+              openAppOnClick: true //open app when notification is tapped
+          }
+        }
+        this._geofence.initialize();
+        this._geofence.addOrUpdate(fence).then(
+           () => console.log('Geofence added'),
+           (err) => console.log('Geofence failed to add')
+         );
+      }
+    
+    
 
 }

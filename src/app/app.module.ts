@@ -15,6 +15,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
 import { LocationtrackerProvider } from '../providers/locationtracker/locationtracker';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { Geofence } from '@ionic-native/geofence';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
     Toast, 
     LocationtrackerProvider,
     BackgroundGeolocation,
+    Geofence,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
    
   ]

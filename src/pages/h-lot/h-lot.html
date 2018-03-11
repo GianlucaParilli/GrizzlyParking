@@ -16,6 +16,10 @@
   Testing google maps
     <div #map id="map" style="height:75%"></div>
     <button ion-button full (click)="showMarker()">Get Location</button>
+    <h3>Current Latitude: {{_locationService.lat}}</h3>
+    <h3>Current Longitute: {{_locationService.lng}}</h3>
+
+    
     <!--h3>Current Latitude: {{_locationService.lat}}</h3-->
 
   </ion-content>

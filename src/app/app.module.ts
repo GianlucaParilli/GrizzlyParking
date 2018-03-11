@@ -1,7 +1,11 @@
 // IMPORTS
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import { 
+  IonicApp, 
+  IonicModule,
+  IonicErrorHandler, 
+  ToastController } from 'ionic-angular';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
@@ -26,6 +30,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 // SETTINGS - ANGULAR FIREBASE
 import { credentials } from './config';
+import { AuthProvider } from '../providers/auth/auth';
+import { SignupPage } from '../pages/signup/signup';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 
 // SETTINGS - NG MODULES
@@ -37,6 +44,8 @@ import { credentials } from './config';
     MapPage,
     HLotPage,
     StatisticsPage,
+    SignupPage,
+    ResetPasswordPage,
     LoginPage
   ],
   imports: [
@@ -56,6 +65,8 @@ import { credentials } from './config';
     MapPage,
     HLotPage,
     StatisticsPage,
+    SignupPage,
+    ResetPasswordPage,
     LoginPage
   ],
   providers: [
@@ -64,7 +75,8 @@ import { credentials } from './config';
     GoogleMaps,
     Geolocation,
     Toast,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}

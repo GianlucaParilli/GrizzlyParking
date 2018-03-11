@@ -67,7 +67,6 @@ export class MyApp {
     });
   }
 
-
   userDocRefID: string;
 
   createUser(isParked: boolean, parkedLatitude: number,

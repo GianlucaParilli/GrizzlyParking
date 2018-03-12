@@ -56,7 +56,7 @@ export class SignupPage {
         this.signupForm.value.password)
       .then(() => {
         this.loading.dismiss().then( () => {
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(TabsPage);
         });
       }, (error) => {
         this.loading.dismiss().then( () => {

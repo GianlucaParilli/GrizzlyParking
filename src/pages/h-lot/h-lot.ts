@@ -7,6 +7,8 @@ import { Toast } from '@ionic-native/toast';
 import { ToastController } from 'ionic-angular';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { Geofence } from '@ionic-native/geofence';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 
 
@@ -37,7 +39,8 @@ export class HLotPage {
                 private _toastCtrl: ToastController,
                 public _locationService : LocationtrackerProvider,
                 public _platform : Platform,
-                public _geofence : Geofence
+                public _geofence : Geofence,
+                public _local : LocalNotifications
                 ) { 
                 }
     ngAfterViewInit(){
@@ -127,6 +130,7 @@ export class HLotPage {
         this.addGeofence();
         //this._locationService.startTracking();
        this.presentToast(this._locationService.lat,this._locationService.lng);
+        this.localNotification(this._locationService.lat,this._locationService.lng);
     }
 
     start(){
@@ -149,7 +153,14 @@ export class HLotPage {
         });
         toast.present();
       }
+localNotification(lat: number,long: number){
 
+    this._local.schedule({
+        id: 1,
+        title: 'Local ILocalNotification Example',
+        text: 'lat: '+ lat + 'long: '+ long
+      });
+}
       addGeofence() {
         //options describing geofence
         let fence = {

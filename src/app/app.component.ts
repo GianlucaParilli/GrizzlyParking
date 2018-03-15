@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 
+
 @Component({
   templateUrl: 'app.html'
 })

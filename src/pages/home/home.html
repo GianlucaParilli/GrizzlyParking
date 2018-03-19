@@ -4,15 +4,50 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="bg-dark">
+<!-- PAGE | Content BEGIN -->
+<ion-content class="bg-dark" padding>
+
+  <!-- FIREBASE | Testing the user collection -->
+  <!-- <ion-list>
+    <ion-list-header>
+      Users
+    </ion-list-header> -->
+    <!-- NOTE
+      'async' | async is a built-in pipe which allows you to easily subscribe
+      to Observables without manually calling the .subscribe() method in the 
+      component class.
+    -->
+    <!-- <ion-item  *ngFor="let user of users | async"> -->
+      <!-- <h1>{{user.docRef}}</h1>  doesn't work, must be called another way -->
+      <!-- <p>{{user.isParked}}</p>
+      <p>{{user.parkedLatitude}}</p>
+      <p>{{user.parkedLongitude}}</p>
+      <p>{{user.parkedTime}}</p>
+    </ion-item>
+  </ion-list> -->
+    <!-- FIREBASE | Test end -->
+
+  <!-- <button ion-button (click)="createUser(false, 0, 0)">
+      Create new user
+  </button> -->
+
+  <!-- Start Auth Testing -->
+  <!-- <button ion-button full (click)="goToLoginPage()">
+    Go To Login Page
+  </button> -->
+
+  <!-- PAGE SECTION | Logo - Grizzly Parking text logo (image) -->
   <img src="assets/imgs/GrizzlyParkingCard.png" alt="Logo">
+
+  <!-- PAGE SECTION | List  -->
+  <!-- PARKING LOT CARD | H-Lot -->
   <ion-card color="secondary" (click)="goToHLotPage()">
     <ion-card-header>
       <ion-grid>
         <ion-row>
           <ion-col col-4 class="cardHeader">H Lot</ion-col>
-          <ion-col col-4 class="cardCount">200/300</ion-col>
-          <ion-col col-4 class="cardPercentage">66%</ion-col>
+          <ion-col col-4 class="cardCount">20 / 200</ion-col> <!-- function to print x/y -->
+          <ion-col col-4 class="cardPercentage">10%</ion-col>   <!-- {{parkingLot.percentAvailable}}</ion-col>  -->
         </ion-row>
       </ion-grid>
     </ion-card-header>
@@ -20,13 +55,14 @@
       <ion-grid>
         <ion-row>
           <ion-col col-12>
-            <progress-bar [progress]="66">
-            </progress-bar>
+            <progress-bar [progress]="10"></progress-bar>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
+
+  <!-- PARKING LOT CARD | 3000 Lot -->
   <ion-card color="caution">
       <ion-card-header>
         <ion-grid>
@@ -41,13 +77,14 @@
         <ion-grid>
           <ion-row>
             <ion-col col-12>
-              <progress-bar [progress]="25">
-              </progress-bar>
+              <progress-bar [progress]="25"></progress-bar>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
+
+  <!-- PARKING LOT CARD | L Lot -->
   <ion-card color="danger">
     <ion-card-header>
       <ion-grid>
@@ -62,13 +99,12 @@
       <ion-grid>
         <ion-row>
           <ion-col col-12>
-            <progress-bar [progress]="1">
-            </progress-bar>
+            <progress-bar [progress]="1"></progress-bar>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
 
-  
 </ion-content>
+<!-- PAGE | CONTENT END -->

@@ -1,5 +1,6 @@
 ﻿import { Component, ViewChild, ElementRef} from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
@@ -8,8 +9,7 @@ import { ToastController } from 'ionic-angular';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { Geofence } from '@ionic-native/geofence';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-
-
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
 /*
@@ -18,16 +18,19 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+// FIREBASE ITEM
+// H-LOT has 2 lot areas, h1 and h2.
+// lotArea: AngularFireList<any>;
+
 @Component({
     selector: 'page-h-Lot',
     templateUrl: 'h-Lot.html'
 })
 export class HLotPage {
     private latNumber: number;
-    private longNumber: number;
-    
+    private longNumber: number; 
     //let longString;
-    
+
 
     @ViewChild('map') mapElement: ElementRef;
     map: GoogleMap;
@@ -41,7 +44,11 @@ export class HLotPage {
                 public _platform : Platform,
                 public _geofence : Geofence,
                 public _local : LocalNotifications
+                public alertCtrl: AlertController,
+                afDatabase: AngularFireDatabase
                 ) { 
+                    // the list of lotAreas...
+                    // this.lotArea = afDatabase.list('/lotArea').valueChanges();
                 }
     ngAfterViewInit(){
         this.initMap();
@@ -184,5 +191,35 @@ localNotification(lat: number,long: number){
       }
     
     
+
+  parkedConfirmation(lot){ //int googleMapsLocation){
+    let prompt = this.alertCtrl.create({
+      title: 'Parked Vehicle Confirmation',
+      message: "Have you parked?",
+      buttons: [
+        {
+          text: 'No',
+          handler: data => {
+            console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: data => {
+            console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
+            this.updateLot(lot, 1);
+          }
+        }
+      ]
+    })
+  }
+
+  updateLot(lot: string, update: number){
+    // do a toast... lookup how to do that
+    // update db (add or subtract as needed)
+    //handler: data => {
+    //  this.lotArea.update(lot, XXX
+    //});
+  }
 
 }

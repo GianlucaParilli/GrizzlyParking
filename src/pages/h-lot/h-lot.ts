@@ -1,9 +1,14 @@
 ﻿import { Component, ViewChild, ElementRef} from '@angular/core';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
+import { ToastController } from 'ionic-angular';
+import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
+import { Geofence } from '@ionic-native/geofence';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
@@ -23,7 +28,9 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 })
 export class HLotPage {
     private latNumber: number;
-    private longNumber: number;
+    private longNumber: number; 
+    //let longString;
+
 
     @ViewChild('map') mapElement: ElementRef;
     map: GoogleMap;
@@ -33,6 +40,10 @@ export class HLotPage {
                 private _geoLocation: Geolocation,
                 private _toast: Toast,
                 private _toastCtrl: ToastController,
+                public _locationService : LocationtrackerProvider,
+                public _platform : Platform,
+                public _geofence : Geofence,
+                public _local : LocalNotifications
                 public alertCtrl: AlertController,
                 afDatabase: AngularFireDatabase
                 ) { 
@@ -40,19 +51,33 @@ export class HLotPage {
                     // this.lotArea = afDatabase.list('/lotArea').valueChanges();
                 }
     ngAfterViewInit(){
-        
         this.initMap();
-        let loc: LatLng;
+        this.start(); //starts geo location 
+       
+        this.newMap();
+       //this.loadMap();
+    
+        //get actual location
+        this.getLocation().then(res =>{
+            //console.log(res.coords.latitude);
+        });
+    }
+   
+    initMap(){
+        let element = this.mapElement.nativeElement;
+        this.map = this._googleMaps.create(element);
+    }
+    newMap(){
         this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+            
+            let loc: LatLng;
             this.getLocation().then(res =>{
                 loc = new LatLng(res.coords.latitude, res.coords.longitude);
                 //this.tesss = res.coords.latitude;
                 this.latNumber = res.coords.latitude;
                 this.longNumber = res.coords.longitude;
-
-                this.pinPointLocation();
                 this.moveCamera(loc);
-
+                this.showMarker();
                 this.createMarker(loc,"My Car").then((marker : Marker) =>{
                     marker.showInfoWindow();
                     console.log('print get Location');
@@ -72,19 +97,8 @@ export class HLotPage {
         this.getLocation().then(res =>{
             //console.log(res.coords.latitude);
         });
+    }
    
-    }
-    initMap(){
-        let element = this.mapElement.nativeElement;
-        this.map = this._googleMaps.create(element);
-    }
-
-    pinPointLocation(){
-        console.log('print get latitude ' + this.latNumber);
-        console.log('print get longitude ' + this.longNumber);
-
-
-      }
 
     createMarker(loc: LatLng, title: string){
         let markerOptions: MarkerOptions= {
@@ -95,7 +109,6 @@ export class HLotPage {
     }
     getLocation(){
         let currentLOC = this._geoLocation.getCurrentPosition();
-
          return currentLOC;
          
 
@@ -118,20 +131,66 @@ export class HLotPage {
         console.log("print pressed button");
        // pinPointLocation();
     }
+    showMarker(){
+        this.start();
+        this._geofence.initialize();
+        this.addGeofence();
+        //this._locationService.startTracking();
+       this.presentToast(this._locationService.lat,this._locationService.lng);
+        this.localNotification(this._locationService.lat,this._locationService.lng);
+    }
 
-
-    presentToast() {
+    start(){
+        this._locationService.startTracking();
+      }
+     
+      stop(){
+        this._locationService.stopTracking();
+      }
+    presentToast(lat: number,long: number) {
         let toast = this._toastCtrl.create({
-          message: 'latitude: '+this.latNumber +' Longitude: '+ this.longNumber,
+          message: 'latitude: '+lat +' Longitude: '+ long,
           duration: 3000,
           position: 'top'
         });
       
         toast.onDidDismiss(() => {
           console.log('Dismissed toast');
+         // this.stop;
         });
         toast.present();
       }
+localNotification(lat: number,long: number){
+
+    this._local.schedule({
+        id: 1,
+        title: 'Local ILocalNotification Example',
+        text: 'lat: '+ lat + 'long: '+ long
+      });
+}
+      addGeofence() {
+        //options describing geofence
+        let fence = {
+          id: '69ca1b88-6fbe-4e80-a4d4-ff4d3748acdb', //any unique ID
+          latitude:       33.930389, //center of geofence radius
+          longitude:      -83.910475,
+          radius:         50, //radius to edge of geofence in meters
+          transitionType: 3, //see 'Transition Types' below
+          notification: { //notification settings
+              id:             1, //any unique ID
+              title:          'You crossed a fence', //notification title
+              text:           'You just arrived to lucas house.', //notification body
+              openAppOnClick: true //open app when notification is tapped
+          }
+        }
+        this._geofence.initialize();
+        this._geofence.addOrUpdate(fence).then(
+           () => console.log('Geofence added'),
+           (err) => console.log('Geofence failed to add')
+         );
+      }
+    
+    
 
   parkedConfirmation(lot){ //int googleMapsLocation){
     let prompt = this.alertCtrl.create({

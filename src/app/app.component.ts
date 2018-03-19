@@ -29,6 +29,7 @@ interface UserInterface {
 
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
+
 @Component({
   templateUrl: 'app.html'
 })

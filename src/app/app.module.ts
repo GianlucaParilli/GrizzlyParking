@@ -22,6 +22,15 @@ import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
 import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { MapPage } from '../pages/map/map';
+import {GoogleMaps} from '@ionic-native/google-maps';
+import {Geolocation} from '@ionic-native/geolocation';
+import { Toast } from '@ionic-native/toast';
+import { LocationtrackerProvider } from '../providers/locationtracker/locationtracker';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { Geofence } from '@ionic-native/geofence';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ProgressBarModule } from 'angular-progress-bar';
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
@@ -75,7 +84,11 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     SplashScreen,
     GoogleMaps,
     Geolocation,
-    Toast,
+    Toast, 
+    LocationtrackerProvider,
+    BackgroundGeolocation,
+    Geofence,
+    LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
   ]

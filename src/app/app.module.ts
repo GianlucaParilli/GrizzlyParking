@@ -6,12 +6,8 @@ import {
   IonicModule,
   IonicErrorHandler, 
   ToastController } from 'ionic-angular';
-import {GoogleMaps} from '@ionic-native/google-maps';
-import {Geolocation} from '@ionic-native/geolocation';
-import { Toast } from '@ionic-native/toast';
 import { MyApp } from './app.component';
 // SPLASHSCREEN
-import { SplashScreen } from '@ionic-native/splash-screen';
 // PAGES
 import { HomePage } from '../pages/home/home';
 import { HLotPage } from './../pages/h-lot/h-lot';
@@ -23,7 +19,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MapPage } from '../pages/map/map';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';

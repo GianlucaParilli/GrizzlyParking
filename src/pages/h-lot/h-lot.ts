@@ -1,11 +1,9 @@
 ﻿import { Component, ViewChild, ElementRef} from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
-import { IonicPage, NavController, AlertController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, Platform, AlertController, NavParams, ToastController } from 'ionic-angular';
 import {GoogleMaps, GoogleMap, CameraPosition,
         LatLng,GoogleMapsEvent, Marker, MarkerOptions} from '@ionic-native/google-maps';
 import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-import { ToastController } from 'ionic-angular';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { Geofence } from '@ionic-native/geofence';
 import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -43,7 +41,7 @@ export class HLotPage {
                 public _locationService : LocationtrackerProvider,
                 public _platform : Platform,
                 public _geofence : Geofence,
-                public _local : LocalNotifications
+                public _local : LocalNotifications,
                 public alertCtrl: AlertController,
                 afDatabase: AngularFireDatabase
                 ) { 

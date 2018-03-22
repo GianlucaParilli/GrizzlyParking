@@ -24,7 +24,6 @@ import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
 import { LocationtrackerProvider } from '../providers/locationtracker/locationtracker';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import { Geofence } from '@ionic-native/geofence';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ProgressBarModule } from 'angular-progress-bar';
 // ANGULAR FIREBASE
@@ -82,7 +81,6 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     Toast, 
     LocationtrackerProvider,
     BackgroundGeolocation,
-    Geofence,
     LocalNotifications,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider

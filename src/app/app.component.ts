@@ -6,12 +6,8 @@ import { Toast } from '@ionic-native/toast';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-import { 
-  AngularFireDatabase, 
-  AngularFireList } from 'angularfire2/database';
-import { 
-  AngularFirestore, 
-  AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';

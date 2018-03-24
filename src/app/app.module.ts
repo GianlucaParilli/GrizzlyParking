@@ -26,6 +26,7 @@ import { LocationtrackerProvider } from '../providers/locationtracker/locationtr
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ProgressBarModule } from 'angular-progress-bar';
+import { Geofence } from '@ionic-native/geofence';
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -82,6 +83,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     LocationtrackerProvider,
     BackgroundGeolocation,
     LocalNotifications,
+    Geofence,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
   ]

@@ -7,6 +7,8 @@ import { Toast } from '@ionic-native/toast';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Geofence } from '@ionic-native/geofence';
+
 
 
 /*
@@ -41,6 +43,7 @@ export class HLotPage {
                 public _platform : Platform,
                 public _local : LocalNotifications,
                 public alertCtrl: AlertController,
+                public _geofence : Geofence,
                 afDatabase: AngularFireDatabase
                 ) { 
                     // the list of lotAreas...
@@ -129,8 +132,7 @@ export class HLotPage {
     }
     showMarker(){
         this.start();
-        //this._geofence.initialize();
-        this.addGeofence();
+        this._geofence.initialize();
         //this._locationService.startTracking();
        this.presentToast(this._locationService.lat,this._locationService.lng);
         this.localNotification(this._locationService.lat,this._locationService.lng);
@@ -179,11 +181,11 @@ localNotification(lat: number,long: number){
               openAppOnClick: true //open app when notification is tapped
           }
         }
-        //this._geofence.initialize();
-        //this._geofence.addOrUpdate(fence).then(
-         //  () => console.log('Geofence added'),
-         //  (err) => console.log('Geofence failed to add')
-         //);
+        this._geofence.initialize();
+        this._geofence.addOrUpdate(fence).then(
+           () => console.log('Geofence added'),
+          (err) => console.log('Geofence failed to add')
+         );
       }
     
     

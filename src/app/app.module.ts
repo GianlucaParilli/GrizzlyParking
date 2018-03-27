@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { 
   IonicApp, 
   IonicModule,
-  IonicErrorHandler, 
-  ToastController } from 'ionic-angular';
+  IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 // SPLASHSCREEN
 // PAGES

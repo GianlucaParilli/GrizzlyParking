@@ -13,6 +13,7 @@ import { HLotPage } from './../pages/h-lot/h-lot';
 import { LoginPage } from './../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
+import { DaysurveyPage } from '../pages/daysurvey/daysurvey';
 // tabs
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
@@ -39,6 +40,8 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 
 
+
+
 // SETTINGS - NG MODULES
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     ResetPasswordPage,
     LoginPage,
     AboutPage,
+    DaysurveyPage,
     SettingsPage
   ],
   imports: [
@@ -71,6 +75,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     ResetPasswordPage,
     LoginPage,
     AboutPage,
+    DaysurveyPage,
     SettingsPage
   ],
   providers: [

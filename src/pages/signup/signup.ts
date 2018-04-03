@@ -15,7 +15,9 @@ import {
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { TabsPage } from '../tabs/tabs';
+import { DaysurveyPage } from '../daysurvey/daysurvey';
 
+ 
 /**
  * Generated class for the SignupPage page.
  *
@@ -55,7 +57,7 @@ export class SignupPage {
       this.authProvider.signupUser(this.signupForm.value.email, this.signupForm.value.password)
         .then(() => {
           this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.setRoot(DaysurveyPage);
           });
         }, (error) => {
           this.loading.dismiss().then(() => {

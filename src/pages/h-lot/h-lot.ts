@@ -8,6 +8,8 @@ import { LocationtrackerProvider } from '../../providers/locationtracker/locatio
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Geofence } from '@ionic-native/geofence';
+import { BackgroundMode} from '@ionic-native/background-mode';
+
 
 
 
@@ -44,8 +46,11 @@ export class HLotPage {
                 public _local : LocalNotifications,
                 public alertCtrl: AlertController,
                 public _geofence : Geofence,
+                public _backgroundMode : BackgroundMode,
                 afDatabase: AngularFireDatabase
+
                 ) { 
+                    
                     // the list of lotAreas...
                     // this.lotArea = afDatabase.list('/lotArea').valueChanges();
                 }
@@ -60,6 +65,7 @@ export class HLotPage {
         this.getLocation().then(res =>{
             //console.log(res.coords.latitude);
         });
+        this.backgroundModes();
     }
    
     initMap(){
@@ -131,10 +137,9 @@ export class HLotPage {
        // pinPointLocation();
     }
     showMarker(){
-        this.start();
-        this._geofence.initialize();
+        //this.start();
         //this._locationService.startTracking();
-       this.presentToast(this._locationService.lat,this._locationService.lng);
+       //this.presentToast(this._locationService.lat,this._locationService.lng);
         this.localNotification(this._locationService.lat,this._locationService.lng);
     }
 
@@ -166,27 +171,7 @@ localNotification(lat: number,long: number){
         text: 'lat: '+ lat + 'long: '+ long
       });
 }
-      addGeofence() {
-        //options describing geofence
-        let fence = {
-          id: '69ca1b88-6fbe-4e80-a4d4-ff4d3748acdb', //any unique ID
-          latitude:       33.930389, //center of geofence radius
-          longitude:      -83.910475,
-          radius:         50, //radius to edge of geofence in meters
-          transitionType: 3, //see 'Transition Types' below
-          notification: { //notification settings
-              id:             1, //any unique ID
-              title:          'You crossed a fence', //notification title
-              text:           'You just arrived to lucas house.', //notification body
-              openAppOnClick: true //open app when notification is tapped
-          }
-        }
-        this._geofence.initialize();
-        this._geofence.addOrUpdate(fence).then(
-           () => console.log('Geofence added'),
-          (err) => console.log('Geofence failed to add')
-         );
-      }
+
     
     
 
@@ -218,6 +203,14 @@ localNotification(lat: number,long: number){
     //handler: data => {
     //  this.lotArea.update(lot, XXX
     //});
+  }
+  backgroundModes(){
+    console.log('background mode')
+    this._backgroundMode.enable();
+    this._backgroundMode.on("activate").subscribe(()=>{
+      this.localNotification(2,2) 
+      
+    });
   }
 
 }

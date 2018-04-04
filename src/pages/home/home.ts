@@ -1,18 +1,17 @@
 import { HLotPage } from './../h-lot/h-lot';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { 
-  AngularFireDatabase, 
-  AngularFireList } from 'angularfire2/database';
-import { 
-  AngularFirestore, 
-  AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
 //import { GeoPoint } from '@google-cloud/firestore';
 //import { GeoPoint } from '@firebase/firestore-types';
+import { BackgroundMode} from '@ionic-native/background-mode';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 interface UserInterface {
   isParked: boolean,  
@@ -61,7 +60,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, 
     public afAuth: AngularFireAuth, 
-    public afs:    AngularFirestore) {
+    public afs:    AngularFirestore,
+    public background: BackgroundMode,
+    public local : LocalNotifications) {
 
       // FIREBASE CONNECTION TO COLLECTIONS
       //this.afAuth.auth.signInAnonymously();
@@ -234,5 +235,7 @@ export class HomePage {
       console.log("~~~~~~~~~~ FUNCTION removeUserFromLotArea error ", error);
     });
   }
+ 
+
   
 }

@@ -1,6 +1,7 @@
 // IMPORTS
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BackgroundMode } from '@ionic-native/background-mode';
 import { 
   IonicApp, 
   IonicModule,
@@ -84,6 +85,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     BackgroundGeolocation,
     LocalNotifications,
     Geofence,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
   ]

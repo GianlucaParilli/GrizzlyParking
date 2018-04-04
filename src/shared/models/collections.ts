@@ -26,7 +26,8 @@ export interface ParkingLotInterface {
 
 // INTERFACE | COLLECTION - SurveyTimes
 export interface SurveyTimeInterface {
-    userID : firebase.firestore.DocumentSnapshot,
-    startTime: string,
-    endTime: string
+    userID : firebase.firestore.FieldValue,
+    startTime: firebase.firestore.FieldValue,
+    endTime: firebase.firestore.FieldValue,
+    timeSubmitted: firebase.firestore.FieldValue
 }

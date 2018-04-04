@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import * as firebase from 'firebase';
+import { DaysurveyPage } from '../daysurvey/daysurvey';
+import { UpdateSurveyPage } from '../update-survey/update-survey';
 /**
  * Generated class for the SettingsPage page.
  *
@@ -24,6 +26,10 @@ export class SettingsPage {
   logoutUser() {
     firebase.auth().signOut();
     this.navCtrl.parent.parent.setRoot(LoginPage);
+  }
+
+  goToUpdateSchedule(){
+    this.navCtrl.push(UpdateSurveyPage);
   }
 
 }

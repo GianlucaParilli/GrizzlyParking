@@ -16,6 +16,8 @@ import {
   FormBuilder, 
   FormGroup 
 } from '@angular/forms';
+import { TabsPage } from '../tabs/tabs';
+import * as firebase from 'firebase';
 
 /**
  * Generated class for the DaysurveyPage page.
@@ -23,7 +25,7 @@ import {
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 @IonicPage()
 @Component({
   selector: 'page-daysurvey',
@@ -33,6 +35,8 @@ export class DaysurveyPage {
 
   //FormGroup
   private timeSurveyFormGroup: FormGroup;
+  private userID: any;
+  
 
   //OBSERVABLES
 
@@ -81,6 +85,15 @@ export class DaysurveyPage {
       this.thursdayCollectionRef = this.afs.collection('thursdayTimes');
       this.fridayCollectionRef = this.afs.collection('fridayTimes');
       this.saturdayCollectionRef = this.afs.collection('saturdayTimes');
+
+      firebase.firestore().collection('/user').get().then(snapshot => {
+        snapshot.forEach(doc => {
+          if ( doc.data().email === firebase.auth().currentUser.email ) {
+            this.userID = doc.id;
+            console.log('fetchUser.id:', doc.data().id);
+          }
+        })
+      })
   }
 
   ionViewDidLoad() {
@@ -92,9 +105,104 @@ export class DaysurveyPage {
     console.log(this.timeSurveyFormGroup.value)
   }
 
+  
+
   submitTimes(){
+    this.logForm();
+    //write to firestore
+    //checks to see if toggle is set to true for each day
+    if(this.timeSurveyFormGroup.value.mondayToggle == true){
+      this.afs.collection('mondayTimes').add({
+        userID : this.userID,
+        startTime : this.timeSurveyFormGroup.value.mondayStartTime,
+        endTime : this.timeSurveyFormGroup.value.mondayEndTime,
+        timeSubmitted : timestamp
+      })
+      .then((result) => {
+        console.log("Document addded with id:Monday >>> ", result.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      })
+    }
     
+    if(this.timeSurveyFormGroup.value.tuesdayToggle == true){
+      this.afs.collection('tuesdayTimes').add({
+        userID : this.userID,
+        startTime : this.timeSurveyFormGroup.value.tuesdayStartTime,
+        endTime : this.timeSurveyFormGroup.value.tuesdayEndTime,
+        timeSubmitted : timestamp
+      })
+      .then((result) => {
+        console.log("Document addded with id:Tuesday >>> ", result.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      })
+    }
+  
+    if(this.timeSurveyFormGroup.value.wednesdayToggle == true){
+      this.afs.collection('wednesdayTimes').add({
+        userID : this.userID,
+        startTime : this.timeSurveyFormGroup.value.wednesdayStartTime,
+        endTime : this.timeSurveyFormGroup.value.wednesdayEndTime,
+        timeSubmitted : timestamp
+      })
+      .then((result) => {
+        console.log("Document addded with id:Wednesday >>> ", result.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      })
+    }
+    
+    if(this.timeSurveyFormGroup.value.thursdayToggle == true){
+      this.afs.collection('thursdayTimes').add({
+        userID : this.userID,
+        startTime : this.timeSurveyFormGroup.value.thursdayStartTime,
+        endTime : this.timeSurveyFormGroup.value.thursdayEndTime,
+        timeSubmitted : timestamp
+      })
+      .then((result) => {
+        console.log("Document addded with id:Thursday >>> ", result.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      })
+    }
+    
+    if(this.timeSurveyFormGroup.value.fridayToggle == true){
+      this.afs.collection('fridayTimes').add({
+        userID : this.userID,
+        startTime : this.timeSurveyFormGroup.value.fridayStartTime,
+        endTime : this.timeSurveyFormGroup.value.fridayEndTime,
+        timeSubmitted : timestamp
+      })
+      .then((result) => {
+        console.log("Document addded with id:Friday >>> ", result.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      })
+    }
+    
+    if(this.timeSurveyFormGroup.value.saturdayToggle == true){
+      this.afs.collection('saturdayTimes').add({
+        userID : this.userID,
+        startTime : this.timeSurveyFormGroup.value.saturdayStartTime,
+        endTime : this.timeSurveyFormGroup.value.saturdayEndTime,
+        timeSubmitted : timestamp
+      })
+      .then((result) => {
+        console.log("Document addded with id:Saturday >>> ", result.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      })
+    }
+    //push navigation to home page
+    this.navCtrl.setRoot(TabsPage);
   }
 
-
+  
 }

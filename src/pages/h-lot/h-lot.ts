@@ -7,10 +7,7 @@ import { Toast } from '@ionic-native/toast';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Geofence } from '@ionic-native/geofence';
 import { BackgroundMode} from '@ionic-native/background-mode';
-
-
 
 
 /*
@@ -45,7 +42,6 @@ export class HLotPage {
                 public _platform : Platform,
                 public _local : LocalNotifications,
                 public alertCtrl: AlertController,
-                public _geofence : Geofence,
                 public _backgroundMode : BackgroundMode,
                 afDatabase: AngularFireDatabase
 
@@ -137,10 +133,10 @@ export class HLotPage {
        // pinPointLocation();
     }
     showMarker(){
-        //this.start();
+      //  this.start();
         //this._locationService.startTracking();
        //this.presentToast(this._locationService.lat,this._locationService.lng);
-        this.localNotification(this._locationService.lat,this._locationService.lng);
+       // this.localNotification(this._locationService.lat,this._locationService.lng);
     }
 
     start(){
@@ -164,7 +160,7 @@ export class HLotPage {
         toast.present();
       }
 localNotification(lat: number,long: number){
-
+  let count= 1;
     this._local.schedule({
         id: 1,
         title: 'Local ILocalNotification Example',
@@ -208,7 +204,7 @@ localNotification(lat: number,long: number){
     console.log('background mode')
     this._backgroundMode.enable();
     this._backgroundMode.on("activate").subscribe(()=>{
-      this.localNotification(2,2) 
+      this.localNotification(this._locationService.lat,this._locationService.lng) 
       
     });
   }

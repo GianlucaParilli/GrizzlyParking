@@ -14,13 +14,7 @@
   <!-- PARKING LOT CARD | H-Lot -->
   <ion-card color="secondary" (click)="goToHLotPage()">
     <ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4 class="cardHeader">H Lot</ion-col>
-          <ion-col col-4 class="cardCount">{{ (hLotObs | async)?.plPopulation }} / {{ (hLotObs | async)?.plCapacity }}</ion-col>
-          <ion-col col-4 class="cardPercentage">{{ (hLotObs | async)?.plAvailablePct }}%</ion-col>
-        </ion-row>
-      </ion-grid>
+      <img src="assets/imgs/hbuilding.png" alt="hbuilding">
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
@@ -29,53 +23,13 @@
             <progress-bar [progress]="100"></progress-bar>
           </ion-col>
         </ion-row>
+        <ion-row>
+            <ion-col col-4 class="cardHeader">H Lot</ion-col>
+            <ion-col col-4 class="cardCount">{{ (hLotObs | async)?.plPopulation }} / {{ (hLotObs | async)?.plCapacity }}</ion-col>
+            <ion-col col-4 class="cardPercentage">{{ (hLotObs | async)?.plAvailablePct }}%</ion-col>
+          </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
-
-  <!-- PARKING LOT CARD | 3000 Lot -->
-  <ion-card color="caution">
-      <ion-card-header>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-4 class="cardHeader">3000 Lot</ion-col>
-            <ion-col col-4 class="cardCount">50/200</ion-col>
-            <ion-col col-4 class="cardPercentage">25%</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-12>
-              <progress-bar [progress]="25"></progress-bar>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-
-  <!-- PARKING LOT CARD | L Lot -->
-  <ion-card color="danger">
-    <ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4 class="cardHeader">L Lot</ion-col>
-          <ion-col col-4 class="cardCount">30/300</ion-col>
-          <ion-col col-4 class="cardPercentage">1%</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <progress-bar [progress]="1"></progress-bar>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-
 </ion-content>
 <!-- PAGE | CONTENT END -->

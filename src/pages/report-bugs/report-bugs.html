@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>reportBugs</ion-title>
+    <ion-title>Report Bugs</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,7 +17,7 @@
   <form [formGroup]="reportBugForm" (submit)="submitBug()">
     <ion-grid>
       <ion-row>Report Bug:</ion-row>
-      <ion-row><ion-textarea formControlName="bug"></ion-textarea></ion-row>
+      <ion-row><ion-textarea formControlName="bug" placeholder="Report your bug here"></ion-textarea></ion-row>
       <button ion-button full>Report Bug</button>
     </ion-grid>
   </form> 

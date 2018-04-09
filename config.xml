@@ -98,7 +98,7 @@
         <variable name="GEOFENCE_ALWAYS_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background." />
         <variable name="GEOFENCE_IN_USE_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use." />
     </plugin>
+    <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
-    <plugin name="cordova-plugin-device" spec="^2.0.1" />
 </widget>

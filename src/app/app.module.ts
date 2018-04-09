@@ -27,6 +27,7 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ProgressBarModule } from 'angular-progress-bar';
 import { Geofence } from '@ionic-native/geofence';
+import { Device } from '@ionic-native/device';
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -37,6 +38,7 @@ import { credentials } from './config';
 import { AuthProvider } from '../providers/auth/auth';
 import { SignupPage } from '../pages/signup/signup';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { ReportBugsPage } from '../pages/report-bugs/report-bugs';
 
 
 
@@ -54,6 +56,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     LoginPage,
     AboutPage,
     DaysurveyPage,
+    ReportBugsPage,
     SettingsPage
   ],
   imports: [
@@ -76,6 +79,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     LoginPage,
     AboutPage,
     DaysurveyPage,
+    ReportBugsPage,
     SettingsPage
   ],
   providers: [
@@ -88,6 +92,7 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     BackgroundGeolocation,
     LocalNotifications,
     Geofence,
+    Device,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
   ]

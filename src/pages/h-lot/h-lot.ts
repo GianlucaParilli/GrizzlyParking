@@ -7,7 +7,6 @@ import { Toast } from '@ionic-native/toast';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { BackgroundMode} from '@ionic-native/background-mode';
 
 
 /*
@@ -42,7 +41,6 @@ export class HLotPage {
                 public _platform : Platform,
                 public _local : LocalNotifications,
                 public alertCtrl: AlertController,
-                public _backgroundMode : BackgroundMode,
                 afDatabase: AngularFireDatabase
 
                 ) { 
@@ -61,7 +59,6 @@ export class HLotPage {
         this.getLocation().then(res =>{
             //console.log(res.coords.latitude);
         });
-        this.backgroundModes();
     }
    
     initMap(){
@@ -78,7 +75,7 @@ export class HLotPage {
                 this.latNumber = res.coords.latitude;
                 this.longNumber = res.coords.longitude;
                 this.moveCamera(loc);
-                this.showMarker();
+               // this.showMarker();
                 this.createMarker(loc,"My Car").then((marker : Marker) =>{
                     marker.showInfoWindow();
                     console.log('print get Location');
@@ -104,7 +101,8 @@ export class HLotPage {
     createMarker(loc: LatLng, title: string){
         let markerOptions: MarkerOptions= {
             position:loc, 
-            title: title
+            title: title,
+
         };
         return this.map.addMarker(markerOptions);
     }
@@ -117,7 +115,7 @@ export class HLotPage {
     moveCamera(loc: LatLng){
         let options: CameraPosition<LatLng> = {
             target: loc,
-            zoom: 15, 
+            zoom: 18, 
             tilt:10
         }
         this.map.moveCamera(options)
@@ -128,17 +126,40 @@ export class HLotPage {
         console.log('ionViewDidLoad hLotPage');
     }
 
-    showToast(){
+    showToast(tempB : boolean){
+        let count= 1;
+        this._local.schedule({
+            id: 1,
+            title: 'Local ILocalNotification Example',
+            text: 'entered '+ tempB
+          });
         console.log("print pressed button");
        // pinPointLocation();
     }
     showMarker(){
-      //  this.start();
+        this.map.clear();
+        let newLoc = new LatLng(this._locationService.lat,this._locationService.lng);
+
+        this.createMarker(newLoc,'newMarker Car').then((marker : Marker) =>{
+            marker.showInfoWindow();
+            console.log('print get Location');
+
+            //console.log('print get Location' + loc);
+           // presentToast("blah " +latString);
+
+        }).catch(err =>{
+            console.log(err);
+        });
+        this.moveCamera(newLoc);
+
         //this._locationService.startTracking();
        //this.presentToast(this._locationService.lat,this._locationService.lng);
        // this.localNotification(this._locationService.lat,this._locationService.lng);
     }
-
+pressButtonTest(){
+    this.parkedConfirmation();
+    this.showToast(this._locationService.isEnterHLot)
+}
     start(){
         this._locationService.startTracking();
       }
@@ -167,30 +188,16 @@ localNotification(lat: number,long: number){
         text: 'lat: '+ lat + 'long: '+ long
       });
 }
+       
 
-    
-    
+  parkedConfirmation(){ //int googleMapsLocation){
+    let TIME_IN_MS = 5000;
+    console.log('time out ')
 
-  parkedConfirmation(lot){ //int googleMapsLocation){
-    let prompt = this.alertCtrl.create({
-      title: 'Parked Vehicle Confirmation',
-      message: "Have you parked?",
-      buttons: [
-        {
-          text: 'No',
-          handler: data => {
-            console.log('~~~~~ BUTTON CLICKED: CAR NOT PARKED (NO)');
-          }
-        },
-        {
-          text: 'Yes',
-          handler: data => {
-            console.log('~~~~~ BUTTON CLICKED: CAR PARKED (YES)');
-            this.updateLot(lot, 1);
-          }
-        }
-      ]
-    })
+    let carInLot = setTimeout( () => {
+         console.log('time out ended ')
+         this.showMarker();
+    }, TIME_IN_MS);
   }
 
   updateLot(lot: string, update: number){
@@ -200,13 +207,6 @@ localNotification(lat: number,long: number){
     //  this.lotArea.update(lot, XXX
     //});
   }
-  backgroundModes(){
-    console.log('background mode')
-    this._backgroundMode.enable();
-    this._backgroundMode.on("activate").subscribe(()=>{
-      this.localNotification(this._locationService.lat,this._locationService.lng) 
-      
-    });
-  }
+
 
 }

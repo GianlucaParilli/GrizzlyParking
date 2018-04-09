@@ -11,6 +11,8 @@ import { LoginPage } from '../login/login';
 //import { GeoPoint } from '@firebase/firestore-types';
 import { BackgroundMode} from '@ionic-native/background-mode';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
+
 
 
 interface UserInterface {
@@ -62,7 +64,11 @@ export class HomePage {
     public afAuth: AngularFireAuth, 
     public afs:    AngularFirestore,
     public background: BackgroundMode,
-    public local : LocalNotifications) {
+    public localNoti : LocalNotifications,
+    public location: LocationtrackerProvider,
+    public backgroundMode : BackgroundMode
+
+    ) {
 
       // FIREBASE CONNECTION TO COLLECTIONS
       //this.afAuth.auth.signInAnonymously();
@@ -78,7 +84,11 @@ export class HomePage {
       this.parkingLots = this.parkingLotCollectionRef.valueChanges();
   }
 
+  ionViewDidLoad() {
+    this.location.startTracking();
+    this.backgroundModes();
 
+  }
   // PAGE NAVIGATION  |  H-Lot  -->  Login (returns after closing)
   goToHLotPage() {
     this.navCtrl.push(HLotPage);
@@ -235,7 +245,22 @@ export class HomePage {
       console.log("~~~~~~~~~~ FUNCTION removeUserFromLotArea error ", error);
     });
   }
- 
+  localNotification(lat: number,long: number){
+    let count= 1;
+      this.localNoti.schedule({
+          id: 1,
+          title: 'Local ILocalNotification Example',
+          text: 'lat: '+ lat + 'long: '+ long
+        });
+  }
+  backgroundModes(){
+    console.log('background mode')
+    this.backgroundMode.enable();
+    this.backgroundMode.on("activate").subscribe(()=>{
+      this.localNotification(this.location.lat,this.location.lng) 
+      
+    });
+  }
 
   
 }

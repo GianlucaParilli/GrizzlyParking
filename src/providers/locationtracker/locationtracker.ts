@@ -4,6 +4,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import 'rxjs/add/operator/filter';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
+
  
 @Injectable()
 export class LocationtrackerProvider {
@@ -18,8 +19,8 @@ export class LocationtrackerProvider {
   constructor(public zone: NgZone,
               public backgroundGeolocation: BackgroundGeolocation,
               public geolocation : Geolocation,
-              public localNotification : LocalNotifications  
-  ) {  }
+              public localNotification : LocalNotifications
+              ) {  }
  
   startTracking() {
     // Background Tracking 
@@ -28,7 +29,8 @@ export class LocationtrackerProvider {
       stationaryRadius: 0,
       distanceFilter: 0,
       debug: false,
-      interval: 1000
+      interval: 1000,
+      maximumAge: 0
     };
    
     this.backgroundGeolocation.configure(config).subscribe((location) => {
@@ -38,6 +40,7 @@ export class LocationtrackerProvider {
         this.lat = Number.parseFloat(location.latitude.toFixed(7));
         this.lng = Number.parseFloat(location.longitude.toFixed(7));
         this.geoFence(this.lat,this.lng);
+        //this.hlot.showMarker();
         this.backgroundGeolocation.finish();
       });
     }, (err) => {  
@@ -48,8 +51,10 @@ export class LocationtrackerProvider {
     // Foreground Tracking
    
   let options = {
-    frequency: 3000,
-    enableHighAccuracy: true
+    frequency: 500,
+    enableHighAccuracy: true,
+    maximumAge: 0,
+
   };
    
   this.watch = this.geolocation.watchPosition(options).filter((p: any) => 
@@ -61,6 +66,7 @@ console.log(position)
 
       this.lat =Number.parseFloat(position.coords.latitude.toFixed(7));
       this.lng =Number.parseFloat(position.coords.longitude.toFixed(7));
+      
       //this.geoFence(this.lat,this.lng);
     });
    
@@ -91,18 +97,28 @@ console.log(position)
             console.log('exit -- entered ' + this.enteredCampus)
     }
 
-
-    if((lat>= 33.980500 && lat<=33.980600) && (long <=-84.002100 && long>=-84.002250) && this.isEnterHLot==false){
+//h lot fence
+    if((lat>= 33.9804500 && lat<=33.9806500) && (long <=-84.0020000 && long>=-84.0023000) && this.isEnterHLot==false){
       this.isEnterHLot = true
       this.localNoti(lat,long,'enter','H lot')
       console.log('entered ' + this.isEnterHLot)
     }
-    else if(
-            (lat>= 33.980350 && lat<=33.980450) && (long <=-84.001700 && long>=-84.001800) && this.isEnterHLot){
+    else if( (lat>= 33.980350 && lat<=33.980500) && (long <=-84.001700 && long>=-84.001900) && this.isEnterHLot){
       this.isEnterHLot = false
       this.localNoti(lat,long,'exit','H lot')
       console.log('exit -- entered ' + this.isEnterHLot)
     }
+//b Building test fence
+if((lat>= 33.9805000 && lat<=33.9806000) && (long <=-84.0048000 && long>=-84.0049080) && this.isEnterHLot==false){
+  //this.isEnterHLot = true;
+  //this.localNoti(lat,long,'enter','H lot')
+  console.log('entered ' + this.isEnterHLot)
+}
+else if((lat>= 33.9805000 && lat<=33.9806000) && (long <=-84.0048000 && long>=-84.0049080) && this.isEnterHLot==!false){
+  //this.isEnterHLot = false;
+  //this.localNoti(lat,long,'exit','H lot')
+  console.log('entered ' + this.isEnterHLot)
+}
   }
  localNoti(lat:number, lng:number,enterExit:string, place:string){
   this.localNotification.schedule({

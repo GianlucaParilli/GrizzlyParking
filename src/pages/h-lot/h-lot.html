@@ -6,13 +6,10 @@
 
 <ion-content color="dark" padding>
   Testing google maps
-  <div #map id="map" style="width:90%"></div>
+  <div #map id="map" style="width:75%"></div>
   <button ion-button full (click)="showMarker()">Get Location</button>
   <h3>Current Latitude: {{_locationService.lat}}</h3>
   <h3>Current Longitute: {{_locationService.lng}}</h3>
-
-  <h3>Current Latitude: {{_locationService.lat}}</h3>
-
   <button ion-button block type="button" (click)="parkUser()">
     PARK ME &nbsp; <i>BABY</i>!
   </button>

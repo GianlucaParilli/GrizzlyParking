@@ -23,6 +23,7 @@
     "@google-cloud/firestore": "^0.11.2",
     "@ionic-native/background-geolocation": "^4.5.3",
     "@ionic-native/core": "4.4.0",
+    "@ionic-native/device": "^4.7.0",
     "@ionic-native/firebase": "^4.6.0",
     "@ionic-native/geofence": "^4.5.3",
     "@ionic-native/geolocation": "^4.5.3",

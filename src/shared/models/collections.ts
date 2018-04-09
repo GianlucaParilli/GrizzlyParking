@@ -23,3 +23,21 @@ export interface ParkingLotInterface {
     plCapacity: number,
     plPopulation: number
 }
+
+// INTERFACE | COLLECTION - SurveyTimes
+export interface SurveyTimeInterface {
+    userID : firebase.firestore.FieldValue,
+    startTime: firebase.firestore.FieldValue,
+    endTime: firebase.firestore.FieldValue,
+    timeSubmitted: firebase.firestore.FieldValue
+}
+
+export interface ReportBugInterface {
+    userID : firebase.firestore.FieldValue,
+    timeSubmitted: firebase.firestore.FieldValue,
+    platform: firebase.firestore.FieldValue,
+    version: firebase.firestore.FieldValue,
+    model : firebase.firestore.FieldValue,
+    manufacturer: firebase.firestore.FieldValue,
+    bug : firebase.firestore.FieldValue
+}

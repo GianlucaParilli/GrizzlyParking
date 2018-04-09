@@ -6,6 +6,8 @@ import {
   IonicModule,
   IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { BackgroundMode } from '@ionic-native/background-mode';
+
 // SPLASHSCREEN
 // PAGES
 import { HomePage } from '../pages/home/home';
@@ -93,6 +95,7 @@ import { ReportBugsPage } from '../pages/report-bugs/report-bugs';
     LocalNotifications,
     Geofence,
     Device,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider
   ]

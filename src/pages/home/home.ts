@@ -12,6 +12,9 @@ import {
 } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { ParkingLotInterface } from "../../shared/models/collections";
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 
 
 @Component({
@@ -32,7 +35,10 @@ export class HomePage {
   constructor(
     private afs: AngularFirestore,
     private afDatabase: AngularFireDatabase,
-    public navCtrl: NavController) {
+    public navCtrl: NavController,
+    public background: BackgroundMode,
+    public localNoti : LocalNotifications,
+    public location: LocationtrackerProvider) {
 
     // FIREBASE CONNECTION TO COLLECTIONS
     this.parkingLotCollectionRef = this.afs.collection('parkingLot');
@@ -48,5 +54,26 @@ export class HomePage {
   // PAGE NAVIGATION  |  H-Lot  -->  Login (returns after closing)
   goToHLotPage() { this.navCtrl.push(HLotPage); }
   goToLoginPage() { this.navCtrl.push(LoginPage); }
+  
+  ionViewDidLoad() {
+    this.location.startTracking();
+    this.backgroundModes();
+  }
 
+  localNotification(lat: number,long: number){
+    let count= 1;
+      this.localNoti.schedule({
+          id: 1,
+          title: 'Local ILocalNotification Example',
+          text: 'lat: '+ lat + 'long: '+ long
+        });
+  }
+  backgroundModes(){
+    console.log('background mode')
+    this.background.enable();
+    this.background.on("activate").subscribe(()=>{
+      this.localNotification(this.location.lat,this.location.lng) 
+      
+    });
+  }
 }

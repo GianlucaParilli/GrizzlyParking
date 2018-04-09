@@ -1,4 +1,4 @@
-﻿﻿import {
+﻿import {
   Component,
   ViewChild,
   ElementRef
@@ -20,7 +20,6 @@ import {
   MarkerOptions
 } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Geofence } from '@ionic-native/geofence';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 import { 
@@ -82,7 +81,6 @@ export class HLotPage {
     private _toastCtrl: ToastController,
     public _locationService: LocationtrackerProvider,
     public _platform: Platform,
-    public _geofence: Geofence,
     public _local: LocalNotifications,
     public alertCtrl: AlertController,
     private afs: AngularFirestore,
@@ -195,19 +193,51 @@ export class HLotPage {
     console.log('ionViewDidLoad hLotPage');
   }
 
-  showToast() {
-    console.log("print pressed button");
-    //pinPointLocation();
-  }
+  showMarker(){
+    this.map.clear();
+    let newLoc = new LatLng(this._locationService.lat,this._locationService.lng);
 
-  showMarker() {
-    this.start();
-    this._geofence.initialize();
-    this.addGeofence();
+    this.createMarker(newLoc,'newMarker Car').then((marker : Marker) =>{
+        marker.showInfoWindow();
+        console.log('print get Location');
+
+        //console.log('print get Location' + loc);
+       // presentToast("blah " +latString);
+
+    }).catch(err =>{
+        console.log(err);
+    });
+    this.moveCamera(newLoc);
+
     //this._locationService.startTracking();
-    this.presentToast(this._locationService.lat, this._locationService.lng);
-    this.localNotification(this._locationService.lat, this._locationService.lng);
-  }
+   //this.presentToast(this._locationService.lat,this._locationService.lng);
+   // this.localNotification(this._locationService.lat,this._locationService.lng);
+    }
+    showToast(tempB : boolean){
+    let count= 1;
+    this._local.schedule({
+        id: 1,
+        title: 'Local ILocalNotification Example',
+        text: 'entered '+ tempB
+      });
+    console.log("print pressed button");
+   // pinPointLocation();
+    }
+    parkedConfirmation(){ //int googleMapsLocation){
+    let TIME_IN_MS = 5000;
+    console.log('time out ');
+    this.parkUser();
+
+    let carInLot = setTimeout( () => {
+         console.log('time out ended ')
+         this.showMarker();
+    }, TIME_IN_MS);
+    }
+
+    pressButtonTest(){
+    this.parkedConfirmation();
+    this.showToast(this._locationService.isEnterHLot)
+    }
 
   start() {
     this._locationService.startTracking();
@@ -237,28 +267,6 @@ export class HLotPage {
       title: 'Local ILocalNotification Example',
       text: 'lat: ' + lat + 'long: ' + long
     });
-  }
-
-  addGeofence() {
-    //options describing geofence
-    let fence = {
-      id: '69ca1b88-6fbe-4e80-a4d4-ff4d3748acdb', //any unique ID
-      latitude: 33.930389, //center of geofence radius
-      longitude: -83.910475,
-      radius: 50, //radius to edge of geofence in meters
-      transitionType: 3, //see 'Transition Types' below
-      notification: { //notification settings
-        id: 1, //any unique ID
-        title: 'You crossed a fence', //notification title
-        text: 'You just arrived to lucas house.', //notification body
-        openAppOnClick: true //open app when notification is tapped
-      }
-    }
-    this._geofence.initialize();
-    this._geofence.addOrUpdate(fence).then(
-      () => console.log('Geofence added'),
-      (err) => console.log('Geofence failed to add')
-    );
   }
 
 

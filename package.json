@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.0.3",
     "@google-cloud/firestore": "^0.11.2",
     "@ionic-native/background-geolocation": "^4.5.3",
+    "@ionic-native/background-mode": "^4.7.0",
     "@ionic-native/core": "4.4.0",
     "@ionic-native/device": "^4.7.0",
     "@ionic-native/firebase": "^4.6.0",
@@ -62,7 +63,8 @@
     "promise-polyfill": "^7.1.0",
     "rxjs": "^5.5.6",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "cordova-plugin-background-mode": "~0.7.2"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
@@ -100,7 +102,8 @@
       "cordova-plugin-geofence": {
         "GEOFENCE_ALWAYS_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background.",
         "GEOFENCE_IN_USE_USAGE_DESCRIPTION": "${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use."
-      }
+      },
+      "cordova-plugin-background-mode": {}
     },
     "platforms": [
       "ios",

@@ -12,7 +12,8 @@ export interface UserInterface {
     //MUST BE TYPE:  reference. of a parkingLot/doc
     parkedLot: firebase.firestore.DocumentReference,
     //MUST BE TYPE:  TimeStamp. a number represents millisecs since 01/01/1970
-    parkedTime: firebase.firestore.FieldValue
+    parkedTime: firebase.firestore.FieldValue,
+    email: string
 }
 
 // INTERFACE  |  COLLECTION - PARKINGLOT

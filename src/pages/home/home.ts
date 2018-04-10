@@ -23,6 +23,9 @@ import { LocationtrackerProvider } from '../../providers/locationtracker/locatio
 })
 export class HomePage {
 
+  cardPercentage : any;
+  cardColor : any;
+
   // OBSERVABLES
   parkingLotObs: Observable<ParkingLotInterface[]>;
   hLotObs: Observable<ParkingLotInterface>;
@@ -49,6 +52,38 @@ export class HomePage {
     // USED IN HTML |  LISTENERS
     this.parkingLotObs = this.parkingLotCollectionRef.valueChanges();
     this.hLotObs = this.hLotDocumentRef.valueChanges();
+
+    this.hLotDocumentRef.ref.get().then((doc) =>{
+      if(doc.exists){
+        let myData = doc.data();
+        this.cardPercentage = myData.plAvailablePct;
+      }
+      else{
+        console.log('No Document exists');
+      }
+    }).catch(function(error){
+      console.log('Error retreiving document: ', error);
+    });
+
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.hLotDocumentRef.ref.get().then((doc) =>{
+      if(doc.exists){
+        let myData = doc.data();
+        this.cardPercentage = myData.plAvailablePct;
+      }
+      else{
+        console.log('No Document exists');
+      }
+    }).catch(function(error){
+      console.log('Error retreiving document: ', error);
+    });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
   }
   
   // PAGE NAVIGATION  |  H-Lot  -->  Login (returns after closing)

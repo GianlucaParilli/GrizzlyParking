@@ -21,11 +21,11 @@ import { LocationtrackerProvider } from '../../providers/locationtracker/locatio
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
   cardPercentage : any;
   cardColor : any;
-
   // OBSERVABLES
   parkingLotObs: Observable<ParkingLotInterface[]>;
   hLotObs: Observable<ParkingLotInterface>;
@@ -41,7 +41,8 @@ export class HomePage {
     public navCtrl: NavController,
     public background: BackgroundMode,
     public localNoti : LocalNotifications,
-    public location: LocationtrackerProvider) {
+    public location: LocationtrackerProvider,
+  ) {
 
     // FIREBASE CONNECTION TO COLLECTIONS
     this.parkingLotCollectionRef = this.afs.collection('parkingLot');
@@ -76,7 +77,7 @@ export class HomePage {
       console.log('Error retreiving document: ', error);
     });
 
-    
+   
 
   }
 
@@ -121,7 +122,9 @@ export class HomePage {
     this.location.startTracking();
     this.backgroundModes();
   }
-
+startTrack(){
+  this.location.startTracking();
+}
   localNotification(lat: number,long: number){
     let count= 1;
       this.localNoti.schedule({
@@ -134,8 +137,9 @@ export class HomePage {
     console.log('background mode')
     this.background.enable();
     this.background.on("activate").subscribe(()=>{
-      this.localNotification(this.location.lat,this.location.lng) 
-      
+     // this.localNotification(this.location.lat,this.location.lng) 
+     //this.startTrack();
     });
   }
+  
 }

@@ -1,7 +1,8 @@
 ﻿import {
   Component,
   ViewChild,
-  ElementRef
+  ElementRef,
+  Injectable
 } from '@angular/core';
 import {
   NavController,
@@ -42,7 +43,6 @@ import {
 
 
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-
 @Component({
   selector: 'page-h-Lot',
   templateUrl: 'h-Lot.html'
@@ -53,6 +53,8 @@ export class HLotPage {
   private userID: string = "test@ggc.edu";
   private locationName: string = "none";
   private parkingLotName: string = "none";
+  isHlotCrossed : any;
+
   //let longString;
 
   // OBSERVABLES
@@ -101,7 +103,19 @@ export class HLotPage {
         }
       })
     })
+    this._locationService.getData.subscribe((entered) => {
+        this.isHlotCrossed = entered;
+        if(this.isHlotCrossed){
+         console.log('crossed enter');
+         this.parkedConfirmation();
 
+        }
+        else if (this.isHlotCrossed == false){
+            console.log('crossed exit');
+
+            this.unparkUser();
+        }
+      });
     console.log('userID:', this.userID);
     this.userDocumentRef = this.afs.collection('user').doc(this.userID);
     this.locationDocumentRef = this.afs.collection('location').doc('none');
@@ -122,13 +136,12 @@ export class HLotPage {
     this.initMap();
     this.start(); //starts geo location 
     this.newMap();
-    //this.loadMap();
-
     //get actual location
     this.getLocation().then(res => {
       //console.log(res.coords.latitude);
     });
   }
+    
 
   initMap() {
     let element = this.mapElement.nativeElement;
@@ -149,10 +162,6 @@ export class HLotPage {
         this.createMarker(loc, "My Car").then((marker: Marker) => {
           marker.showInfoWindow();
           console.log('print get Location');
-
-          //console.log('print get Location' + loc);
-          // presentToast("blah " +latString);
-
         }).catch(err => {
           console.log(err);
         })
@@ -161,10 +170,7 @@ export class HLotPage {
       });
     });
 
-    //get actual location
-    this.getLocation().then(res => {
-      //console.log(res.coords.latitude);
-    });
+   
   }
 
   createMarker(loc: LatLng, title: string) {
@@ -193,7 +199,7 @@ export class HLotPage {
     console.log('ionViewDidLoad hLotPage');
   }
 
-  showMarker(){
+   showMarker(){
     this.map.clear();
     let newLoc = new LatLng(this._locationService.lat,this._locationService.lng);
 
@@ -221,10 +227,9 @@ export class HLotPage {
         text: 'entered '+ tempB
       });
     console.log("print pressed button");
-   // pinPointLocation();
     }
-    parkedConfirmation(){ //int googleMapsLocation){
-    let TIME_IN_MS = 5000;
+    parkedConfirmation(){ 
+    let TIME_IN_MS = 60000;
     console.log('time out ');
     this.parkUser();
 
@@ -294,7 +299,7 @@ export class HLotPage {
     });
   }
 
-  unparkUser(user: UserInterface) {
+  unparkUser() {
     console.log("~~~~~~~~~~ FUNCTION unparkUser called ", this.userDocumentRef);
 
     this.deleteLocation();

@@ -82,7 +82,7 @@ export class HomePage {
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
-    //update progress bar and card color
+
     this.hLotDocumentRef.ref.get().then((doc) =>{
       if(doc.exists){
         let myData = doc.data();
@@ -105,7 +105,13 @@ export class HomePage {
     }).catch(function(error){
       console.log('Error retreiving document: ', error);
     });
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 500);
   }
+
   
   // PAGE NAVIGATION  |  H-Lot  -->  Login (returns after closing)
   goToHLotPage() { this.navCtrl.push(HLotPage); }

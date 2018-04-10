@@ -5,7 +5,7 @@
 </ion-header>
 
 <!-- PAGE | Content BEGIN -->
-<ion-content class="bg-dark" padding>
+<ion-content class="bg-dark">
 
   <!-- PAGE SECTION | Logo - Grizzly Parking text logo (image) -->
   <img src="assets/imgs/GrizzlyParkingCard.png" alt="Grizzly Parking Logo">
@@ -19,7 +19,7 @@
       refreshingSpinner="circles"
       refreshingText="Refreshing..."></ion-refresher-content>
   </ion-refresher>
-  <ion-card color="secondary" (click)="goToHLotPage()">
+  <ion-card color="{{cardColor}}" (click)="goToHLotPage()">
     <ion-card-header>
       <img src="assets/imgs/hbuilding.png" alt="hbuilding">
     </ion-card-header>

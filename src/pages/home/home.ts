@@ -57,6 +57,17 @@ export class HomePage {
       if(doc.exists){
         let myData = doc.data();
         this.cardPercentage = myData.plAvailablePct;
+
+        //logic for changing card color with percentage
+        if(this.cardPercentage >= 50){
+          this.cardColor = "secondary";
+        }
+        else if(this.cardPercentage >= 25){
+          this.cardColor = "caution";
+        }
+        else {
+          this.cardColor = "danger";
+        }
       }
       else{
         console.log('No Document exists');
@@ -64,15 +75,29 @@ export class HomePage {
     }).catch(function(error){
       console.log('Error retreiving document: ', error);
     });
+
+    
 
   }
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
+    //update progress bar and card color
     this.hLotDocumentRef.ref.get().then((doc) =>{
       if(doc.exists){
         let myData = doc.data();
         this.cardPercentage = myData.plAvailablePct;
+
+        //logic for changing card color with percentage
+        if(this.cardPercentage >= 50){
+          this.cardColor = "secondary";
+        }
+        else if(this.cardPercentage >= 25){
+          this.cardColor = "caution";
+        }
+        else {
+          this.cardColor = "danger";
+        }
       }
       else{
         console.log('No Document exists');
@@ -80,10 +105,6 @@ export class HomePage {
     }).catch(function(error){
       console.log('Error retreiving document: ', error);
     });
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 1000);
   }
   
   // PAGE NAVIGATION  |  H-Lot  -->  Login (returns after closing)

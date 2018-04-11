@@ -41,18 +41,6 @@
           <div class="col">Your chances of finding parking are low.</div>
           <div class="col">0%-25%</div>
         </div>
-        
-    </ion-card-content>
-  </ion-card>
-  <ion-card color="dark">
-    <img src="assets/imgs/GrizzlyParking.png" alt="logo">
-    <ion-card-header>
-        <ion-card-title>
-            Grizzly Parking
-            </ion-card-title>
-      
-    </ion-card-header>
-    <ion-card-content>
       Team Members: 
       <br>
       Gianluca Parili<br>
@@ -61,12 +49,7 @@
       Grizzly Parking is currently still under development. Help us make the app better by submitting problems to us!
       <hr>
       <br>
-      <ion-item>
-        <ion-label>Report Bugs</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <button ion-button full color="secondary">Submit</button>
+          <button ion-button full color="secondary" (click)="goToSubmitBugs()">Report Bugs</button>
     </ion-card-content>
-
   </ion-card>
 </ion-content>

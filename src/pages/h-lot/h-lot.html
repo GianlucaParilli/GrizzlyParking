@@ -1,41 +1,12 @@
-<!--
-  Generated template for the NewPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar  color="dark">
+  <ion-navbar color="dark">
     <ion-title>H Lot</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content color="dark" padding>
-  Testing google maps
-    <div #map id="map" style="height:75%"></div>
-    <button ion-button full (click)="presentToast()">Get Location</button>
-  </ion-content>
-
-<!--ion-content padding>
-  
-    Testing H Lot Page
-    
-
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
-      }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_72KgFbHYBgPau_-o0zKtWHf8W0A6i4s&callback=initMap"
-            async defer></script>
-
-    <p>Map Above</p>
-</ion-->
+  <div #map id="map" style="height:70%"></div>
+  <!--button ion-button full (click)="parkedConfirmation()">Get Location</button>
+  <h3>Current Latitude: {{_locationService.lat}}</h3>
+  <h3>Current Longitute: {{_locationService.lng}}</h3-->
+</ion-content>

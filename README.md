@@ -12,6 +12,10 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
  
 ## Quick Start
 
+### Make sure the team composition is right
+1. Your team will require at least one person to have a device with MacOS on it
+2. The only way to test this app on iOS is with a machine that runs MacOS
+3. Use a Project Management Tool to help keep track of progress. We used ```trello.com```
 ### Make sure you are familiar with how Ionic 3 works
 1. ```Lynda.com``` offers some Ionic 2 courses which is very similar to Ionic 3. 
 2. Ionic 3 implements ```"Lazy Loading"``` which is a new way for Ionic to only load the neccessary .ts files when needed
@@ -95,21 +99,32 @@ constructor(public afAuth : AngularFireAuth){
 //Todo
 ## Running the app
 ### Installing Dependencies
-1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project 
 ```
 npm i
 ``` 
+1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project 
 2. ```npm i``` is a shorthand way of installing all dependencies that are listed in ```package.json``` (run this in the directory of project)
 
 ### Buidling the app
+```
+ionic cordova build android
+ionic cordova build ios
+```
 //Todo
 ### Serving the app
-//Todo
+```
+ionic serve
+```
+1. In the event of an app crash, serve the app to the browser for debugging purposes only
+2. Since this app utilizes a lot of native functionalities, serving the application will not display the google maps plugin so it is recommended to test all changes on an actual device or an emulator
 ### Running on Android
-//Todo
+```
+ionic cordova run android --device
+```
+1. Make sure device is plugged in
+2. Make sure device is running Android 7.00 or higher
 ### Runnnig on iOS
 //Todo
-
 ## Deployment
 Ideally the application should be deployed on the Google Play Store for Android and the App Store for iOS but if the application cannot pass the requirements that each market requires then you may use alternative methods to deploy the application. 
 ### Android Deployment

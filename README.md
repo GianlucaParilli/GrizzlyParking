@@ -30,7 +30,7 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 1. VS Code offers support for Ionic with third-party extensions
 2. Ease of use
 3. UI customization
-4. Integrated Terminal (ctrl + `)
+4. Integrated Terminal ```ctrl + ` ```
     1. Git
     2. Ionic CLI
 5. https://code.visualstudio.com/Download
@@ -39,32 +39,50 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 
 ### Adding a new page
 1. Use Ionic's CLI to generate new pages
-2. ```ionic -g page yourPageName```
-3. Since Ionic 3 uses ```"Lazy Loading"``` it will create a new folder with it's own ```module.ts```
-4. In order for the application to recognize the new page, you must inject the exported class from your newly generated page into the ```app.module.ts``` under ```DEPENDENCIES``` and ```ENTRY COMPONENTS```
+```
+ionic -g page yourPageName
+```
+2. Since Ionic 3 uses ```"Lazy Loading"``` it will create a new folder with it's own ```module.ts```
+3. In order for the application to recognize the new page, you must inject the exported class from your newly generated page into the ```app.module.ts``` under ```DEPENDENCIES``` and ```ENTRY COMPONENTS```
 
 ### Page Navigation
 1. Ionic uses a ```STACK``` as a data structure for the ```UI```
 2. ```Pushing``` a new page will place it on top of the current page; meaning that pressing back will go back to the previous page by ```popping``` current page.
-3. ```this.navCtrl.push(YourPageClass);```
+```
+this.navCtrl.push(YourPageClass);
+```
 ### Using TypeScript variables within the HTML files
-1. You can escape HTML and insert TypeScript code by using: ```{{ yourTypeScriptVariableHere }}```
-2. ```<a href="#">{{ typeScriptVariable }}</a>```
+1. You can escape HTML and insert TypeScript code by using: 
+```
+{{ yourTypeScriptVariableHere }}
+```
+```
+<a href="#">{{ typeScriptVariable }}</a>
+```
 
 ### How Firebase connects with the app
 1. ```src/app/config.ts``` holds all Firebase credentials
 2. ```src/app/app.module.ts``` holds the code that initializes Firebase
-<br>```imports: [```<br>
-    ```AngularFireModule.initializeApp(credentials.firebase),``` <br>
-    ```AngularFirestoreModule.enablePersistence(),```<br>
-    ```AngularFireAuthModule,```<br>
-    ```AngularFireDatabaseModule]```
+```
+imports: [
+    AngularFireModule.initializeApp(credentials.firebase),
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule]
+```
 ### Firebase Authentication
 1. Import correct dependencies at the top of the TypeScript file <br>
-```import { AuthProvider } from '../../providers/auth/auth';```<br>
-```import { AngularFireAuth } from 'angularfire2/auth';```<br>
+```
+import { AuthProvider } from '../../providers/auth/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
+```
 2. Make sure you have injected a parameter within the constructor of the TypeScript file you are working on so that you can use Firebase
-``` constructor(public afAuth : AngularFireAuth){ this.variable = this.afAuth.getID }```
+``` 
+constructor(public afAuth : AngularFireAuth){ 
+    this.variable = this.afAuth.getID }
+```
+
+//Todo
 ### Getting COLLECTIONS and DOCUMENTS from Firebase
 //Todo
 #### Firebase Observables
@@ -77,7 +95,10 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 //Todo
 ## Running the app
 ### Installing Dependencies
-1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project
+1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project 
+```
+npm i
+``` 
 2. ```npm i``` is a shorthand way of installing all dependencies that are listed in ```package.json``` (run this in the directory of project)
 
 ### Buidling the app

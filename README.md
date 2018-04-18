@@ -109,6 +109,17 @@ npm i
 //Todo
 ### Runnnig on iOS
 //Todo
+
+## Deployment
+Ideally the application should be deployed on the Google Play Store for Android and the App Store for iOS but if the application cannot pass the requirements that each market requires then you may use alternative methods to deploy the application. 
+### Android Deployment
+1. Android APK's are easier to distribute and install than iOS because as long as the device has developer mode on and allows APK's from unknown sources
+2. We used a Github Page to deploy our app at STaRS
+3. https://grizzlyparking.github.io/ (May be an older APK)
+### iOS Deployment
+//Todo
+## Troubleshooting
+//Todo
 ## Team Members
 
 <ul>

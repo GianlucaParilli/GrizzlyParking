@@ -3,10 +3,13 @@
 An Ionic parking app that helps ease the flow of traffic on GGC's campus and helps students find available parking during school hours.
 
 ## Project Description
-<a href="https://drive.google.com/file/d/1O_g_tIC2YG2oDEmdGlZhmbIWTWD_J4_7/view?usp=sharing"></a>
+
+Splash Screen               |  Login Screen             |  Home Screen        |
+:-------------------------:|:-------------------------:|:--------------------:
+![Splash](https://lh3.google.com/u/1/d/1KL8dznydoqlt3Zvz7IX3eAMwODx9Mnmj=w150-h286)|  ![Splash](https://lh3.google.com/u/1/d/12jreJqr5TR66L2esSZD5E2wH_u2QUe0h=w150-h286-iv1)|![Splash](https://lh3.google.com/u/1/d/1Dadiy5v6TRYl3LnZB_4UQgYHAiMMkMWE=w150-h286-iv1)
 
 <ol>
-    <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu addresses only)</li>
+    <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu         addresses only)</li>
     <li>Uses Google Firebase Firesore as DB solution</li>
     <li>Uses Ionic-Native plugins to keep track of users(Geofence, Geolocation)</li>
 

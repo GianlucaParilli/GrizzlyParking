@@ -4,9 +4,8 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 
 ## Project Description
 
-Splash Screen               |  Login Screen             |  Home Screen        |
-:-------------------------:|:-------------------------:|:--------------------:
-![Splash](https://lh3.google.com/u/1/d/1KL8dznydoqlt3Zvz7IX3eAMwODx9Mnmj=w150-h286)|  ![Splash](https://lh3.google.com/u/1/d/12jreJqr5TR66L2esSZD5E2wH_u2QUe0h=w150-h286-iv1)|![Splash](https://lh3.google.com/u/1/d/1Dadiy5v6TRYl3LnZB_4UQgYHAiMMkMWE=w150-h286-iv1)
+![iosshots](https://user-images.githubusercontent.com/31226756/39006622-a0136cea-43d1-11e8-8155-d15f52a556e2.png)
+
 
 <ol>
     <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu         addresses only)</li>

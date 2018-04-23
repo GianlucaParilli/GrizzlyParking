@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Report Bugs</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- PAGE | Content BEGIN -->
+<ion-content padding>
+
+  <!-- PAGE SECTION | REPORT BUGS BEGIN - User feedback for bugs (form) -->
+  <form [formGroup]="reportBugForm" (submit)="submitBug()">
+
+    <ion-grid>
+      <ion-row>Report Bug:</ion-row>
+      <ion-row><ion-textarea formControlName="bug" placeholder="Report your bug here"></ion-textarea></ion-row>
+      
+      <!-- BUTTON | SUBMIT BUG -->
+      <button ion-button full>
+        Report Bug
+      </button>
+
+    </ion-grid>
+    
+  </form>
+  <!-- PAGE SECTION | REPORT BUGS END -->
+
+</ion-content>
+<!-- PAGE | CONTENT END -->

@@ -4,7 +4,10 @@
   </ion-navbar>
 </ion-header>
 
+<!-- PAGE | Content BEGIN -->
 <ion-content padding>
+
+  <!-- PAGE SECTION | LOGIN BEGIN - Login Into App (form) -->
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
     <ion-item>
@@ -17,18 +20,24 @@
       <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
     </ion-item>
 
+    <!-- BUTTON | LOGIN | GO TO PAGE - home or daysurvey -->
     <button ion-button block type="submit" [disabled]="!loginForm.valid">
       Login
     </button>
 
   </form>
+  <!-- PAGE SECTION | LOGIN END -->
 
+
+  <!-- BUTTON | GO TO PAGE - signup -->
   <button ion-button block clear (click)="goToSignup()">
     Create a new account
   </button>
 
+  <!-- BUTTON | GOT TO PAGE - reset-password -->
   <button ion-button block clear (click)="goToResetPassword()">
     I forgot my password
   </button>
 
 </ion-content>
+<!-- PAGE | CONTENT END -->

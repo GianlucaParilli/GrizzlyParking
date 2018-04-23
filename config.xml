@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="gluka.grizzlyparking" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>GrizzlyParking</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -12,7 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
@@ -76,22 +76,37 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
-    <plugin name="cordova-plugin-firebase" spec="^0.1.25" />
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-googlemaps" spec="^2.2.5">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAuscW3J6m-jTPaKtzHFd2H9we8nf0AZ3g" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyBKNlKAWe_iLvUaST3-QX1XYrmhbCCATPA" />
-        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
-        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
-    </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
-    <engine name="ios" spec="4.5.4" />
+    <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
+    <plugin name="cordova-plugin-add-swift-support" spec="^1.7.1" />
+    <plugin name="cordova-plugin-x-toast" spec="^2.6.2" />
+    <plugin name="cordova-plugin-firebase" spec="^0.1.25" />
+    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
+    <plugin name="es6-promise-plugin" spec="^4.2.2" />
+    <plugin name="cordova-android-play-services-gradle-release" spec="^1.2.1">
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+    </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="^2.2.8">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAuscW3J6m-jTPaKtzHFd2H9we8nf0AZ3g" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyBKNlKAWe_iLvUaST3-QX1XYrmhbCCATPA" />
+        <variable name="LOCATION_WHEN_IN_USE_DESCRIPTION" value="My custom when in use message" />
+        <variable name="LOCATION_ALWAYS_AND_WHEN_IN_USE_USAGE_DESCRIPTION" value="My custom always usage message" />
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.0" />
+    </plugin>
+    <plugin name="cordova-plugin-geofence" spec="git+https://github.com/cowbell/cordova-plugin-geofence.git">
+        <variable name="GEOFENCE_ALWAYS_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location Even In Background." />
+        <variable name="GEOFENCE_IN_USE_USAGE_DESCRIPTION" value="${EXECUTABLE_NAME} Would Like to Use Your Current Location When In Use." />
+    </plugin>
+    <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
 </widget>

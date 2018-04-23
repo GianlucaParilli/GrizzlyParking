@@ -1,19 +1,13 @@
-<!--
-  Generated template for the SignupPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Signup</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
+<!-- PAGE | Content BEGIN -->
 <ion-content padding>
+
+  <!-- PAGE SECTION | SIGNUP BEGIN - Signup for App (form) -->
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 
     <ion-item>
@@ -28,8 +22,13 @@
       </ion-input>
     </ion-item>
 
+    <!-- BUTTON | CREATE ACCOUNT | GO TO PAGE - daysurvey -->
     <button ion-button block type="submit" [disabled]="!signupForm.valid">
       Create an Account
     </button>
+
   </form>
+  <!-- PAGE SECTION | SIGNUP END -->
+
 </ion-content>
+<!-- PAGE | CONTENT END -->

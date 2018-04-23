@@ -9,8 +9,6 @@ interface UserInterface {
   parkedLatitude: number,
   parkedLongitude: number,
   parkedTime: firebase.firestore.FieldValue
-  email: string,
-  password: string
 }   
 
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
@@ -35,9 +33,7 @@ export class AuthProvider {
       isParked: false,
       parkedLatitude: 0,
       parkedLongitude: 0,
-      parkedTime: timestamp,
-      email: email,
-      password: password
+      parkedTime: timestamp
     })
     return firebase
     .auth()

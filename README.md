@@ -65,6 +65,8 @@ this.navCtrl.push(YourPageClass);
 {{ yourTypeScriptVariableHere }}
 ```
 ```
+Example:
+
 <a href="#">{{ typeScriptVariable }}</a>
 ```
 
@@ -151,6 +153,10 @@ Ideally the application should be deployed on the Google Play Store for Android 
 1. Android APK's are easier to distribute and install than iOS because as long as the device has developer mode on and allows APK's from unknown sources
 2. We used a Github Page to deploy our app at STaRS
 3. https://grizzlyparking.github.io/ (May be an older APK)
+```
+ionic cordova build android
+```
+4. Run above command to build the APK for android located in the ```platforms/android/app/build/outputs/apk/debug/app-debug.apk```
 ### iOS Deployment
 1. So far we are not able to deploy with Testflight thusly we must connect each iphone into the mac that is currently doing the xcode signing and deploying.
 2. Once the app is build into the .xcodeproj file, all there is to do is click the play button in xcode and the app should be installed in the device

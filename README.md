@@ -70,6 +70,71 @@ Example:
 <a href="#">{{ typeScriptVariable }}</a>
 ```
 
+### Using FormBuilder
+1. Ionic has a couple ways of using forms but we implemented the FormBuilder package because it allows for direct injection into constructor body.
+
+```
+.ts file
+
+import {FormBuilder, Validators, FormGroup } from '@angular/forms'; 
+import { EmailValidator } from '../../validators/email';
+import { AuthProvider } from '../../providers/auth/auth';
+
+    //TS Variable
+    public loginForm: FormGroup;
+
+  constructor(
+      public formBuilder: FormBuilder
+  ){
+      //Initialize Form
+      this.loginForm = formBuilder.group({
+        email: ['', 
+        Validators.compose([Validators.required, EmailValidator.isValid])],
+        password: ['', 
+        Validators.compose([Validators.minLength(6), Validators.required])]
+      });
+  }
+```
+
+```
+HTML
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!loginForm.valid">
+      Login
+    </button>
+
+  </form>
+
+  <button ion-button block clear (click)="goToSignup()">
+    Create a new account
+  </button>
+
+  <button ion-button block clear (click)="goToResetPassword()">
+    I forgot my password
+  </button>
+
+</ion-content>
+```
+
 ### How Firebase connects with the app
 1. ```src/app/config.ts``` holds all Firebase credentials
 2. ```src/app/app.module.ts``` holds the code that initializes Firebase
@@ -95,7 +160,7 @@ constructor(public afAuth : AngularFireAuth){
 ```
 3. The ```Login``` page of this application handles most of the logic for authenticating with Firebase but the ```Signup``` page handles the logic for creating a new user with email and password.
 
-4. Since
+4. Since this application should only be used by GGC Students, the ```Signup``` page only accepts emails that end with ```@ggc.edu```. This is done by using a validator that is located in ```src/validators/email.ts```. This is a simple REGEX that only accepts ```@ggc.edu```.
 
 //Todo
 ### Getting COLLECTIONS and DOCUMENTS from Firebase

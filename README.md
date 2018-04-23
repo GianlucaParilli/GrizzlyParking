@@ -15,9 +15,9 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 ### Make sure the team composition is right
 1. Your team will require at least one person to have a device with MacOS on it
 2. The only way to test this app on iOS is with a machine that runs MacOS
-3. Use a Project Management Tool to help keep track of progress. We used ```trello.com```
+3. Use a Project Management Tool to help keep track of progress. We used trello.com
 ### Make sure you are familiar with how Ionic 3 works
-1. ```Lynda.com``` offers some Ionic 2 courses which is very similar to Ionic 3. 
+1. lynda.com offers some Ionic 2 courses which is very similar to Ionic 3. 
 2. Ionic 3 implements ```"Lazy Loading"``` which is a new way for Ionic to only load the neccessary .ts files when needed
 3. Ionic 3 is written in ```Typescript``` and uses ```Angular``` as a framework for the front end
 4. https://ionicframework.com/docs/
@@ -68,6 +68,8 @@ this.navCtrl.push(YourPageClass);
 1. ```src/app/config.ts``` holds all Firebase credentials
 2. ```src/app/app.module.ts``` holds the code that initializes Firebase
 ```
+app.module.ts
+
 imports: [
     AngularFireModule.initializeApp(credentials.firebase),
     AngularFirestoreModule.enablePersistence(),
@@ -85,6 +87,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 constructor(public afAuth : AngularFireAuth){ 
     this.variable = this.afAuth.getID }
 ```
+3. The ```Login``` page of this application handles most of the logic for authenticating with Firebase but the ```Signup``` page handles the logic for creating a new user with email and password.
+
+4. Since
 
 //Todo
 ### Getting COLLECTIONS and DOCUMENTS from Firebase

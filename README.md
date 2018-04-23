@@ -239,7 +239,9 @@ ionic cordova build android
 3. Build ```ionic cordova build <platform>``` 
 
 ### iOS Build Error
-//Todo
+1. Make sure you add the privacy information under the info tab, file is under the FIX folder
+<img width="828" alt="plistinfo" src="https://user-images.githubusercontent.com/31226756/39157993-862a094e-472b-11e8-808f-463ad21a454a.png">
+2.Triple check that the GoogleService-info.plist is GrizzlyParking/Platform/iOS/GrizzlyParking/Resources. 
 
 
 ## What was accomplished Spring 2018

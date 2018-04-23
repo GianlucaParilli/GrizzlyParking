@@ -3,13 +3,17 @@
 An Ionic parking app that helps ease the flow of traffic on GGC's campus and helps students find available parking during school hours.
 
 ## Project Description
+
+![iosshots](https://user-images.githubusercontent.com/31226756/39006622-a0136cea-43d1-11e8-8155-d15f52a556e2.png)
+
+
 <ol>
-    <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu addresses only)</li>
+    <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu         addresses only)</li>
     <li>Uses Google Firebase Firesore as DB solution</li>
     <li>Uses Ionic-Native plugins to keep track of users(Geofence, Geolocation)</li>
 
 </ol>
- 
+
 ## Quick Start
 
 ### Make sure the team composition is right
@@ -25,7 +29,7 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 ### Make sure you are familiar with noSQL and Firebase
 1. This app utilizes Google's BaaS Firebase which handles ```AUTHENTICATION, DATABASE, FILE STORAGE``` and ```CLOUD FUNCTIONS```
 2. We used ```AngularFire2``` (npm package) to allow the app to communicate with the ```Firebase SDK``` for ```WEB APPLICATIONS```
-3. The ```Firebase Credentials``` for the application are located within ```src/app/config.ts``` this file holds all of the keys that associated with the Firebase Application 
+3. The ```Firebase Credentials``` for the application are located within ```src/app/config.ts``` this file holds all of the keys that associated with the Firebase Application
 4. Google's Firebase Console is the main way to see everything that your app needs to run correctly
 5. Firebase Docs - https://firebase.google.com/docs/
 6. AngularFire2 Docs - https://github.com/angular/angularfire2/blob/master/docs/ionic/v3.md
@@ -56,7 +60,7 @@ ionic -g page yourPageName
 this.navCtrl.push(YourPageClass);
 ```
 ### Using TypeScript variables within the HTML files
-1. You can escape HTML and insert TypeScript code by using: 
+1. You can escape HTML and insert TypeScript code by using:
 ```
 {{ yourTypeScriptVariableHere }}
 ```
@@ -83,8 +87,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 ```
 2. Make sure you have injected a parameter within the constructor of the TypeScript file you are working on so that you can use Firebase
-``` 
-constructor(public afAuth : AngularFireAuth){ 
+```
+constructor(public afAuth : AngularFireAuth){
     this.variable = this.afAuth.getID }
 ```
 3. The ```Login``` page of this application handles most of the logic for authenticating with Firebase but the ```Signup``` page handles the logic for creating a new user with email and password.
@@ -106,8 +110,8 @@ constructor(public afAuth : AngularFireAuth){
 ### Installing Dependencies
 ```
 npm i
-``` 
-1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project 
+```
+1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project
 2. ```npm i``` is a shorthand way of installing all dependencies that are listed in ```package.json``` (run this in the directory of project)
 
 ### Buidling the app
@@ -129,15 +133,27 @@ ionic cordova run android --device
 1. Make sure device is plugged in
 2. Make sure device is running Android 7.00 or higher
 ### Runnnig on iOS
-//Todo
+```
+ionic cordova build ios
+```
+1. Open xcode file in Platform/ios/GrizzliParking.xcodeproj
+2. Sign Package with Developer Team. General/Signing - Select Team.
+```
+ionic cordova run ios --device
+```
+or
+```
+Click on the play button in xcode
+```
 ## Deployment
-Ideally the application should be deployed on the Google Play Store for Android and the App Store for iOS but if the application cannot pass the requirements that each market requires then you may use alternative methods to deploy the application. 
+Ideally the application should be deployed on the Google Play Store for Android and the App Store for iOS but if the application cannot pass the requirements that each market requires then you may use alternative methods to deploy the application.
 ### Android Deployment
 1. Android APK's are easier to distribute and install than iOS because as long as the device has developer mode on and allows APK's from unknown sources
 2. We used a Github Page to deploy our app at STaRS
 3. https://grizzlyparking.github.io/ (May be an older APK)
 ### iOS Deployment
-//Todo
+1. So far we are not able to deploy with Testflight thusly we must connect each iphone into the mac that is currently doing the xcode signing and deploying.
+2. Once the app is build into the .xcodeproj file, all there is to do is click the play button in xcode and the app should be installed in the device
 ## Troubleshooting
 //Todo
 ## Team Members
@@ -147,9 +163,10 @@ Ideally the application should be deployed on the Google Play Store for Android 
   <a href="https://github.com/jtran6">Github</a> |
   <a href="https://www.linkedin.com/in/joshua-tran-9700a8118/">LinkedIn</a>
     </li>
-    <li>Luca Parilli
+    <li>Luca Parilli -
+    <a href="https://github.com/GianlucaParilli">Github</a> |
+    <a href="https://www.linkedin.com/in/gianluca-parilli-608421151/">LinkedIn</a>
     </li>
     <li>Chelsea D'Alessandro
     </li>
 </ul>
-

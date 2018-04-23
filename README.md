@@ -4,8 +4,7 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 
 ## Project Description
 
-![iosshots](https://user-images.githubusercontent.com/31226756/39006622-a0136cea-43d1-11e8-8155-d15f52a556e2.png)
-
+![grizzlyparkingpic](https://user-images.githubusercontent.com/31226756/39157415-c3365d72-4728-11e8-9228-36f311468cbb.png)
 
 <ol>
     <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu         addresses only)</li>
@@ -226,6 +225,8 @@ ionic cordova build android
 ### iOS Deployment
 1. So far we are not able to deploy with Testflight thusly we must connect each iphone into the mac that is currently doing the xcode signing and deploying.
 2. Once the app is build into the .xcodeproj file, all there is to do is click the play button in xcode and the app should be installed in the device
+<img width="600" alt="grizzlygeneralpic" src="https://user-images.githubusercontent.com/31226756/39157431-d2c14e96-4728-11e8-8588-76277638e0b8.png">
+
 ## Troubleshooting
 //Todo
 ## Team Members

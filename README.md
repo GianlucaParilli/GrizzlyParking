@@ -180,12 +180,13 @@ npm i
 1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project
 2. ```npm i``` is a shorthand way of installing all dependencies that are listed in ```package.json``` (run this in the directory of project)
 
-### Buidling the app
+### Building the app
 ```
 ionic cordova build android
 ionic cordova build ios
 ```
-//Todo
+1. Run the command that corresponds to the correct platform
+2. If you get a build error then refer to troubleshooting portion of readme
 ### Serving the app
 ```
 ionic serve
@@ -228,9 +229,42 @@ ionic cordova build android
 <img width="600" alt="grizzlygeneralpic" src="https://user-images.githubusercontent.com/31226756/39157431-d2c14e96-4728-11e8-8588-76277638e0b8.png">
 
 ## Troubleshooting
-//Todo
-## Team Members
 
+### Application does not run on device
+1. Run ```ionic serve```
+2. Either the page will show you the error or the console will
+### Build Error Fix
+1. Delete ```plugins www/ platforms``` 
+2. Run ```npm i```
+3. Build ```ionic cordova build <platform>``` 
+
+### iOS Build Error
+//Todo
+
+
+## What was accomplished Spring 2018
+1. Basic UI
+2. Firebase Connection
+<br>Authentication
+<br>Firestore Database
+<br>Firebase Functions Initialization
+3. Geolocation Integration
+4. Google Maps Integration
+5. User Class Schedule Survey
+6. Report Bugs Feature
+7. Custom H-Lot Geofence
+## Future Iterations
+1. The rest of the campus parking lots
+<br>Ordered by desirabiity
+<br>A Lot(Highest Priority) 
+<br>L Lot
+<br>I Lot(Lowest Priority)
+2. Falculty Parking Application(Optional as it adds a lot of complexity)
+<br>B Lot
+<br>A Lot
+3. Google Maps Overlay
+4. Real Time Parking Overlay(Find My Parked Car!)
+## Team Members Spring 2018
 <ul>
     <li>Joshua Tran -
   <a href="https://github.com/jtran6">Github</a> |
@@ -243,3 +277,5 @@ ionic cordova build android
     <li>Chelsea D'Alessandro
     </li>
 </ul>
+
+

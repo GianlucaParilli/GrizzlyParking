@@ -7,6 +7,12 @@ import {
   ReportBugInterface
 } from "../../shared/models/collections";
 
+interface UserInterface {
+  isParked: boolean,  
+  parkedLatitude: number,
+  parkedLongitude: number,
+  parkedTime: firebase.firestore.FieldValue
+}   
 
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 @Injectable()
@@ -31,7 +37,6 @@ export class AuthProvider {
       parkedLocation: firebase.firestore().collection('/location').doc('none'),
       parkedLot: firebase.firestore().collection('/parkingLot').doc('none'),
       parkedTime: timestamp,
-      email: email
     })
     return firebase
       .auth()

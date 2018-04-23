@@ -1,14 +1,8 @@
 // IMPORTS
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { 
-  IonicApp, 
-  IonicModule,
-  IonicErrorHandler } from 'ionic-angular';
+// APP
 import { MyApp } from './app.component';
-import { BackgroundMode } from '@ionic-native/background-mode';
-
 // SPLASHSCREEN
+import { SplashScreen } from '@ionic-native/splash-screen';
 // PAGES
 import { HomePage } from '../pages/home/home';
 import { HLotPage } from './../pages/h-lot/h-lot';
@@ -16,37 +10,39 @@ import { LoginPage } from './../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 import { SettingsPage } from '../pages/settings/settings';
 import { DaysurveyPage } from '../pages/daysurvey/daysurvey';
+import { SignupPage } from '../pages/signup/signup';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { ReportBugsPage } from '../pages/report-bugs/report-bugs';
 // tabs
 import { TabsPage } from '../pages/tabs/tabs';
 // OTHER
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import {GoogleMaps} from '@ionic-native/google-maps';
-import {Geolocation} from '@ionic-native/geolocation';
 import { Toast } from '@ionic-native/toast';
-import { LocationtrackerProvider } from '../providers/locationtracker/locationtracker';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import { LocalNotifications } from '@ionic-native/local-notifications';
-import { ProgressBarModule } from 'angular-progress-bar';
-import { Geofence } from '@ionic-native/geofence';
 import { Device } from '@ionic-native/device';
+import { StatusBar } from '@ionic-native/status-bar';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { BackgroundMode } from '@ionic-native/background-mode';
+import { Geofence } from '@ionic-native/geofence';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { 
+  IonicApp, 
+  IonicModule,
+  IonicErrorHandler } from 'ionic-angular';
+import { LocationtrackerProvider } from '../providers/locationtracker/locationtracker';
+import { ProgressBarModule } from 'angular-progress-bar';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 // ANGULAR FIREBASE
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-// SETTINGS - ANGULAR FIREBASE
 import { credentials } from './config';
 import { AuthProvider } from '../providers/auth/auth';
-import { SignupPage } from '../pages/signup/signup';
-import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { ReportBugsPage } from '../pages/report-bugs/report-bugs';
 
 
-
-
-
-// SETTINGS - NG MODULES
+// NG MODULES
 @NgModule({
   declarations: [
     MyApp,
@@ -59,7 +55,7 @@ import { ReportBugsPage } from '../pages/report-bugs/report-bugs';
     AboutPage,
     DaysurveyPage,
     ReportBugsPage,
-    SettingsPage
+    SettingsPage,
   ],
   imports: [
     BrowserModule,

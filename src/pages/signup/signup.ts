@@ -17,13 +17,6 @@ import { EmailValidator } from '../../validators/email';
 import { TabsPage } from '../tabs/tabs';
 import { DaysurveyPage } from '../daysurvey/daysurvey';
 
- 
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage({
   name: 'signup'
@@ -78,27 +71,4 @@ export class SignupPage {
     }
   }
 
-  // COLLECTION FUNCTIONS  |  USER
-  /*
-  createUser() {
-    console.log("~~~~~~~~~~ FUNCTION createUser called ", this.userDocRefID);
-
-    this.locationDocRefID = this.locationCollectionRef.doc("none").ref;
-    this.parkingLotDocRefID = this.parkingLotCollectionRef.doc("none").ref;
-
-    this.userCollectionRef.add({
-      isParked: false,
-      parkedLocation: this.locationDocRefID,
-      parkedLot: this.parkingLotDocRefID,
-      parkedTime: timestamp
-    })
-      .then(function (docRef) {
-        this.userDocRefID = docRef;
-        console.log("~~~~~~~~~~ FUNCTION createUser successful - ID: ", docRef.id);
-      })
-      .catch(function (error) {
-        console.error("~~~~~~~~~~ FUNCTION createUser error ", error);
-      });
-  }
-  */
 }

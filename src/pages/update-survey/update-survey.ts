@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { 
-  AngularFireDatabase, 
-  AngularFireList 
-} from 'angularfire2/database';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -41,7 +37,6 @@ export class UpdateSurveyPage {
     public navCtrl: NavController, 
     private afs: AngularFirestore,
     private formBuilder: FormBuilder,
-    private afDatabase: AngularFireDatabase, 
     public navParams: NavParams) {
       //initilize formgroup to hold values from form
       //this must have some sort of checker to ignore days with toggle = false

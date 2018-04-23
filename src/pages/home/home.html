@@ -12,32 +12,29 @@
 
   <!-- PAGE SECTION | List  -->
   <!-- PARKING LOT CARD | H-Lot -->
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing..."></ion-refresher-content>
-  </ion-refresher>
-  <ion-card color="{{cardColor}}" (click)="goToHLotPage()">
-    <ion-card-header>
-      <img src="assets/imgs/hbuilding.png" alt="hbuilding">
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>
-            <progress-bar [progress]="cardPercentage"></progress-bar>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-4 class="cardHeader">H Lot</ion-col>
-            <ion-col col-4 class="cardCount">{{ (hLotObs | async)?.plPopulation }} / {{ (hLotObs | async)?.plCapacity }}</ion-col>
-            <ion-col col-4 class="cardPercentage">{{ (hLotObs | async)?.plAvailablePct }}%</ion-col>
+  <div *ngFor="let lot of parkingLotObs | async">
+    <ion-card color="{{ lot.status }}" (click)="goToHLotPage()">
+      <ion-card-header>
+        <img src="assets/imgs/{{ lot.picture }}" alt="parkinglot image">
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+
+            <ion-col col-12>
+              <progress-bar progress="{{ lot.plFullPct }}"></progress-bar>
+            </ion-col>
+
           </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  
+          <ion-row>
+            <ion-col col-4 class="cardHeader">{{ lot.title }}</ion-col>
+            <ion-col col-4 class="cardCount">{{ lot.plPopulation }} / {{ lot.plCapacity }}</ion-col>
+            <ion-col col-4 class="cardPercentage">{{ lot.plFullPct }}%</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
 <!-- PAGE | CONTENT END -->

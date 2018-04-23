@@ -6,12 +6,7 @@ import { DaysurveyPage } from '../daysurvey/daysurvey';
 import { UpdateSurveyPage } from '../update-survey/update-survey';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ResetPasswordPage } from '../reset-password/reset-password';
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({

@@ -28,7 +28,7 @@ export class AuthProvider {
   signupUser(email: string, password: string): Promise<any> {
     this.userCollectionRef.add({
       isParked: false,
-      parkedLocation: firebase.firestore().collection('/location').doc('none'),
+      parkedLocation: firebase.firestore().collection('/location').doc('h-lot'),
       parkedLot: firebase.firestore().collection('/parkingLot').doc('none'),
       parkedTime: timestamp,
       email: email

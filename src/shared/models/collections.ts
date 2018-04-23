@@ -20,9 +20,17 @@ export interface UserInterface {
 export interface ParkingLotInterface {
     //MUST BE TYPE:  reference. of a location/doc
     geoFence: firebase.firestore.DocumentReference,
+    // IF 90 / 100 spaces are filled...
+    // 10% available
     plAvailablePct: number,
+    // 90% full <-- this is the one we're using!
+    plFullPct: number,
     plCapacity: number,
-    plPopulation: number
+    plPopulation: number,
+    //used as a proper name for the parkinglot
+    title: string,
+    //used to determine card colors (visual ques for the user)
+    status: string
 }
 
 // INTERFACE | COLLECTION - SurveyTimes

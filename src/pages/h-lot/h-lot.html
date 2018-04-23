@@ -13,6 +13,16 @@
   <h3>Current Latitude: {{_locationService.lat}}</h3>
   <h3>Current Longitute: {{_locationService.lng}}</h3>
   -->
+  <button ion-button block type="button" (click)="parkUser()" 
+    disabled="{{ userParked }}">
+    I HAVE PARKED
+  </button>
+
+  <button ion-button block type="button" (click)="parkUser()" 
+    disabled="{{ userParked }}">
+    I HAVE LEFT THE PARKINGLOT
+  </button>
+
 
 </ion-content>
 <!-- PAGE | CONTENT END -->

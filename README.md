@@ -228,7 +228,18 @@ ionic cordova build android
 1. So far we are not able to deploy with Testflight thusly we must connect each iphone into the mac that is currently doing the xcode signing and deploying.
 2. Once the app is build into the .xcodeproj file, all there is to do is click the play button in xcode and the app should be installed in the device
 ## Troubleshooting
+
+### Application does not run on device
+1. Run ```ionic serve```
+2. Either the page will show you the error or the console will
+### Build Error Fix
+1. Delete ```plugins www/ platforms``` 
+2. Run ```npm i```
+3. Build ```ionic cordova build <platform>``` 
+
+### iOS Build Error
 //Todo
+
 
 ## What was accomplished Spring 2018
 1. Basic UI

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>375005973853-n48jm5ano5vttj3b0b5qd6fp5cfi5bng.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.375005973853-n48jm5ano5vttj3b0b5qd6fp5cfi5bng</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB5GaBEP93sjF8_zTavUV6ePCexW0ZEZmw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>375005973853</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>gluka.grizzlyparking</string>
+	<key>PROJECT_ID</key>
+	<string>grizzlyparking-2222a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>grizzlyparking-2222a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:375005973853:ios:76a5ab9ab8e818d4</string>
+	<key>DATABASE_URL</key>
+	<string>https://grizzlyparking-2222a.firebaseio.com</string>
+</dict>
+</plist>

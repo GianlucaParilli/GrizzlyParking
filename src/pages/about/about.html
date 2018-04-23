@@ -1,72 +1,71 @@
-<!--
-  Generated template for the StatisticsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar color="dark">
     <ion-title>About</ion-title>
   </ion-navbar>
 </ion-header>
 
+<!-- PAGE | Content BEGIN -->
 <ion-content class="bg-dark" padding>
+
   <ion-card color="dark">
-    <img src="assets/imgs/campusmap.png"/>
+
+    <!-- PAGE SECTION | Campus Map - H Lot Parkinglot (image) -->
+    <img src="assets/imgs/campusmap.png" />
+
     <ion-card-content>
+
+      <!-- PAGE SECTION | Usage Instructions (how-to) -->
       <ion-card-title>
         Instructions
-        </ion-card-title>
-        Disclaimer: Do NOT operate app while driving<br><br>
-        The Home page displays all of the parking lots as well as their available capacity in real time.<br><br>
-        
-        <div class="row">
-          <div class="col">Color</div>
-          <div class="col">Meaning</div>
-          <div class="col">Chances of Finding Parking</div>
+      </ion-card-title>
+      Disclaimer: Do NOT operate app while driving
+      <br><br>
+      The Home page displays all of the parking lots as well as their available capacity in real time.
+      <br><br>
+
+      <div class="row">
+        <div class="col">Color</div>
+        <div class="col">Meaning</div>
+        <div class="col">Chances of Finding Parking</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="bg-green">Green</p>
         </div>
-        <div class="row">
-          <div class="col"><p class="bg-green">Green</p></div>
-          <div class="col">Plenty of parking!</div>
-          <div class="col">50%-100%</div>
+        <div class="col">Plenty of parking!</div>
+        <div class="col">50%-100%</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="bg-orange">Orange</p>
         </div>
-        <div class="row">
-          <div class="col"><p class="bg-orange">Orange</p></div>
-          <div class="col">Parking spaces are depleting.</div>
-          <div class="col">25%-50%</div>
+        <div class="col">Parking spaces are depleting.</div>
+        <div class="col">25%-50%</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="bg-red">Red</p>
         </div>
-        <div class="row">
-          <div class="col"><p class="bg-red">Red</p></div>
-          <div class="col">Your chances of finding parking are low.</div>
-          <div class="col">0%-25%</div>
-        </div>
-        
-    </ion-card-content>
-  </ion-card>
-  <ion-card color="dark">
-    <img src="assets/imgs/GrizzlyParking.png" alt="logo">
-    <ion-card-header>
-        <ion-card-title>
-            Grizzly Parking
-            </ion-card-title>
-      
-    </ion-card-header>
-    <ion-card-content>
-      Team Members: 
-      <br>
-      Gianluca Parili<br>
-      Joshua Tran<br>
-      Chelsea D'alessandro<br><br>
+        <div class="col">Your chances of finding parking are low.</div>
+        <div class="col">0%-25%</div>
+      </div>
+
+      <!-- PAGE SECTION | TEAM MEMBERS - Grizzly Parking text logo (image) -->
+      Team Members:
+      <br> Gianluca Parili
+      <br> Joshua Tran
+      <br> Chelsea D'alessandro
+      <br><br> 
       Grizzly Parking is currently still under development. Help us make the app better by submitting problems to us!
+
       <hr>
       <br>
-      <ion-item>
-        <ion-label>Report Bugs</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <button ion-button full color="secondary">Submit</button>
-    </ion-card-content>
 
+      <!-- PAGE SECTION | REPORT BUGS -->
+      <!-- BUTTON | SUBMIT BUGS -->
+      <button ion-button full color="secondary" (click)="goToSubmitBugs()">Report Bugs</button>
+    </ion-card-content>
   </ion-card>
+
 </ion-content>
+<!-- PAGE | CONTENT END -->

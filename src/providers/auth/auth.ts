@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from '@firebase/util';
+import * as firebase from 'firebase';
+import {
+  UserInterface,
+  SurveyTimeInterface,
+  ReportBugInterface
+} from "../../shared/models/collections";
 
 interface UserInterface {
   isParked: boolean,  
@@ -26,18 +29,18 @@ export class AuthProvider {
   loginUser(email: string, password: string): Promise<any> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
-  
+
   //creating new user
   signupUser(email: string, password: string): Promise<any> {
     this.userCollectionRef.add({
       isParked: false,
-      parkedLatitude: 0,
-      parkedLongitude: 0,
-      parkedTime: timestamp
+      parkedLocation: firebase.firestore().collection('/location').doc('none'),
+      parkedLot: firebase.firestore().collection('/parkingLot').doc('none'),
+      parkedTime: timestamp,
     })
     return firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password);
+      .auth()
+      .createUserWithEmailAndPassword(email, password);
     // .then( newUser => {
     //   firebase
     //   .database()

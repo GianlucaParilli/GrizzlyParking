@@ -1,0 +1,336 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Update Your Schedule</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- PAGE | Content BEGIN -->
+<ion-content padding>
+
+  <!-- PAGE SECTION | SURVEY BEGIN - Weekly on-campus schedule (form) -->
+  <form [formGroup]="timeSurveyFormGroup" (submit)="submitTimes()">
+    <ion-grid>
+
+      <!--SURVEY SECTION | Monday -->
+      <ion-row>
+        <ion-col align-self-center>
+          <h2>Monday</h2>
+        </ion-col>
+        <ion-col align-self-center>
+          <ion-toggle float-right formControlName="mondayToggle"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>Start Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="mondayStartTime">
+            <ion-option>8:00AM</ion-option>
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>End Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="mondayEndTime">
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+            <ion-option>9:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+
+      <!--SURVEY SECTION | Tuesday -->
+      <ion-row>
+        <ion-col align-self-center>
+          <h2>Tuesday</h2>
+        </ion-col>
+        <ion-col align-self-center>
+          <ion-toggle float-right formControlName="tuesdayToggle"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>Start Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="tuesdayStartTime">
+            <ion-option>8:00AM</ion-option>
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>End Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="tuesdayEndTime">
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+            <ion-option>9:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+
+      <!--SURVEY SECTION | Wednesday -->
+      <ion-row>
+        <ion-col align-self-center>
+          <h2>Wednesday</h2>
+        </ion-col>
+        <ion-col align-self-center>
+          <ion-toggle float-right formControlName="wednesdayToggle"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>Start Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="wednesdayStartTime">
+            <ion-option>8:00AM</ion-option>
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>End Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="wednesdayEndTime">
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+            <ion-option>9:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+
+      <!--SURVEY SECTION | Thursday -->
+      <ion-row>
+        <ion-col align-self-center>
+          <h2>Thursday</h2>
+        </ion-col>
+        <ion-col align-self-center>
+          <ion-toggle float-right formControlName="thursdayToggle"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>Start Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="thursdayStartTime">
+            <ion-option>8:00AM</ion-option>
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>End Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="thursdayEndTime">
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+            <ion-option>9:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+
+      <!--SURVEY SECTION | Friday -->
+      <ion-row>
+        <ion-col align-self-center>
+          <h2>Friday</h2>
+        </ion-col>
+        <ion-col align-self-center>
+          <ion-toggle float-right formControlName="fridayToggle"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>Start Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="fridayStartTime">
+            <ion-option>8:00AM</ion-option>
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>End Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="fridayEndTime">
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+            <ion-option>9:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <hr>
+
+      <!--SURVEY SECTION | Saturday -->
+      <ion-row>
+        <ion-col align-self-center>
+          <h2>Saturday</h2>
+        </ion-col>
+        <ion-col align-self-center>
+          <ion-toggle float-right formControlName="saturdayToggle"></ion-toggle>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>Start Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="saturdayStartTime">
+            <ion-option>8:00AM</ion-option>
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6 align-self-center>
+          <h3>End Time:</h3>
+        </ion-col>
+        <ion-col col-6 align-self-center>
+          <ion-select float-right formControlName="saturdayEndTime">
+            <ion-option>9:00AM</ion-option>
+            <ion-option>10:00AM</ion-option>
+            <ion-option>11:00AM</ion-option>
+            <ion-option>12:00PM</ion-option>
+            <ion-option>1:00PM</ion-option>
+            <ion-option>2:00PM</ion-option>
+            <ion-option>3:00PM</ion-option>
+            <ion-option>4:00PM</ion-option>
+            <ion-option>5:00PM</ion-option>
+            <ion-option>6:30PM</ion-option>
+            <ion-option>9:30PM</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <hr>
+
+    <!-- BUTTON | SUBMIT SURVERY -->
+    <button ion-button block>
+      Submit
+    </button>
+
+  </form>
+  <!-- PAGE SECTION | SURVEY END -->
+
+</ion-content>
+<!-- PAGE | CONTENT END -->

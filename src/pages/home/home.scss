@@ -1,32 +1,35 @@
 page-home {
     .greenText{
         color: green;
-        font-size: 20px;
+        font-size: 1.5em;
         text-align: center;
     }
     .redText{
         color:#ff0000;
-        font-size: 20px;
+        font-size: 1.5em;
         text-align: center;
     }
     .orangeText{
         color:#ff9100;
-        font-size: 20px;
+        font-size: 1.5em;
         text-align: center;
     }
     .cardHeader{
-        font-size: 25px;
+        font-size: 1.5em;
         text-align: left;
         font-weight: bold;
     }
     .cardPercentage {
-        font-size: 25px;
+        font-size: 1.5em;
         text-align: right;
         font-weight: bold;
     }
     .cardCount {
-        font-size: 25px;
+        font-size: 1.5em;
         text-align: center;
         font-weight: bold;
+    }
+    refresher-text-color{
+        color : white;
     }
 }

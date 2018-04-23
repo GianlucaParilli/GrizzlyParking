@@ -193,6 +193,7 @@ ionic serve
 ```
 1. In the event of an app crash, serve the app to the browser for debugging purposes only
 2. Since this app utilizes a lot of native functionalities, serving the application will not display the google maps plugin so it is recommended to test all changes on an actual device or an emulator
+3. DO NOT assume that serving means the application is running correctly on native. You MUST run on your device to confirm that the application is running correctly.
 ### Running on Android
 ```
 ionic cordova run android --device

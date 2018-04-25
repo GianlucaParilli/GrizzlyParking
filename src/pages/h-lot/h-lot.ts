@@ -34,32 +34,28 @@ import {
   LocationInterface,
   ParkingLotInterface
 } from "../../shared/models/collections";
+import { version } from 'punycode';
 
 
 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-var userID = "test@ggc.edu";
-var userParked = new Observable<boolean>();
 
 @Component({
   selector: 'page-h-Lot',
   templateUrl: 'h-Lot.html'
 })
 export class HLotPage {
-  
   private latNumber: number;
   private longNumber: number;
-  //private userID: string = "test@ggc.edu";
-  private locationName: string = "6tfeIg9EKNYWLLumamoL";
-  private parkingLotName: string = "h-Lot";
+  isParked: boolean;
   isHlotCrossed: any;
 
   //let longString;
 
   // OBSERVABLES
   userObs: Observable<UserInterface>;
-  locationObs: Observable<LocationInterface[]>;
-  parkingLotObs: Observable<ParkingLotInterface[]>;
-  hLotObs: Observable<ParkingLotInterface>;
+  locationsObs: Observable<LocationInterface[]>;
+  parkingLotsObs: Observable<ParkingLotInterface[]>;
+  plObs: Observable<ParkingLotInterface>;
 
   // COLLECTION REFERENCES
   userCollectionRef: AngularFirestoreCollection<UserInterface>;
@@ -69,7 +65,7 @@ export class HLotPage {
   // DOCUMENT REFERENCES
   userDocumentRef: AngularFirestoreDocument<UserInterface>;
   locationDocumentRef: AngularFirestoreDocument<LocationInterface>;
-  hLotDocumentRef: AngularFirestoreDocument<ParkingLotInterface>;
+  plDocumentRef: AngularFirestoreDocument<ParkingLotInterface>;
 
 
   @ViewChild('map') mapElement: ElementRef;
@@ -90,56 +86,100 @@ export class HLotPage {
     this.locationCollectionRef = this.afs.collection('location');
     this.parkingLotCollectionRef = this.afs.collection('parkingLot');
 
-    // FIREBASE CONNECTION TO DOCUMENTS
-    firebase.firestore().collection('/user').get().then(snapshot => {
-      snapshot.forEach(doc => {
-        if (doc.data().email === firebase.auth().currentUser.email) {
-          userID = doc.id;
-          userParked = doc.data().isParked;
+    // FIREBASE CONNECTION TO H-LOT
+    this.setParkingLot('h-Lot');
 
-          console.log('fetchUser.email: ', doc.data().email,
-            '\nfetchUser.isParked: ', doc.data().isParked);
-        }
+    console.log(firebase.auth().currentUser.email);
+    // FIREBASE CONNECTION TO USER
+    var promise = this.calcUser(firebase.auth().currentUser.email);
+
+  }
+
+
+
+  calcUser(userEmail: string) {
+    var userQuery = firebase.firestore().collection('/user').where('email', '==', userEmail);
+    var promise = new Promise<boolean>(resolve => {
+      return userQuery.get().then(querysnapshot => {
+        var result = querysnapshot.docs.pop();
+        console.log('USER: ', result.data());
+        return this.setUser(result.id);
+      }).then(result => {
+        return this.setObs();
+      }).then(result => {
+        return this.getUserStatus();
       })
-      this.userDocumentRef = this.afs.collection('user').doc(userID);
-    })
-
-    //console.log('userID:', this.userID);
-
-    // FIREBASE CONNECTION TO DOCUMENTS
-    this.locationDocumentRef = this.afs.collection('location').doc('none');
-    this.hLotDocumentRef = this.afs.collection('parkingLot').doc('h-Lot');
-
-    // OBSERVABLE LISTENERS
-    //this.locationObs = this.locationCollectionRef.valueChanges();
-    //this.parkingLotObs = this.parkingLotCollectionRef.valueChanges();
-    //this.hLotObs = this.hLotDocumentRef.valueChanges();
-
-    this._locationService.getData.subscribe((entered) => {
-      this.isHlotCrossed = entered;
-
-      if (this.isHlotCrossed) {
-        console.log('crossed enter');
-        this.parkedConfirmation();
-      }
-      else if (this.isHlotCrossed == false) {
-        console.log('crossed exit');
-        this.unparkUser();
-      }
     });
+    return promise;
+  }
+
+  setUser(userID: string) {
+    var promise = new Promise<boolean>(resolve => {
+      this.userDocumentRef = this.afs.collection('user').doc(userID);
+      console.log('SET USER: ', this.userDocumentRef.ref.path);
+      resolve(true);
+    });
+    return promise;
+  }
+
+  getUserStatus() {
+    var promise = new Promise<boolean>(resolve => {
+      return this.userDocumentRef.ref.get().then(result => {
+        console.log('GET USER LOCATION: ', result.data().parkedLocation.id);
+        return this.setLocation(result.data().parkedLocation.id);
+        //return result.data().isParked;
+      }).then(result => {
+        console.log('GET USER ISPARKED: ', result);
+        return this.setParkedStatus(result);
+      })
+    });
+    return promise;
+  }
+
+  setParkedStatus(bool: boolean) {
+    var promise = new Promise<boolean>(resolve => {
+      this.isParked = bool;
+      console.log('SET HLOTPAGE ISPARKED: ', bool);
+      resolve(true);
+    });
+    return promise;
+  }
+
+  setLocation(locID: string) {
+    var promise = new Promise<boolean>(resolve => {
+      this.locationDocumentRef = this.afs.collection('location').doc(locID);
+      console.log('SET LOCATION: ', locID.toString());
+      resolve(true);
+    });
+    return promise;
+  }
+
+  setParkingLot(plID: string) {
+    var promise = new Promise<boolean>(resolve => {
+      this.plDocumentRef = this.afs.collection('parkingLot').doc(plID.toString());
+      console.log('SET PARKINGLOT: ', plID.toString());
+      resolve(true);
+    });
+    return promise;
+  }
+
+  setObs() {
+    // OBSERVABLE LISTENERS
+    var promise = new Promise<boolean>(resolve => {
+      this.locationsObs = this.locationCollectionRef.valueChanges();
+      this.parkingLotsObs = this.parkingLotCollectionRef.valueChanges();
+      this.plObs = this.plDocumentRef.valueChanges();
+      console.log('SET OBS CALLED');
+      resolve(true);
+    });
+    return promise;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad hLotPage');
   }
 
-  //userDocRefID: firebase.firestore.DocumentReference = firebase.firestore().collection('/user').doc(this.userID);
-  locationDocRefID: firebase.firestore.DocumentReference = firebase.firestore().collection('/location').doc(this.locationName);
-  parkingLotDocRefID: firebase.firestore.DocumentReference = firebase.firestore().collection('/parkingLot').doc(this.parkingLotName);
-
   ngAfterViewInit() {
-    this.userDocumentRef = this.afs.collection('user').doc(userID);
-    this.userObs = this.userDocumentRef.valueChanges();
     this.initMap();
     this.start(); //starts geo location 
     this.newMap();
@@ -231,12 +271,27 @@ export class HLotPage {
   parkedConfirmation() {
     let TIME_IN_MS = 60000;
     console.log('time out ');
-    this.parkUser();
 
-    let carInLot = setTimeout(() => {
-      console.log('time out ended ')
-      this.showMarker();
-    }, TIME_IN_MS);
+    if (this.isParked) {
+      var promise = new Promise<boolean>(resolve => {
+        console.log('!!WARNING!! User is already parked. Calling unpark first. -you are welcome!')
+        return this.unparkUser();
+      }).then(result => {
+        return this.parkUser();
+      });
+    }
+    else {
+      var promise = new Promise<boolean>(resolve => {
+        return this.parkUser();
+      });
+    }
+    promise.then(result => {
+      let carInLot = setTimeout(() => {
+        console.log('time out ended ')
+        this.showMarker();
+      }, TIME_IN_MS);
+    });
+
   }
 
   pressButtonTest() {
@@ -279,25 +334,7 @@ export class HLotPage {
 
   // COLLECTION FUNCTIONS  |  USER
   parkUser() {
-    console.log("~~~~~~~~~~ FUNCTION parkUser called ", userID);
-
-    /*
-    // We must first check to see if the user is already parked or not
-    // TRUE - User is pasked
-    //        A parked user cannot park again...
-    //        REALISTICALLY, user should be prompted. Then reparked...
-    // FALSE - User is not parked and ready to use this function!
-    if (!this.userObs.isParked) {
-      let toast = this._toastCtrl.create({
-        message: 'PARK FAILED\nYou are already parked',
-        duration: 3000,
-        position: 'middle'
-      });
-    }
-    */
-
-    //this.userDocRefID = firebase.firestore().collection('/user').doc(this.userID);
-    //this.userDocumentRef = this.afs.collection('user').doc(this.userID);
+    console.log("~~~~~ FUNCTION parkUser called ");
 
     var factor = Math.pow(10, 8);
     var myLat = this._locationService.lat;
@@ -306,148 +343,152 @@ export class HLotPage {
     if (myLat != 0) {
       myLat = Math.round(myLat * factor) / factor
     }
+    if (myLng != 0) {
+      myLng = Math.round(myLng * factor) / factor
+    }
 
-    this.createLocation(myLat, myLng);
-    this.calcParkingLot();
-
-    /*
-    console.log("~~~~~~~~~~ FUNCTION unparkUser to: true, ", 
-       "\nCALC: ", this.locationDocRefID, ' ?==? USING: ', this.locationDocumentRef.ref,
-       "\nCALC: ", this.parkingLotDocRefID, ' ?==? EXPECT: /parkingLot/h-lot');
-    */
-
-    this.userDocumentRef.update({
-      isParked: true,
-      parkedLocation: this.locationDocRefID,
-      parkedLot: this.parkingLotDocRefID,
-      parkedTime: timestamp
-    }).then(result => {
-      this.updateParkingLotPopulation(1);
-    }).catch(function (error) {
-      console.log("~~~~~~~~~~ FUNCTION parkUser error ", error);
+    var promise = new Promise<boolean>(resolve => {
+      return this.createLocation(myLat, myLng).then(result => {
+        return this.calcParkingLot();
+      }).then(result => {
+        this.userDocumentRef.ref.update({
+          isParked: true,
+          parkedLocation: this.locationDocumentRef.ref,
+          parkedLot: this.plDocumentRef.ref,
+          parkedTime: timestamp
+        }).then(result => {
+          this.updateParkingLotPopulation(1);
+          this.setParkedStatus(true);
+          let toast = this._toastCtrl.create({
+            message: 'YOU HAVE PARKED',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.onDidDismiss(() => {
+            //console.log('~~~~~ FUNCTION parkUser Dismissed toast');
+          });
+          toast.present();
+        }).catch(error => {
+          console.log("~~~~~ FUNCTION parkUser error ", error);
+        })
+      }).then(() => {
+        return true;
+      })
     });
+    return promise;
   }
 
   unparkUser() {
-    console.log("~~~~~~~~~~ FUNCTION unparkUser called ", this.userDocumentRef);
-
-    /*
-    // We must first check to see if the user is already parked or not
-    // TRUE - User is pasked
-    //        A parked user cannot park again...
-    //        REALISTICALLY, user should be prompted. Then reparked...
-    // FALSE - User is not parked and ready to use this function!
-    if (!this.userObs.isParked) {
-      let toast = this._toastCtrl.create({
-        message: 'UNPARK FAILED\nYou are not currently parked',
-        duration: 3000,
-        position: 'middle'
-      });
-      toast.onDidDismiss(() => {
-        console.log('~~~~~~~~~~ FUNCTION unparkUser Dismissed toast');
-      });
-      toast.present();
-    }
-    */
-
-    this.deleteLocation();
-    
-    console.log("~~~~~~~~~~ FUNCTION unparkUser to: false & ", this.locationDocRefID);
-
-    this.userDocumentRef.update({
-      isParked: false,
-      parkedLocation: this.locationDocRefID, //'/location/none',
-    }).then(result => {
-      this.updateParkingLotPopulation(-1);
-    }).catch(function (error) {
-      console.log("~~~~~~~~~~ FUNCTION unparkUser error ", error);
+    console.log("~~~~~ FUNCTION unparkUser called ");
+    var promise = new Promise<boolean>(resolve => {
+      return this.deleteLocation().then(result => {
+        this.userDocumentRef.ref.update({
+          isParked: false,
+          parkedLocation: this.locationDocumentRef.ref, //'/location/none',
+        }).then(result => {
+          this.updateParkingLotPopulation(-1);
+          this.setParkedStatus(false);
+          let toast = this._toastCtrl.create({
+            message: 'YOU HAVE LEFT',
+            duration: 3000,
+            position: 'middle'
+          });
+          toast.onDidDismiss(() => {
+            //console.log('~~~~~ FUNCTION unparkUser Dismissed toast');
+          });
+          toast.present();
+        }).catch(error => {
+          console.log("~~~~~ FUNCTION unparkUser error ", error);
+        })
+      }).then(() => {
+        return true;
+      })
     });
+    return promise;
   }
 
 
   // COLLECTION FUNCTIONS  |  LOCATION
   // CREATE LOCATION - called by parkUser()
   createLocation(lat: number, long: number) {
-    console.log("~~~~~~~~~~ FUNCTION createLocation called ", this.locationDocumentRef);
+    console.log("~~~~~ FUNCTION createLocation called: Lat ", lat, "  Lng ", long);
 
-    if (lat != 0 && long != 0) {
-      this.locationCollectionRef.add({
-        lat: lat,
-        long: long
-      }).then(result => {
-        console.log("~~~~~~~~~~ FUNCTION createLocation successful - ID: ", result.id);
-
-        this.locationName = result.id
-        this.locationDocRefID = firebase.firestore().collection('/location').doc(this.locationName);
-        //return this.locationDocRefID;
-      }).catch(function (error) {
-        console.error("~~~~~~~~~~ FUNCTION createLocation error ", error);
-      });
-    }
-
-    //return this.locationDocRefID;  //firebase.firestore().collection('/location').doc('/none');
+    return this.locationCollectionRef.add({
+      lat: lat,
+      long: long
+    }).then(result => {
+      console.log("~~~~~ FUNCTION createLocation successful - ID: ", result.id);
+      return this.setLocation(result.id);
+    }).catch(error => {
+      console.error("~~~~~ FUNCTION createLocation error ", error);
+      return false;
+    });
   }
 
   // DELETE LOCATION - called by unparkUser()
   deleteLocation() {
-    console.log("~~~~~~~~~~ FUNCTION deleteLocation called");
+    console.log("~~~~~ FUNCTION deleteLocation called", this.locationDocumentRef.ref.id.toString());
 
-    if (this.locationName != "none") {
-      this.locationCollectionRef.doc(this.locationName).delete().then(function () {
-        console.log("~~~~~~~~~~ FUNCTION deleteLocation successful");
-
-        this.locationName = "none";
-        this.locationDocRefID = firebase.firestore().collection('/location').doc(this.locationName);
-      }).catch(function (error) {
-        console.log("~~~~~~~~~~ FUNCTION deleteLocation error ", error);
-      });
-    }
-
-    //return this.locationDocRefID;  //firebase.firestore().collection('/location').doc(this.locationName);
+    var promise = new Promise<boolean>(resolve => {
+      if (this.locationDocumentRef.ref.id != "none") {
+        return this.locationDocumentRef.ref.delete().then(() => {
+          console.log("~~~~~ FUNCTION deleteLocation successful");
+          return this.setLocation('none');
+        }).then(result => {
+          resolve(true);
+        }).catch(error => {
+          console.log("~~~~~ FUNCTION deleteLocation error ", error);
+        });
+      }
+      else
+        resolve(false);
+    });
+    return promise;
   }
 
 
   // COLLECTION FUNCTIONS  |  PARKINGLOT
   calcParkingLot() {
-    console.log("~~~~~~~~~~ FUNCTION calcParkingLot called");
+    console.log("~~~~~ FUNCTION calcParkingLot called");
 
     // figure out the lot...
     // this should be based on distance the user is from the center point of the parking lolt.
     // we need to know parking lot radius...
     // luca said he was going to work on this, but pretty set on geofense still ()
-    this.parkingLotName = "h-Lot";
-    this.parkingLotDocRefID = firebase.firestore().collection('/parkingLot').doc(this.parkingLotName);
-    return //this.parkingLotDocRefID;
+    return this.setParkingLot('h-Lot');
   }
 
   updateParkingLotPopulation(change: number) {
-    console.log("~~~~~~~~~~ FUNCTION updateParkingLotPopulation called");
+    console.log("~~~~~ FUNCTION updateParkingLotPopulation called", this.plDocumentRef.ref.id);
 
-    var parkingLot = this.afs.collection('parkingLot').doc('h-Lot').ref;
-
-    this.afs.firestore.runTransaction(function (transaction) {
-      return transaction.get(parkingLot).then(function (doc) {
+    this.afs.firestore.runTransaction(transaction => {
+      return transaction.get(this.plDocumentRef.ref).then(doc => {
         if (!doc.exists) {
           throw "Document does not exist!";
         }
 
         // Adjust parkinglot stats from park/unpark function
         var newPopulation = doc.data().plPopulation + change;
-        var newFullPct = 100 - Math.round((newPopulation / doc.data().plCapacity) * 100.00);
+        var newFullPct = Math.round((newPopulation / doc.data().plCapacity) * 100.00);
         var newAvailPct = 100 - Math.round((newPopulation / doc.data().plCapacity) * 100.00);
-        transaction.update(parkingLot, { plPopulation: newPopulation, plAvailablePct: newAvailPct, plFullPct: newFullPct });
+        console.log(this.plDocumentRef.ref.id, "-  pop: ", newPopulation, "  Apct: ", newAvailPct, "  Fpct: ", newFullPct);
+        transaction.update(this.plDocumentRef.ref, { plPopulation: newPopulation, plAvailablePct: newAvailPct, plFullPct: newFullPct });
 
         // determine whether status (for card color) should be updated
         // TRUE - update, FALSE - nothing, no else
-        var newStatus = (newFullPct >= 50 ? "secondary" : (newFullPct >= 25 ? "caution" : "danger"));
+        var newStatus = (newAvailPct >= 50 ? "secondary" : (newAvailPct >= 25 ? "caution" : "danger"));
         if (newStatus != doc.data().status) {
-          transaction.update(parkingLot, { status: newStatus });
+          console.log('~~~~~ FUNCTION updateParkingLotPopulation: UPDATED STATUS OF ', this.plDocumentRef.ref.id);
+          transaction.update(this.plDocumentRef.ref, { status: newStatus });
         }
+
+        console.log('~~~~~ FUNCTION updateParkingLotPopulation: ENDING RESULT FOR ', this.plDocumentRef.ref.id, ', ', this.plDocumentRef.ref);
+
       });
     }).then(result => {
-      console.log('~~~~~~~~~~ FUNCTION updateParkingLotPopulation Transaction success!');
-    }).catch(function (error) {
-      console.log('~~~~~~~~~~ FUNCTION updateParkingLotPopulation Transaction failure:', error);
+      console.log('~~~~~ FUNCTION updateParkingLotPopulation Transaction success!');
+    }).catch(error => {
+      console.log('~~~~~ FUNCTION updateParkingLotPopulation Transaction failure:', error);
     });
   }
 

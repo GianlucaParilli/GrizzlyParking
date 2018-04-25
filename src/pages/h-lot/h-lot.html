@@ -13,16 +13,26 @@
   <h3>Current Latitude: {{_locationService.lat}}</h3>
   <h3>Current Longitute: {{_locationService.lng}}</h3>
   -->
-  <button ion-button block type="button" (click)="parkUser()" 
-    disabled="{{ userParked }}">
-    I HAVE PARKED
+  <!--
+  <div *ngIf="btnParkUser | async">
+  -->
+  <button ion-button block type="button" (click)="parkUser()">
+    COMPLETED PARKING IN {{ (plObs | async)?.title }}
   </button>
+  <!--
+  </div>
+    -->
 
-  <button ion-button block type="button" (click)="parkUser()" 
-    disabled="{{ userParked }}">
+
+  <!--
+  <div *ngIf="btnUnparkUser | async">
+      -->
+  <button ion-button block type="button" (click)="unparkUser()">
     I HAVE LEFT THE PARKINGLOT
   </button>
-
+  <!--
+  </div>
+    -->
 
 </ion-content>
 <!-- PAGE | CONTENT END -->

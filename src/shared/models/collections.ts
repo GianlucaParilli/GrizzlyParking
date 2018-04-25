@@ -1,4 +1,6 @@
 // INTERFACE  |  COLLECTION - LOCATION
+import * as firebase from 'firebase';
+
 export interface LocationInterface {
     lat: number,
     long: number

@@ -13,27 +13,29 @@
   <!-- PAGE SECTION | List  -->
   <!-- PARKING LOT CARD | H-Lot -->
   <div *ngFor="let lot of parkingLotObs | async">
-    <ion-card color="{{ lot.status }}" (click)="goToHLotPage()">
-      <ion-card-header>
-        <img src="assets/imgs/{{ lot.picture }}" alt="parkinglot image">
-      </ion-card-header>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
+    <div *ngIf="lot.picture != 'tbd.png'">
+      <ion-card color="{{ lot.status }}" (click)="goToHLotPage()">
+        <ion-card-header>
+          <img src="assets/imgs/{{ lot.picture }}" alt="parkinglot image">
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
 
-            <ion-col col-12>
-              <progress-bar progress="{{ lot.plFullPct }}"></progress-bar>
-            </ion-col>
+              <ion-col col-12>
+                <progress-bar progress="{{ lot.plFullPct }}"></progress-bar>
+              </ion-col>
 
-          </ion-row>
-          <ion-row>
-            <ion-col col-4 class="cardHeader">{{ lot.title }}</ion-col>
-            <ion-col col-4 class="cardCount">{{ lot.plPopulation }} / {{ lot.plCapacity }}</ion-col>
-            <ion-col col-4 class="cardPercentage">{{ lot.plFullPct }}%</ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+            </ion-row>
+            <ion-row>
+              <ion-col col-4 class="cardHeader">{{ lot.title }}</ion-col>
+              <ion-col col-4 class="cardCount">{{ lot.plPopulation }} / {{ lot.plCapacity }}</ion-col>
+              <ion-col col-4 class="cardPercentage">{{ lot.plFullPct }}%</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 
 </ion-content>

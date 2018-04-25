@@ -53,12 +53,12 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    //this.location.startTracking();
-    //this.backgroundModes();
+    this.location.startTracking();
+    this.backgroundModes();
   }
 
   startTrack() {
-    //this.location.startTracking();
+    this.location.startTracking();
   }
 
   localNotification(lat: number, long: number) {
@@ -70,7 +70,7 @@ export class HomePage {
     });
   }
 
-  /*
+  
   backgroundModes() {
     console.log('background mode')
     this.background.enable();
@@ -79,7 +79,7 @@ export class HomePage {
       this.startTrack();
     });
   }
-  */
+  
   
 
   // PAGE NAVIGATION  |  H-Lot  -->  Login (returns after closing)

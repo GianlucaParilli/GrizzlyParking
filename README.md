@@ -1,90 +1,153 @@
 # Grizzly Parking
 
-An Ionic parking app that helps ease the flow of traffic on GGC's campus and helps students find available parking during school hours.
+Grizzly Parking is a _hybrid mobile application_, powered by [Ionic Framework](https://ionicframework.com/), that helps with parking. Originally, our team's idea was to ease the flow of traffic on Georgia Gwinnett College's (GGC) campus and help students find available parking during school hours. Currently, it is specific to the GGC H-Lot parkinglot. It is designed to scale up, grow, and work for other parkinglots not on GGC's campus!
 
-## Project Description
-<ol>
-    <li>Uses Google Firebase Authentication to register and verify users(@ggc.edu addresses only)</li>
-    <li>Uses Google Firebase Firesore as DB solution</li>
-    <li>Uses Ionic-Native plugins to keep track of users(Geofence, Geolocation)</li>
 
-</ol>
- 
+## Major Tools Used
+* Database - [Google Firebase](https://firebase.google.com/)
+  * [Cloud Firestore](https://firebase.google.com/products/firestore/) - NoSQL database built for global apps
+    * Used to store static, dynamic, and aggregate data for parkinglots, users, and survey data relevant to parking congestion and app bugs.
+    * We were led onto Firebase after watching some dated, but still somewhat relevant ***Lynda.com*** videos
+* Authentication - Google Firebase
+  * [Firebase Authentication](https://firebase.google.com/products/auth/) - Easy sign-in with any platform
+    * Used to register and verify users on our app
+    * Currently, only setup for @ggc.edu domain users
+    * App is designed to easily adapt to other domains
+* Location and related services - Ionic-Native plugins from Cordova
+  * [GeoLocation](https://ionicframework.com/docs/native/geolocation/) - Provides information about the device's location, such as latitude and longitude
+    * Used to determine user location
+  * [GeoFence](https://ionicframework.com/docs/native/geofence/) - Monitors circular geofences around latitude/longitude coordinates
+    * Used to determine the user's proximity to parkinglots and whether they are parking or leaving the parkinglot
+
+
 ## Quick Start
 
-### Make sure the team composition is right
-1. Your team will require at least one person to have a device with MacOS on it
-2. The only way to test this app on iOS is with a machine that runs MacOS
-3. Use a Project Management Tool to help keep track of progress. We used ```trello.com```
-### Make sure you are familiar with how Ionic 3 works
-1. ```Lynda.com``` offers some Ionic 2 courses which is very similar to Ionic 3. 
-2. Ionic 3 implements ```"Lazy Loading"``` which is a new way for Ionic to only load the neccessary .ts files when needed
-3. Ionic 3 is written in ```Typescript``` and uses ```Angular``` as a framework for the front end
-4. https://ionicframework.com/docs/
+### Team Composition
+_Make sure the team composition is right_
+* DEVICE COVERAGE - Teams should require members to each have either an Android or Apple device. At least one of each device type per group!
+  * [Android](https://cordova.apache.org/docs/en/7.x/guide/platforms/android/)
+  * [Apple](https://cordova.apache.org/docs/en/2.5.0/guide/getting-started/ios/) - A MacOS device is **required** to test this app on an Apple device
+* PROJECT MANAGEMENT - Use a Project Management Tool to help keep track of progress.
+  * We used [trello.com](https://trello.com/)
+### Become Familiar with Ionic, Angular, and Firebase
 
-### Make sure you are familiar with noSQL and Firebase
-1. This app utilizes Google's BaaS Firebase which handles ```AUTHENTICATION, DATABASE, FILE STORAGE``` and ```CLOUD FUNCTIONS```
-2. We used ```AngularFire2``` (npm package) to allow the app to communicate with the ```Firebase SDK``` for ```WEB APPLICATIONS```
-3. The ```Firebase Credentials``` for the application are located within ```src/app/config.ts``` this file holds all of the keys that associated with the Firebase Application 
-4. Google's Firebase Console is the main way to see everything that your app needs to run correctly
-5. Firebase Docs - https://firebase.google.com/docs/
-6. AngularFire2 Docs - https://github.com/angular/angularfire2/blob/master/docs/ionic/v3.md
+Ionic Videos | Angular Videos
+------------ | --------------
+[Ionic Mobile Weather App](https://youtu.be/qs2n_poLarc) | [Angular Firebase - Authorization + Custom User](https://www.youtube.com/watch?v=e8GA1UOj8mE)
+[Ionic + Firebase + Cloud Vision](https://www.youtube.com/watch?v=taPczl94Eow) | [Angular 4 Tutorial](https://www.youtube.com/watch?v=KhzGSHNhnbI)
+[Ionic Native + Firebase](https://www.youtube.com/watch?v=SOOjamH1bAA) | [Angular 4 Tutorial for Beginners](https://www.youtube.com/watch?v=k5E2AVpwsko)
+[Ionic + Firebase CRUD + Observable Subscriptions](https://www.youtube.com/watch?v=pQSn3iNZuTQ) | [Angular Firebase - Testing](https://www.youtube.com/watch?v=BumgayeUC08)
 
-### We recommend using Visual Studio Code
-1. VS Code offers support for Ionic with third-party extensions
-2. Ease of use
-3. UI customization
-4. Integrated Terminal ```ctrl + ` ```
+#### [IONIC](https://ionicframework.com/docs/)
+* ABOUT - Ionic is a complete open-source SDK for hybrid mobile app development. The original version was released in 2013 and built on top of AngularJS and Apache Cordova. Ionic provides tools and services for developing hybrid mobile apps using Web technologies like CSS, HTML5, and Sass.
+* FEATURES
+  * The latest and greatest Ionic is still a ***javascript*** app, supporting ***Typescript*** for some major benefits described below. ***Angular*** is the underlying framework (yes, another one!) that powers Ionic's front end
+  * _AoT Compiling_ - Ahead-of-Time compiling, powered by TypeScript, unlike traditional web applications
+  * _Lazy Loading_ - A new way for Ionic to only load the neccessary .ts files when needed
+  * _Live Reload_ - starts when you run ```ionic serve```. Updates _instantly_ when changes are made to development files
+  * [_Components_](https://ionicframework.com/docs/components/) - Components in Ionic are reusable UI elements
+  * [_Ionicons_](https://ionicframework.com/docs/ionicons/)
+  * [_Ionic Native_](https://ionicframework.com/docs/native/) - a TypeScript wrapper, taking advantage of the Cordova framework plugins
+
+#### [ANGULAR](https://angular.io/docs)
+* _Observables & RxJS_ - provide support for passing messages between publishers and subscribers in your application. Become familiar with asyncronous objects.
+* _BootStrapping_ - the root component that Angular creates and inserts into the index.html host web page
+* _NgModules_ - takes a metadata object that describes how to compile a component's template and how to create an injector at runtime.
+* _Dependency Injection_
+* _Testing_
+
+#### [FIREBASE](https://firebase.google.com/docs/firestore/quickstart)
+* Google's BaaS (Backend-as-a-Service). All the tools described below are available through your Firebase console. Handles:
+  * [***Authentication***](https://firebase.google.com/docs/auth/web/password-auth) - checkout the video above!
+  * [***Database***](https://firebase.google.com/docs/firestore/) - Firestore (beta at the time we created this app)
+  * [***File Storage***](https://firebase.google.com/docs/firestore/) - used for basic storage as well as cloud functions!
+  * [***Cloud Functions***](https://firebase.google.com/docs/functions/) - 
+  * Firebase Console - Google's Firebase Console is a hub to see everything above, and anything else your app needs to run correctly, such as security. You'll see _'GO TO CONSOLE'_ or _'LOGIN'_ in the top right corner of the docs site.
+* [***AngularFire2***](https://github.com/angular/angularfire2/blob/master/docs/ionic/v3.md) - We used this (npm package) to enable the app to communicate with the _Firebase SDK_ for web applications (NOT iOS or Android)
+
+### Text Editor - Recommend [Visual Studio Code](https://code.visualstudio.com/Download)
+* VS Code offers support for Ionic with third-party extensions
+* Ease of use, opens the entire project directories, UI customization... it's basically a really lite IDE, but it's actually an amazingly rich text editor
+* Integrated Terminal ```ctrl + ` ```
     1. Git
     2. Ionic CLI
-5. https://code.visualstudio.com/Download
 
+## Setup and Install
+1. NodeJS - [download](https://nodejs.org/en/) and install
+2. [Android Tools](https://cordova.apache.org/docs/en/7.x/guide/platforms/android/) and [iOS Tools](https://cordova.apache.org/docs/en/7.x/guide/platforms/ios/) - checkout what is required to work with your available device
+3. Ionic
+   1. Install - run command ```npm install -g ionic```
+      * If you get an error, run ```npm``` by itself to check the install finished correctly
+      * You may need to run ```npm install npm@latest -g``` to install the newest npm update
+   2. Create a New App - run command ```ionic start <your app name> tabs```
+      * NOTE: We used the _tabs_ template, but there is also _blank_ and _sidemanu_ to date
+   3. Run your New App - run commands ```cd <your app name>``` and ```ionic serve```
+4. Firebase
+   1. Install - run command ```npm install firebase --save```
+   1. Create a Firebase project in the [Firebase console](https://console.firebase.google.com/)
+   2. Choose ***Add Firebase to your web app*** to view your customized code snippet you will need for your project
+      * We advise watching one of the videos above on getting started with Firebase, in order to determine a safe place for your code snippet. It will look like the sample below:
+        ```ts
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+        apiKey: "<API_KEY>",
+        authDomain: "<PROJECT_ID>.firebaseapp.com",
+        databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+        storageBucket: "<BUCKET>.appspot.com",
+        };
+        firebase.initializeApp(config);
+        ```
+      * We exported/imported into the ```app.component.ts``` from a file that is .gitignore for security
+      * Add ```import * as firebase from "firebase";``` to ```app.component.ts``` as well 
+   3. We recommend setting up Cloud Functions. Instructions to get started are in your Firebase console menu. You are good to go without this step.
 ## Code Base Explanation
+
 
 ### Adding a new page
 1. Use Ionic's CLI to generate new pages
-```
-ionic -g page yourPageName
-```
-2. Since Ionic 3 uses ```"Lazy Loading"``` it will create a new folder with it's own ```module.ts```
-3. In order for the application to recognize the new page, you must inject the exported class from your newly generated page into the ```app.module.ts``` under ```DEPENDENCIES``` and ```ENTRY COMPONENTS```
+    ```sh
+    ionic -g page <your page name>
+    ```
+2. Since Ionic 3 uses ***'Lazy Loading'***, it creates a new folder for your page with it's own ```module.ts``` named after your page ```<your page name>.ts```
+3. In order for the application to recognize the new page, you must import and inject the exported class from your newly generated page into the ```app.module.ts```. Import at the top, then inject under ```DEPENDENCIES``` and ```ENTRY COMPONENTS```
 
 ### Page Navigation
-1. Ionic uses a ```STACK``` as a data structure for the ```UI```
+1. Ionic uses a **STACK** as a data structure for the **UI**
 2. ```Pushing``` a new page will place it on top of the current page; meaning that pressing back will go back to the previous page by ```popping``` current page.
-```
-this.navCtrl.push(YourPageClass);
-```
+    ```ts
+    this.navCtrl.push(YourPageClass);
+    ```
+
 ### Using TypeScript variables within the HTML files
 1. You can escape HTML and insert TypeScript code by using: 
-```
-{{ yourTypeScriptVariableHere }}
-```
-```
-<a href="#">{{ typeScriptVariable }}</a>
-```
+    ```html
+    {{ yourTypeScriptVariableHere }}
+
+    <a href="#">{{ typeScriptVariable }}</a>
+    ```
 
 ### How Firebase connects with the app
-1. ```src/app/config.ts``` holds all Firebase credentials
+1. Keep your Firebase credentials in a safe place... as described in the **Setup and Install** section. These are required to be imported or hard coded into your ```app.component.ts```
 2. ```src/app/app.module.ts``` holds the code that initializes Firebase
-```
-imports: [
-    AngularFireModule.initializeApp(credentials.firebase),
-    AngularFirestoreModule.enablePersistence(),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule]
-```
+    ```ts
+    imports: [
+        AngularFireModule.initializeApp(credentials.firebase),
+        AngularFirestoreModule.enablePersistence(),
+        AngularFireAuthModule,
+        AngularFireDatabaseModule]
+    ```
 ### Firebase Authentication
 1. Import correct dependencies at the top of the TypeScript file <br>
-```
-import { AuthProvider } from '../../providers/auth/auth';
-import { AngularFireAuth } from 'angularfire2/auth';
-```
+    ```ts
+    import { AuthProvider } from '../../providers/auth/auth';
+    import { AngularFireAuth } from 'angularfire2/auth';
+    ```
 2. Make sure you have injected a parameter within the constructor of the TypeScript file you are working on so that you can use Firebase
-``` 
-constructor(public afAuth : AngularFireAuth){ 
-    this.variable = this.afAuth.getID }
-```
+    ```ts
+    constructor(public afAuth : AngularFireAuth){ 
+        this.variable = this.afAuth.getID }
+    ```
 
 //Todo
 ### Getting COLLECTIONS and DOCUMENTS from Firebase
@@ -99,52 +162,51 @@ constructor(public afAuth : AngularFireAuth){
 //Todo
 ## Running the app
 ### Installing Dependencies
-```
+```sh
 npm i
 ``` 
 1. If you look into the ```.gitignore``` file you will see that ```/platforms /plugins``` and ```/node_modules``` are excluded from the repository. That means that you need to install dependencies before building the project 
 2. ```npm i``` is a shorthand way of installing all dependencies that are listed in ```package.json``` (run this in the directory of project)
 
 ### Buidling the app
-```
+```sh
 ionic cordova build android
 ionic cordova build ios
 ```
 //Todo
+
 ### Serving the app
-```
+```sh
 ionic serve
 ```
 1. In the event of an app crash, serve the app to the browser for debugging purposes only
 2. Since this app utilizes a lot of native functionalities, serving the application will not display the google maps plugin so it is recommended to test all changes on an actual device or an emulator
+
 ### Running on Android
-```
+```sh
 ionic cordova run android --device
 ```
 1. Make sure device is plugged in
 2. Make sure device is running Android 7.00 or higher
+
 ### Runnnig on iOS
 //Todo
+
 ## Deployment
 Ideally the application should be deployed on the Google Play Store for Android and the App Store for iOS but if the application cannot pass the requirements that each market requires then you may use alternative methods to deploy the application. 
+
 ### Android Deployment
 1. Android APK's are easier to distribute and install than iOS because as long as the device has developer mode on and allows APK's from unknown sources
 2. We used a Github Page to deploy our app at STaRS
 3. https://grizzlyparking.github.io/ (May be an older APK)
+
 ### iOS Deployment
 //Todo
+
 ## Troubleshooting
 //Todo
+
 ## Team Members
-
-<ul>
-    <li>Joshua Tran -
-  <a href="https://github.com/jtran6">Github</a> |
-  <a href="https://www.linkedin.com/in/joshua-tran-9700a8118/">LinkedIn</a>
-    </li>
-    <li>Luca Parilli
-    </li>
-    <li>Chelsea D'Alessandro
-    </li>
-</ul>
-
+* Joshua Tran - [GitHub](https://github.com/jtran6) &nbsp; [LinkedIn](https://www.linkedin.com/in/joshua-tran-9700a8118/)
+* Luca Parilli - [GitHub]() &nbsp; [LinkedIn](https://www.linkedin.com/in/gianluca-parilli-608421151/)
+* Chelsea D'Alessandro - [GitHub](https://github.com/chelCcat) &nbsp; [LinkedIn](https://www.linkedin.com/in/chelsea-d-alessandro-bb5581155/)

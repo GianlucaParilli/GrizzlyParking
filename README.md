@@ -150,17 +150,157 @@ Ionic Videos | Angular Videos
     ```
 
 //Todo
+
+## Firebase Firestore Database
+Google's Firebase firestore is a flexible, scalable NoSQL cloud database to store and sync data for client- and server-side development. It keeps your data in sync across client apps through realtime listeners and offers offline support for mobile and web so you can build responsive apps that work regardless of network latency or Internet connectivity.
+
+### Database Structure
+A NoSQL database does not have a strict structure like a typical SQL relational database. Instead, it is a somewhat loosely structured system. A system where we have collections and documents. Think if these as being like a todo list or maybe files for your filing cabinet at home.
+Structure | Example
+--------- | -------
+***Cloud Firestore*** | :cloud: Firestore  
+***Database*** | &nbsp; &nbsp; :books: Database
+***Collections*** | &nbsp; &nbsp; &nbsp; &nbsp; :notebook: parkingLot  
+***Documents***  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: other parkinglot...<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: other parkinglot...<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: h-Lot
+***DocumentData*** | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  :small_orange_diamond: `<name>`: `<data type>` = `<value>` <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :ticket: `<name>`: `<firestore reference>` = `<value>` <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: title: string = "H Lot" <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: picture: string = "hLot.png" <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :ticket: centerLocation: reference = /location/hLotCenter <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: percentFull: number = 0 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: capacity: number = 167 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: population: number = 0 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: status: string = "secondary"
+***Collections*** | &nbsp; &nbsp; &nbsp; &nbsp; :notebook: location  
+
+### AGGREGATE DATA and UPDATING DATA
+Notice how the ```parkingLot Collection``` has an ```h-Lot Document``` with aggregate ```DocumentData percentFull```. ```DocumentData status``` is also aggregate. In order to take full advantage of the asyncronous nature of firestore, this data is kept as DocumentData instead of calculated on the user-end through the use of a query
+* EX: a typical Oracle SQL query determining aggregate data for results
+  ```SQL
+  SELECT (population / NVL(capacity, 1)) * 100 AS "percentFull"
+  FROM parkingLot
+  WHERE parkingLot_id = 'h-Lot';
+  ```
+* Instead we update the DocumentData for percentFull the same time a user updates there status as being parked in a particular parkinglot. Let's say a user parks in the h-Lot. We made a function that updataes all the data, which in turn updates all devices that are linked asyncronously to this firestore database via our app!
+<br> EX: a function called when a user parks to update the ```Document h-Lot``` ```DocumentData <multiple>```
+  ```js
+  // A simple sample based on how we used the app and examples above 
+  updateParkingLotDocData(change: number) {
+      console.log("FUNCTION updateParkingLotDocData called");
+      
+      // this.afs : AngularFirestore object, made in our ionic page's module.ts constructor
+      // We are using the built-in firestore function, transaction, to BOTH
+      //   get a snapshot of our data and make any needed changes to it as well
+      // transaction => : shorthand notation, note you may also see 'function(transaction) =>' elsewear
+      this.afs.firestore.runTransaction(transaction => {
+          
+          // return : basically a Promise<result, error>
+          //          Promise is unwrapped and the underlying data is handled with .then and .catch blocks below
+          return transaction.get(<your AngularFirestoreDocument>.ref).then(doc => {
+              
+              if (!doc.exists) { throw "Document does not exist!"; }
+              
+              // Adjust parkinglot stats
+              var newPopulation = doc.data().population + change;
+              var newPctFull = Math.round((newPopulation / doc.data().capacity) * 100.00);
+              transaction.update(<your AngularFirestoreDocument>.ref, { 
+                  population: newPopulation, percentFull: newPctFull });
+              
+              // determine whether status (for ionic card, an ionic component, color) should be updated
+              // TRUE - update, FALSE - nothing, no else
+              var newStatus = (newPctFull >= 50 ? "secondary" : (newPctFull >= 25 ? "caution" : "danger"));
+              if (newStatus != doc.data().status) {
+                  transaction.update(this.plDocumentRef.ref, { status: newStatus });
+              }
+           });
+      }).then(result => {
+          console.log('FUNCTION updateParkingLotDocData Transaction success!');
+      }).catch(error => {
+          console.log('FUNCTION updateParkingLotDocData Transaction failure:', error);
+      });
+  }
+  ```
+
 ### Getting COLLECTIONS and DOCUMENTS from Firebase
-//Todo
+We kinda spoke about this in the ***aggregate data*** section above. We need to link local typescript objects from the app to our firestore objects. This allows for matched data types and observable listeners. There are several ways to do this, we chose a CRUD model and made several interface objects matching the Document data structure in our firestore database.
+```ts
+// A simple sample based on examples above 
+export interface ParkingLotInterface {
+    // MUST BE TYPE:  reference. of a location/doc
+    centerLocation: firebase.firestore.DocumentReference,
+    // IF 90 / 100 spaces are filled... 90% full
+    percentFull: number,
+    capacity: number,
+    population: number,
+    // used as a proper name for the parkinglot to define ionic card headers
+    title: string,
+    // used to define ionic card colors (visual ques for the user)
+    status: string
+}
+
+```
 #### Firebase Observables
-//Todo
+These interfaces are imported to page ```module.ts``` files that use them. We assigned ```Observable<Inerfaces>``` to the ```AngularFirestore.DocumentReference```
+```ts
+// A simple sample based on examples above 
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { ParkingLotInterface } from "../../shared/models/collections";
+...
+
+// Angular component for page setup
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html'
+})
+
+export class HomePage {
+// OBSERVABLE
+parkingLotObs: Observable<ParkingLotInterface[]>;
+// COLLECTION REFERENCE
+parkingLotCollectionRef: AngularFirestoreCollection<ParkingLotInterface>;
+...
+
+// CONSTRUCTOR
+constructor(
+    private afs: AngularFirestore, ...) {
+        this.parkingLotCollectionRef = this.afs.collection('parkingLot');
+        this.parkingLotObs = this.parkingLotCollectionRef.valueChanges();
+}
+...
+```
+The ***typescript*** feature for ```{{ interpolation }}``` comes really in handy here! We can use our typescript variables inside our html, displaying our observable firebase firestore data asyncronously!
+```html
+  <!-- A simple sample based on examples above -->
+  <!-- this *ngFor shows the asyncronous data for each Document in our parkingLot Collection, so each parkinglot -->
+  <div *ngFor="let lot of parkingLotObs | async">
+    <!-- this *ngIf condition limits the ion cards to the data we want 
+         if this condition is not met, none of the sub-level tags will be used -->
+    <div *ngIf="lot.picture != 'tbd.png'">
+      <ion-card color="{{ lot.status }}" (click)="goToHLotPage()">
+        <ion-card-header>
+            {{ lot.title }}<br>
+            <img src="assets/images/{{ lot.picture }}" alt="parkinglot image">
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+              <ion-col col-4 class="cardPercentage">{{ lot.plFullPct }}%</ion-col>
+            </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+```
+So, any updates any user makes to a parkinglot will be shared across all linked devices using our app!
+
 #### Firebase Queries
-//Todo
-## Database Structure Explanation
-//Todo
+We used a specific query using the ```Firebase Authenticated user``` email in order to query 1 user result from our ```Collection user```
+
+```js
+var userQuery = firebase.firestore().collection('/user').where('email', '==', userEmail);
+userQuery.get().then(querysnapshot => {
+    var result = querysnapshot.docs.pop();
+    this.setUser(result.id);
+});
+```
+
 ## Plugin Explanations
 //Todo
+
 ## Running the app
+
 ### Installing Dependencies
 ```sh
 npm i
@@ -204,7 +344,23 @@ Ideally the application should be deployed on the Google Play Store for Android 
 //Todo
 
 ## Troubleshooting
-//Todo
+Android components and plugins update ***frequently***. If you run into a problem **DO NOT DELETE FOLDERS RELATED TO ANDROID!**. These, like most _installed_ apps or modules have rooted reach into your app. You need to uninstall to fix. There were a few occasions we needed to do the following:    
+1. Open the Node.js command prompt as administrator. Run the follonw commands in order.  
+   ```sh
+   npm cache clean --force 
+   npm uninstall -g ionic
+   npm uninstall -g cordova
+   npm install -g ionic
+   npm install -g cordova
+   ```  
+2. From the project folder (I used git bash)  
+   ```sh
+   ionic cordova platform remove android
+   ionic cordova platform add android
+   ```  
+   * You may need to specify a specific android version, depending on Cordova's current compatability listed in their docs. This is the current guideline:
+   `ionic cordova platform add android@6.x`
+3. You may also need to check gradle, which we maintained through Android Studio.
 
 ## Team Members
 * Joshua Tran - [GitHub](https://github.com/jtran6) &nbsp; [LinkedIn](https://www.linkedin.com/in/joshua-tran-9700a8118/)

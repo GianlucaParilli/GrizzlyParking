@@ -102,14 +102,12 @@ Ionic Videos | Angular Videos
       * Add ```import * as firebase from "firebase";``` to ```app.component.ts``` as well 
    3. We recommend setting up Cloud Functions. Instructions to get started are in your Firebase console menu. You are good to go without this step.
 ## Code Base Explanation
-
-
 ### Adding a new page
 1. Use Ionic's CLI to generate new pages
     ```sh
     ionic -g page <your page name>
     ```
-2. Since Ionic 3 uses ***'Lazy Loading'***, it creates a new folder for your page with it's own ```module.ts``` named after your page ```<your page name>.ts```
+2. Since Ionic 3 uses **'Lazy Loading'**, it creates a new folder for your page with it's own ```module.ts``` named after your page ```<your page name>.ts```
 3. In order for the application to recognize the new page, you must import and inject the exported class from your newly generated page into the ```app.module.ts```. Import at the top, then inject under ```DEPENDENCIES``` and ```ENTRY COMPONENTS```
 
 ### Page Navigation

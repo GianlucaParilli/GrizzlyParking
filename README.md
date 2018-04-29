@@ -153,7 +153,7 @@ Ionic Videos | Angular Videos
 Google's Firebase firestore is a flexible, scalable NoSQL cloud database to store and sync data for client- and server-side development. It keeps your data in sync across client apps through realtime listeners and offers offline support for mobile and web so you can build responsive apps that work regardless of network latency or Internet connectivity.
 
 ### Database Structure
-A NoSQL database does not have a strict structure like a typical SQL relational database. Instead, it is a somewhat loosely structured system. A system where we have collections and documents. Think if these as being like a todo list or maybe files for your filing cabinet at home.
+A NoSQL database does not have a strict structure like a typical SQL relational database. Instead, it is a somewhat loosely structured system. A system where we have collections and documents. Think if these as being like a todo list or maybe files for your filing cabinet at home.  
 | Structure             | Example           |
 | --------------------- | ----------------- |
 | ***Cloud Firestore*** | :cloud: Firestore |

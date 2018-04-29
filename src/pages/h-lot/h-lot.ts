@@ -91,8 +91,9 @@ export class HLotPage {
 
     console.log(firebase.auth().currentUser.email);
     // FIREBASE CONNECTION TO USER
-    var promise = this.calcUser(firebase.auth().currentUser.email);
-
+    this.calcUser(firebase.auth().currentUser.email).then(result => {
+      console.log('USER INITIALIZED');
+    })
   }
 
 

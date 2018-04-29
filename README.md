@@ -154,14 +154,14 @@ Google's Firebase firestore is a flexible, scalable NoSQL cloud database to stor
 
 ### Database Structure
 A NoSQL database does not have a strict structure like a typical SQL relational database. Instead, it is a somewhat loosely structured system. A system where we have collections and documents. Think if these as being like a todo list or maybe files for your filing cabinet at home.
-| Structure | Example |
-| --------- | ------- |
+| Structure             | Example           |
+| --------------------- | ----------------- |
 | ***Cloud Firestore*** | :cloud: Firestore |
-| ***Database*** | &nbsp; &nbsp; :books: Database |
-| ***Collections*** | &nbsp; &nbsp; &nbsp; &nbsp; :notebook: parkingLot |
-| ***Documents***  | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: other parkinglot...<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: other parkinglot...<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: h-Lot |
-| ***DocumentData*** | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  :small_orange_diamond: `<name>`: `<data type>` = `<value>` <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :ticket: `<name>`: `<firestore reference>` = `<value>` <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: title: string = "H Lot" <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: picture: string = "hLot.png" <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :ticket: centerLocation: reference = /location/hLotCenter <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: percentFull: number = 0 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: capacity: number = 167 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: population: number = 0 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: status: string = "secondary" |
-| ***Collections*** | &nbsp; &nbsp; &nbsp; &nbsp; :notebook: location |
+| ***Database***        | &nbsp; &nbsp; :books: Database |
+| ***Collections***     | &nbsp; &nbsp; &nbsp; &nbsp; :notebook: parkingLot |
+| ***Documents***       | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: other parkinglot...<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: other parkinglot...<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :page_facing_up: h-Lot |
+| ***DocumentData***    | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  :small_orange_diamond: `<name>`: `<data type>` = `<value>` <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :ticket: `<name>`: `<firestore reference>` = `<value>` <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: title: string = "H Lot" <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: picture: string = "hLot.png" <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :ticket: centerLocation: reference = /location/hLotCenter <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: percentFull: number = 0 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: capacity: number = 167 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: population: number = 0 <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :small_orange_diamond: status: string = "secondary" |
+| ***Collections***     | &nbsp; &nbsp; &nbsp; &nbsp; :notebook: location |
 
 ### AGGREGATE DATA and UPDATING DATA
 Notice how the ```parkingLot Collection``` has an ```h-Lot Document``` with aggregate ```DocumentData percentFull```. ```DocumentData status``` is also aggregate. In order to take full advantage of the asyncronous nature of firestore, this data is kept as DocumentData instead of calculated on the user-end through the use of a query

@@ -16,13 +16,12 @@
   <!--
   <div *ngIf="btnParkUser | async">
   -->
-  <button ion-button block type="button" (click)="parkUser()">
+  <button ion-button block type="button" (click)="parkedConfirmation()">
     COMPLETED PARKING IN {{ (plObs | async)?.title }}
   </button>
   <!--
   </div>
     -->
-
 
   <!--
   <div *ngIf="btnUnparkUser | async">

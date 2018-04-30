@@ -90,7 +90,7 @@ export class HLotPage {
     this.setParkingLot('h-Lot');
 
     console.log(firebase.auth().currentUser.email);
-    // FIREBASE CONNECTION TO USER
+    // FIREBASE CONNECTION TO USERi
     this.calcUser(firebase.auth().currentUser.email).then(result => {
       console.log('USER INITIALIZED');
     })
@@ -272,27 +272,12 @@ export class HLotPage {
   parkedConfirmation() {
     let TIME_IN_MS = 60000;
     console.log('time out ');
+    this.safeParkUser();
 
-    if (this.isParked) {
-      var promise = new Promise<boolean>(resolve => {
-        console.log('!!WARNING!! User is already parked. Calling unpark first. -you are welcome!')
-        return this.unparkUser();
-      }).then(result => {
-        return this.parkUser();
-      });
-    }
-    else {
-      var promise = new Promise<boolean>(resolve => {
-        return this.parkUser();
-      });
-    }
-    promise.then(result => {
-      let carInLot = setTimeout(() => {
-        console.log('time out ended ')
-        this.showMarker();
-      }, TIME_IN_MS);
-    });
-
+    let carInLot = setTimeout( () => {
+         console.log('time out ended ')
+         this.showMarker();
+    }, TIME_IN_MS);
   }
 
   pressButtonTest() {
@@ -332,6 +317,26 @@ export class HLotPage {
     });
   }
 
+  safeParkUser() {
+    if (this.isParked) {
+      console.log('~~~~~ FUNCTION safeParkUser !!WARNING!! User is already parked. Calling unpark first. -you are welcome!');
+      var promise = this.unparkUser().then(result => {
+        console.log('~~~~~ FUNCTION safeParkUser completed unpark user...');
+        return this.parkUser();
+      }).then(result => {
+        console.log('~~~~~ FUNCTION safeParkUser completed un/park user...');
+        return true;
+      });
+    }
+    else {
+      var promise = this.parkUser().then(result => {
+        console.log('~~~~~ FUNCTION safeParkUser completed park user...');
+        return true;
+      });
+    }
+
+    return promise;
+  }
 
   // COLLECTION FUNCTIONS  |  USER
   parkUser() {
@@ -352,29 +357,33 @@ export class HLotPage {
       return this.createLocation(myLat, myLng).then(result => {
         return this.calcParkingLot();
       }).then(result => {
-        this.userDocumentRef.ref.update({
+        return this.userDocumentRef.ref.update({
           isParked: true,
           parkedLocation: this.locationDocumentRef.ref,
           parkedLot: this.plDocumentRef.ref,
           parkedTime: timestamp
         }).then(result => {
-          this.updateParkingLotPopulation(1);
-          this.setParkedStatus(true);
           let toast = this._toastCtrl.create({
             message: 'YOU HAVE PARKED',
             duration: 3000,
             position: 'middle'
           });
           toast.onDidDismiss(() => {
-            //console.log('~~~~~ FUNCTION parkUser Dismissed toast');
+            console.log('~~~~~ FUNCTION parkUser Dismissed toast');
           });
           toast.present();
+          return this.setParkedStatus(true);
+        }).then(result => {
+          console.log('~~~~~ FUNCTION parkUser: done with toast and local bool!');
+          return this.updateParkingLotPopulation(1);
         }).catch(error => {
           console.log("~~~~~ FUNCTION parkUser error ", error);
+          return false;
         })
-      }).then(() => {
-        return true;
-      })
+      }).then(result => {
+        console.log('~~~~~ FUNCTION parkUser: ALL DONE!');
+        resolve(true);
+      });
     });
     return promise;
   }
@@ -383,27 +392,31 @@ export class HLotPage {
     console.log("~~~~~ FUNCTION unparkUser called ");
     var promise = new Promise<boolean>(resolve => {
       return this.deleteLocation().then(result => {
-        this.userDocumentRef.ref.update({
+        return this.userDocumentRef.ref.update({
           isParked: false,
           parkedLocation: this.locationDocumentRef.ref, //'/location/none',
         }).then(result => {
-          this.updateParkingLotPopulation(-1);
-          this.setParkedStatus(false);
           let toast = this._toastCtrl.create({
             message: 'YOU HAVE LEFT',
             duration: 3000,
             position: 'middle'
           });
           toast.onDidDismiss(() => {
-            //console.log('~~~~~ FUNCTION unparkUser Dismissed toast');
+            console.log('~~~~~ FUNCTION unparkUser Dismissed toast');
           });
           toast.present();
+          return this.setParkedStatus(false);
+        }).then(result => {
+          console.log('~~~~~ FUNCTION unparkUser: done with toast and local bool!');
+          return this.updateParkingLotPopulation(-1);
         }).catch(error => {
           console.log("~~~~~ FUNCTION unparkUser error ", error);
+          return false;
         })
-      }).then(() => {
-        return true;
-      })
+      }).then(result => {
+        console.log('~~~~~ FUNCTION unparkUser: ALL DONE!');
+        resolve(true);
+      });
     });
     return promise;
   }
@@ -461,36 +474,40 @@ export class HLotPage {
 
   updateParkingLotPopulation(change: number) {
     console.log("~~~~~ FUNCTION updateParkingLotPopulation called", this.plDocumentRef.ref.id);
+    var promise = new Promise<boolean>(resolve => {
+      return this.afs.firestore.runTransaction(transaction => {
+        return transaction.get(this.plDocumentRef.ref).then(doc => {
+          if (!doc.exists) {
+            throw "Document does not exist!";
+          }
 
-    this.afs.firestore.runTransaction(transaction => {
-      return transaction.get(this.plDocumentRef.ref).then(doc => {
-        if (!doc.exists) {
-          throw "Document does not exist!";
-        }
+          // Adjust parkinglot stats from park/unpark function
+          var newPopulation = doc.data().plPopulation + change;
+          var newFullPct = Math.round((newPopulation / doc.data().plCapacity) * 100.00);
+          var newAvailPct = 100 - Math.round((newPopulation / doc.data().plCapacity) * 100.00);
+          console.log('~~~~~ FUNCTION updateParkingLotPopulation: ', this.plDocumentRef.ref.id, "-  pop: ", newPopulation, "  Apct: ", newAvailPct, "  Fpct: ", newFullPct);
+          transaction.update(this.plDocumentRef.ref, { plPopulation: newPopulation, plAvailablePct: newAvailPct, plFullPct: newFullPct });
 
-        // Adjust parkinglot stats from park/unpark function
-        var newPopulation = doc.data().plPopulation + change;
-        var newFullPct = Math.round((newPopulation / doc.data().plCapacity) * 100.00);
-        var newAvailPct = 100 - Math.round((newPopulation / doc.data().plCapacity) * 100.00);
-        console.log(this.plDocumentRef.ref.id, "-  pop: ", newPopulation, "  Apct: ", newAvailPct, "  Fpct: ", newFullPct);
-        transaction.update(this.plDocumentRef.ref, { plPopulation: newPopulation, plAvailablePct: newAvailPct, plFullPct: newFullPct });
+          // determine whether status (for card color) should be updated
+          // TRUE - update, FALSE - nothing, no else
+          var newStatus = (newAvailPct >= 50 ? "secondary" : (newAvailPct >= 25 ? "caution" : "danger"));
+          if (newStatus != doc.data().status) {
+            console.log('~~~~~ FUNCTION updateParkingLotPopulation: UPDATED STATUS OF ', this.plDocumentRef.ref.id);
+            transaction.update(this.plDocumentRef.ref, { status: newStatus });
+          }
 
-        // determine whether status (for card color) should be updated
-        // TRUE - update, FALSE - nothing, no else
-        var newStatus = (newAvailPct >= 50 ? "secondary" : (newAvailPct >= 25 ? "caution" : "danger"));
-        if (newStatus != doc.data().status) {
-          console.log('~~~~~ FUNCTION updateParkingLotPopulation: UPDATED STATUS OF ', this.plDocumentRef.ref.id);
-          transaction.update(this.plDocumentRef.ref, { status: newStatus });
-        }
-
-        console.log('~~~~~ FUNCTION updateParkingLotPopulation: ENDING RESULT FOR ', this.plDocumentRef.ref.id, ', ', this.plDocumentRef.ref);
-
+          console.log('~~~~~ FUNCTION updateParkingLotPopulation: ENDING RESULT FOR ', this.plDocumentRef.ref.id, ', ', this.plDocumentRef.ref);
+        });
+      }).then(result => {
+        console.log('~~~~~ FUNCTION updateParkingLotPopulation Transaction success!');
+        resolve(true);
+      }).catch(error => {
+        console.log('~~~~~ FUNCTION updateParkingLotPopulation Transaction failure:', error);
+        resolve(false);
       });
-    }).then(result => {
-      console.log('~~~~~ FUNCTION updateParkingLotPopulation Transaction success!');
-    }).catch(error => {
-      console.log('~~~~~ FUNCTION updateParkingLotPopulation Transaction failure:', error);
     });
+
+  return promise;
   }
 
 }

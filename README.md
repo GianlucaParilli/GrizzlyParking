@@ -278,4 +278,15 @@ ionic cordova build android
     </li>
 </ul>
 
+## Team Members Fall 2018
+<ul>
+    <li>Jacob Bradberry - 
+      <ul>
+        <li>
+          1. Database Architect </li>
+          2. Documentation Lead. </li>
+      </ul>
+    </li>
+</ul>
+
 

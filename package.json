@@ -35,25 +35,24 @@
     "angular-progress-bar": "^1.0.0",
     "angularfire2": "^5.0.0-rc.6",
     "cordova-android": "7.0.0",
-    "cordova-android-play-services-gradle-release": "^1.2.1",
+    "cordova-android-play-services-gradle-release": "^1.4.6",
     "cordova-ios": "4.5.4",
-    "cordova-plugin-add-swift-support": "^1.7.1",
+    "cordova-plugin-add-swift-support": "^1.7.2",
     "cordova-plugin-background-mode": "git+https://github.com/katzer/cordova-plugin-background-mode.git",
-    "cordova-plugin-badge": "^0.8.7",
+    "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-device": "^2.0.1",
-    "cordova-plugin-firebase": "^0.1.25",
+    "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
-    "cordova-plugin-googlemaps": "^2.2.8",
+    "cordova-plugin-googlemaps": "^2.4.6",
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git#2.6.0",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^1.1.16",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
+    "cordova-plugin-ionic-webview": "^1.2.1",
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
-    "cordova-plugin-mauron85-background-geolocation": "^2.3.5",
+    "cordova-plugin-mauron85-background-geolocation": "^2.3.6",
     "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-statusbar": "^2.4.1",
+    "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-plugin-x-toast": "^2.6.2",
+    "cordova-plugin-x-toast": "^2.7.2",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^4.9.0",
     "firebaseui": "^2.6.1",
@@ -82,23 +81,19 @@
       "cordova-plugin-local-notification": {},
       "cordova-plugin-add-swift-support": {},
       "cordova-plugin-x-toast": {},
-      "cordova-plugin-firebase": {},
       "cordova-plugin-compat": {},
       "cordova-plugin-statusbar": {},
       "es6-promise-plugin": {},
       "cordova-android-play-services-gradle-release": {
-        "PLAY_SERVICES_VERSION": "11.8.0"
+        "PLAY_SERVICES_VERSION": "12.0.1"
       },
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyAuscW3J6m-jTPaKtzHFd2H9we8nf0AZ3g",
         "API_KEY_FOR_IOS": "AIzaSyBKNlKAWe_iLvUaST3-QX1XYrmhbCCATPA",
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "My custom when in use message",
         "LOCATION_ALWAYS_AND_WHEN_IN_USE_USAGE_DESCRIPTION": "My custom always usage message",
-        "PLAY_SERVICES_VERSION": "11.8.0",
-        "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
-      },
-      "cordova-plugin-mauron85-background-geolocation": {
-        "ALWAYS_USAGE_DESCRIPTION": "This app always requires location tracking"
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.0",
+        "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
       }
     },
     "platforms": [

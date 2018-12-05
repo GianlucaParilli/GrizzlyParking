@@ -1,16 +1,16 @@
 import { HLotPage } from './../h-lot/h-lot';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+//import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { LoginPage } from '../login/login';
 //import { GeoPoint } from '@google-cloud/firestore';
 //import { GeoPoint } from '@firebase/firestore-types';
-import { BackgroundMode} from '@ionic-native/background-mode';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+//import { BackgroundMode} from '@ionic-native/background-mode';
+//import { LocalNotifications } from '@ionic-native/local-notifications';
 import { LocationtrackerProvider } from '../../providers/locationtracker/locationtracker';
 
 
@@ -54,19 +54,23 @@ export class HomePage {
   parkingLots: Observable<ParkingLotInterface[]>;
 
   // COLLECTION REFERENCES
+  
   userCollectionRef:       AngularFirestoreCollection<UserInterface>;
   locationCollectionRef:   AngularFirestoreCollection<LocationInterface>;
   lotAreaCollectionRef:    AngularFirestoreCollection<LotAreaInterface>;
   parkingLotCollectionRef: AngularFirestoreCollection<ParkingLotInterface>;
-
+  
 
   constructor(public navCtrl: NavController, 
+   
     public afAuth: AngularFireAuth, 
-    public afs:    AngularFirestore,
-    public background: BackgroundMode,
-    public localNoti : LocalNotifications,
-    public location: LocationtrackerProvider,
-    public backgroundMode : BackgroundMode
+     public afs:    AngularFirestore,
+    // public background: BackgroundMode,
+
+    //public localNoti : LocalNotifications, 
+    //public backgroundMode : BackgroundMode,
+    
+    public location: LocationtrackerProvider
 
     ) {
 
@@ -247,19 +251,22 @@ export class HomePage {
   }
   localNotification(lat: number,long: number){
     let count= 1;
+    /*
       this.localNoti.schedule({
           id: 1,
           title: 'Local ILocalNotification Example',
           text: 'lat: '+ lat + 'long: '+ long
         });
+     */
   }
   backgroundModes(){
     console.log('background mode')
-    this.backgroundMode.enable();
+    //this.backgroundMode.enable();
+    /*
     this.backgroundMode.on("activate").subscribe(()=>{
       this.localNotification(this.location.lat,this.location.lng) 
-      
     });
+    */
   }
 
   

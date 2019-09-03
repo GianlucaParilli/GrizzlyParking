@@ -22,7 +22,6 @@ const mailTransport = nodemailer.createTransport(
 // SET UP SURVEY (TODO)
 const LINK_TO_SURVEY = 'https://goo.gl/forms/IdurnOZ66h3FtlO33';
 
-
 /**
  * After an authorized user is create, a welcome email is sent including a survey.
  */

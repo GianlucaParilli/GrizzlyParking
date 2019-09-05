@@ -1,0 +1,69 @@
+Grizzly Parking
+-------------------------------------------------------------------------------------------------------------------------------
+Team Members: Mark Levengood, Raghu Khanal, Joshua Walton, Daniel Toal, Nick Risley
+
+ITEC 3870, Section 03
+
+4 September 2019
+Review Before the Client
+-------------------------------------------------------------------------------------------------------------------------------
+	We knew prior to the meeting that it wasn’t working well, if at all.  This makes our first question, what either needs updated, fixed, or maybe even scrapped? It shows it hasn’t been updated since 2018 so many things will most likely need updating.
+	
+Requirements for Grizzly Parking 2019
+-------------------------------------------------------------------------------------------------------------------------------
+Requirements from customer:
+
+1.	Ionic server - supplied startup instructions
+•	       Priority - Medium
+•	       Justification - Since the majority of the coding was done on an old version of ionic, we need to decide if it is possible to update to Ionic 3,4 or 5 and have everything work together. If Ionic is proving too much of a problem we might consider switching frameworks to React.
+ 
+2.	Update Angular Fire 2
+•	       Priority - Medium
+•	       Justification - The plugin is two years out of date and needs to be updated in order for us to attempt to get the app working again.
+ 
+3.	Update Google Maps
+•	       Priority - Low
+•	      Justification - The plugin is two years out of date and needs to be updated in order for us to attempt to get the app working again.
+ 
+4.	Update dependencies
+•	      Priority - High
+•	      Justification - The client informed us that his team had spent the majority of their time during the semester trying to work with the code dependencies from previous semesters and encountering a lot of problems because of it. Our team shall prioritize streamlining the code both for ourselves and future semesters to work with.
+-------------------------------------------------------------------------------------------------------------------------------
+Github branches:
+•	Several branches need to be evaluated for viability
+•	There has been no pull or push since 2017
+•	Administrator privileges to be given by customer
+Can run on Android Studios, but developed for IOS
+•	Convert code to Microsoft functionality through Android Studios
+-------------------------------------------------------------------------------------------------------------------------------
+Functionality:
+•	Uses Geofencing for user location ping
+•	Geofencing is only functional if user is passed through Authentication
+•	Only functional in H lot
+•	Add the parking deck
+•	Add A lot
+•	Add L lot
+•	User creation functional allows users to log in and mark as parked 
+•	Coded to show where user is parked, but not functional
+•	Legend is a colored, 3 tier percentage system showing the likelihood of finding a parking spot in certain lots
+-------------------------------------------------------------------------------------------------------------------------------
+Requirement list should include:
+•	Priority
+•	Justification
+•	Separation of functional, non-functional, and domain requirements (see posted lecture notes on D2L)
+-------------------------------------------------------------------------------------------------------------------------------
+Functional requirements:
+•	Services the system should provide
+•	What the system should do or not in reaction to particular situations
+-------------------------------------------------------------------------------------------------------------------------------
+Non-functional requirements:
+•	Constraints on the services or functions offered by the system
+•	Examples: Timing constraints (e.g., one semester), constraints on the development process (CASE, language, development method...), standards etc.
+-------------------------------------------------------------------------------------------------------------------------------
+Domain requirements:
+•	From the application domain of the system
+•	May be functional or non-functional
+•	Examples: Medicine, library, physics, chemistry
+•	Note: You can have all of user/system functional/non-functional requirements.
+-------------------------------------------------------------------------------------------------------------------------------
+ 

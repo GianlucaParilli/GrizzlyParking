@@ -20,7 +20,7 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 2. The only way to test this app on iOS is with a machine that runs MacOS
 3. Use a Project Management Tool to help keep track of progress. We used trello.com
 ### Make sure you are familiar with how Ionic 3 works
-1. lynda.com offers some Ionic 2 courses which is very similar to Ionic 3. 
+1. lynda.com offers some Ionic 2 courses which is very similar to Ionic 3.
 2. Ionic 3 implements ```"Lazy Loading"``` which is a new way for Ionic to only load the neccessary .ts files when needed
 3. Ionic 3 is written in ```Typescript``` and uses ```Angular``` as a framework for the front end
 4. https://ionicframework.com/docs/
@@ -75,7 +75,7 @@ Example:
 ```
 .ts file
 
-import {FormBuilder, Validators, FormGroup } from '@angular/forms'; 
+import {FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -87,9 +87,9 @@ import { AuthProvider } from '../../providers/auth/auth';
   ){
       //Initialize Form
       this.loginForm = formBuilder.group({
-        email: ['', 
+        email: ['',
         Validators.compose([Validators.required, EmailValidator.isValid])],
-        password: ['', 
+        password: ['',
         Validators.compose([Validators.minLength(6), Validators.required])]
       });
   }
@@ -234,9 +234,9 @@ ionic cordova build android
 1. Run ```ionic serve```
 2. Either the page will show you the error or the console will
 ### Build Error Fix
-1. Delete ```plugins www/ platforms``` 
+1. Delete ```plugins www/ platforms```
 2. Run ```npm i```
-3. Build ```ionic cordova build <platform>``` 
+3. Build ```ionic cordova build <platform>```
 
 ### iOS Build Error
 //Todo
@@ -256,7 +256,7 @@ ionic cordova build android
 ## Future Iterations
 1. The rest of the campus parking lots
 <br>Ordered by desirabiity
-<br>A Lot(Highest Priority) 
+<br>A Lot(Highest Priority)
 <br>L Lot
 <br>I Lot(Lowest Priority)
 2. Falculty Parking Application(Optional as it adds a lot of complexity)
@@ -283,12 +283,12 @@ ionic cordova build android
    1. *Team Manager*
    1. *Client Liaison*
    1. *Lead Programmer*
-   
+
 2. Paul Cardenas
    1. *UI Design*
    1. *Testing*     
 
-3. Jacob Bradberry 😄 
+3. Jacob Bradberry 😄
    1. *Data Modeler*
    1. *Documentation Lead*
 
@@ -297,3 +297,4 @@ ionic cordova build android
 ## Team Members Fall 2019
 1. **Nick Risley** - Team lead, Client Liaison, Data Modeler :penguin:
 2. **Joshua Walton** - Data Modeler, Testing :zap:
+3. **Raghu Khanal** - Lead Programmer :wolf:

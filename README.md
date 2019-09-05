@@ -298,3 +298,4 @@ ionic cordova build android
 1. **Nick Risley** - Team lead, Client Liaison, Data Modeler :penguin:
 2. **Joshua Walton** - Data Modeler, Testing :zap:
 3. **Raghu Khanal** - Lead Programmer :wolf:
+4. **Mark Levengood** - Documentation lead, Programmer :computer:

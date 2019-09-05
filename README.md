@@ -296,4 +296,4 @@ ionic cordova build android
 --------------------------
 ## Team Members Fall 2019
 1. **Nick Risley** - Team lead, Client Liaison, Data Modeler :penguin:
-2. **Joshua Walton** - Data Modeler, Testing :ninja:
+2. **Joshua Walton** - Data Modeler, Testing :zap:

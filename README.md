@@ -1,4 +1,4 @@
-# Grizzly Parking
+﻿# Grizzly Parking
 
 An Ionic parking app that helps ease the flow of traffic on GGC's campus and helps students find available parking during school hours.
 
@@ -291,3 +291,9 @@ ionic cordova build android
 3. Jacob Bradberry 😄 
    1. *Data Modeler*
    1. *Documentation Lead*
+
+--------------------------
+--------------------------
+## Team Members Fall 2019
+1. **Nick Risley** - Team lead, Client Liaison, Data Modeler :penguin:
+	

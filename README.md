@@ -304,3 +304,4 @@ ionic cordova build android
 2. **Joshua Walton** - Data Modeler, Testing Lead :zap:
 3. **Raghu Khanal** - Lead Programmer, Testing Lead :wolf:
 4. **Mark Levengood** - Documentation lead, Programmer :computer:
+5. **Travis Toal** - UI/UX design, Programmer :raised_hands:

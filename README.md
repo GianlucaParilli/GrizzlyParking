@@ -294,9 +294,10 @@ ionic cordova build android
 
 --------------------------
 --------------------------
-Parking Pirates
-Repo Location:
-Jira
+## Parking Pirates
+## Repo Location:
+ - Jira
+## Progress Tracking Tool
 - Discord
 ## Team Members Fall 2019
 1. **Nick Risley** - Team Manager, Client Liaison, Data Modeler :penguin:

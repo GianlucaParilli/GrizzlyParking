@@ -304,3 +304,15 @@ ionic cordova build android
 3. **Raghu Khanal** - Lead Programmer, Testing Lead :wolf:
 4. **Mark Levengood** - Documentation lead, Programmer :computer:
 5. **Travis Toal** - UI/UX design, Programmer :raised_hands:
+
+--------------------------
+--------------------------
+## Team Members Fall 2020 - by Lillian
+1. **Team Name**: SMC 
+2. **Repo Location**: https://github.com/soft-eng-practicum/GrizzlyParking
+3. Progress Tracking Tool and URL (TBA)
+4. **Discord**: smc-cg, Client Contact, SD2 Private Chat
+5. **Members**: 
+	1. Gretchen: *Testing Lead, Lead Programmer* 
+	2. Ching: *UI/UX Design Lead, Team Manager*
+	3. Lillian: *Client Liaison, Documentation Lead, Data Modeler* 😄

@@ -322,4 +322,3 @@ ionic cordova build android
 		1.**Role#1**:	UI/UX Design Lead :joy:
 		2.**Role#2**:	Team Manager :joy:	
 	
-	

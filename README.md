@@ -303,20 +303,21 @@ ionic cordova build android
 	2. Ching: *UI/UX Design Lead, Team Manager*
 	3. Lillian: *Client Liaison, Documentation Lead, Data Modeler* 😄
 	
-###Team Memembers Fall 2020 -Ching
-1.SMC:rofl:
-2.https://github.com/soft-eng-practicum/GrizzlyParking
-3.Progress tracking tool and URL (TBA)
-4.Discord, Jira
-1.Gretchen
-	1.**Role#1	Testing Lead	:sweat_smile:
-	2.**Role#2	Lead Programmer	:wink:
-2.Lillian
-	1.**Role#1	Client Liasison	:smiling_face_with_three_hearts:
-	2.**Role#2	Documentation 	:sweat_smile:
-	3.**Role#3	Data Modeler 	:zany_face:
-3.Ching
-	1.**Role#1	UI/UX Design Lead :joy:
-	2.**Role#2	Team Manager :joy:	
+##Team Memembers Fall 2020 -Ching
+1. **SMC**: :rofl:
+2. https://github.com/soft-eng-practicum/GrizzlyParking
+3. Progress tracking tool and URL (TBA)
+4. **Discord, Jira**
+5. **Members**:
+	1.  Gretchen:
+		1. **Role#1**:	Testing Lead	:sweat_smile:
+		2. **Role#2**:	Lead Programmer	:wink:
+	2.Lillian:
+		1.**Role#1**:	Client Liasison	:smiling_face_with_three_hearts:
+		2.**Role#2**:	Documentation 	:sweat_smile:
+		3.**Role#3**:	Data Modeler 	:zany_face:
+	3.Ching
+		1.**Role#1**:	UI/UX Design Lead :joy:
+		2.**Role#2**:	Team Manager :joy:	
 	
 	

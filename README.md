@@ -321,4 +321,15 @@ ionic cordova build android
 	1. Ching
 		1. **Role#1**: *UI/UX Design Lead* :joy:
 		2. **Role#2**: *Team Manager* :joy:	
-	
+
+	--------------------------------
+  --------------------------------
+##Team Members Fall 2020 - by Gretchen 😒
+1. **Team Name**: SMC
+2. **Repo Location**: https://github.com/soft-eng-practicum/GrizzlyParking
+3. Progress Tracking Tool and URL (TBA)
+4. **Discord**: smc-cg, Client Contact, SD2 Private Chat 😉
+5. **Members**: 
+	1. Gretchen: *Testing Lead, Lead Programmer* 😄
+	2. Ching: *UI/UX Design Lead, Team Manager*
+	3. Lily: *Client Liaison, Documentation Lead, Data Modeler*

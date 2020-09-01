@@ -303,6 +303,8 @@ ionic cordova build android
 	2. Ching: *UI/UX Design Lead, Team Manager*
 	3. Lillian: *Client Liaison, Documentation Lead, Data Modeler* 😄
 	
+---------------------------
+---------------------------	
 ##Team Memembers Fall 2020 -Ching
 1. **SMC**: :rofl:
 2. https://github.com/soft-eng-practicum/GrizzlyParking

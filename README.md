@@ -20,7 +20,7 @@ An Ionic parking app that helps ease the flow of traffic on GGC's campus and hel
 2. The only way to test this app on iOS is with a machine that runs MacOS
 3. Use a Project Management Tool to help keep track of progress. We used trello.com
 ### Make sure you are familiar with how Ionic 3 works
-1. lynda.com offers some Ionic 2 courses which is very similar to Ionic 3. 
+1. lynda.com offers some Ionic 2 courses which is very similar to Ionic 3.
 2. Ionic 3 implements ```"Lazy Loading"``` which is a new way for Ionic to only load the neccessary .ts files when needed
 3. Ionic 3 is written in ```Typescript``` and uses ```Angular``` as a framework for the front end
 4. https://ionicframework.com/docs/
@@ -65,7 +65,6 @@ this.navCtrl.push(YourPageClass);
 ```
 ```
 Example:
-
 <a href="#">{{ typeScriptVariable }}</a>
 ```
 
@@ -74,22 +73,19 @@ Example:
 
 ```
 .ts file
-
-import {FormBuilder, Validators, FormGroup } from '@angular/forms'; 
+import {FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AuthProvider } from '../../providers/auth/auth';
-
     //TS Variable
     public loginForm: FormGroup;
-
   constructor(
       public formBuilder: FormBuilder
   ){
       //Initialize Form
       this.loginForm = formBuilder.group({
-        email: ['', 
+        email: ['',
         Validators.compose([Validators.required, EmailValidator.isValid])],
-        password: ['', 
+        password: ['',
         Validators.compose([Validators.minLength(6), Validators.required])]
       });
   }
@@ -97,40 +93,31 @@ import { AuthProvider } from '../../providers/auth/auth';
 
 ```
 HTML
-
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Login</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
-
     <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls.email.valid && blur"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label stacked>Password</ion-label>
       <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
     </ion-item>
-
     <button ion-button block type="submit" [disabled]="!loginForm.valid">
       Login
     </button>
-
   </form>
-
   <button ion-button block clear (click)="goToSignup()">
     Create a new account
   </button>
-
   <button ion-button block clear (click)="goToResetPassword()">
     I forgot my password
   </button>
-
 </ion-content>
 ```
 
@@ -139,7 +126,6 @@ HTML
 2. ```src/app/app.module.ts``` holds the code that initializes Firebase
 ```
 app.module.ts
-
 imports: [
     AngularFireModule.initializeApp(credentials.firebase),
     AngularFirestoreModule.enablePersistence(),
@@ -234,9 +220,9 @@ ionic cordova build android
 1. Run ```ionic serve```
 2. Either the page will show you the error or the console will
 ### Build Error Fix
-1. Delete ```plugins www/ platforms``` 
+1. Delete ```plugins www/ platforms```
 2. Run ```npm i```
-3. Build ```ionic cordova build <platform>``` 
+3. Build ```ionic cordova build <platform>```
 
 ### iOS Build Error
 //Todo
@@ -256,7 +242,7 @@ ionic cordova build android
 ## Future Iterations
 1. The rest of the campus parking lots
 <br>Ordered by desirabiity
-<br>A Lot(Highest Priority) 
+<br>A Lot(Highest Priority)
 <br>L Lot
 <br>I Lot(Lowest Priority)
 2. Falculty Parking Application(Optional as it adds a lot of complexity)
@@ -278,4 +264,72 @@ ionic cordova build android
     </li>
 </ul>
 
+## Team Members Fall 2018
+1. Jared Houseman
+   1. *Team Manager*
+   1. *Client Liaison*
+   1. *Lead Programmer*
 
+2. Paul Cardenas
+   1. *UI Design*
+   1. *Testing*     
+
+3. Jacob Bradberry 😄
+   1. *Data Modeler*
+   1. *Documentation Lead*
+
+--------------------------
+--------------------------
+## Parking Pirates
+## Repo Location:
+## Progress Tracking Tool
+- Discord, Jira
+## Team Members Fall 2019
+1. **Nick Risley** - Team Manager, Client Liaison, Data Modeler :penguin:
+2. **Joshua Walton** - Data Modeler, Testing Lead :zap:
+3. **Raghu Khanal** - Lead Programmer, Testing Lead :wolf:
+4. **Mark Levengood** - Documentation lead, Programmer :computer:
+5. **Travis Toal** - UI/UX design, Programmer :raised_hands:
+
+--------------------------
+--------------------------
+## Team Members Fall 2020 - by Lillian
+1. **Team Name**: SMC 
+2. **Repo Location**: https://github.com/soft-eng-practicum/GrizzlyParking
+3. Progress Tracking Tool and URL (TBA)
+4. **Discord**: smc-cg, Client Contact, SD2 Private Chat
+5. **Members**: 
+	1. Gretchen: *Testing Lead, Lead Programmer* 
+	2. Ching: *UI/UX Design Lead, Team Manager*
+	3. Lillian: *Client Liaison, Documentation Lead, Data Modeler* 😄
+	
+---------------------------
+---------------------------	
+## Team Memembers Fall 2020 -Ching
+1. **SMC**: :rofl:
+2. https://github.com/soft-eng-practicum/GrizzlyParking
+3. Progress tracking tool and URL (TBA)
+4. **Discord, Jira**
+5. **Members**:
+	1.  Gretchen:
+		1. **Role#1**: *Testing Lead*	:sweat_smile:
+		2. **Role#2**: *Lead Programmer*	:wink:
+	1.  Lillian:
+		1. **Role#1**: *Client Liasison*	:smiling_face_with_three_hearts:
+		2. **Role#2**: *Documentation* 	:sweat_smile:
+		3. **Role#3**: *Data Modeler* 	:zany_face:
+	1. Ching
+		1. **Role#1**: *UI/UX Design Lead* :joy:
+		2. **Role#2**: *Team Manager* :joy:	
+
+	--------------------------------
+  --------------------------------
+##Team Members Fall 2020 - by Gretchen 😒
+1. **Team Name**: SMC
+2. **Repo Location**: https://github.com/soft-eng-practicum/GrizzlyParking
+3. Progress Tracking Tool and URL (TBA)
+4. **Discord**: smc-cg, Client Contact, SD2 Private Chat 😉
+5. **Members**: 
+	1. Gretchen: *Testing Lead, Lead Programmer* 😄
+	2. Ching: *UI/UX Design Lead, Team Manager*
+	3. Lily: *Client Liaison, Documentation Lead, Data Modeler*

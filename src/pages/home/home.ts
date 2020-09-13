@@ -77,7 +77,6 @@ export class HomePage {
       console.log('Error retreiving document: ', error);
     });
 
-   
 
   }
 
